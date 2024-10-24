@@ -119,7 +119,6 @@ public class AdminController {
 
 
 
-    private final AdminService adminService;
 
     // Category Endpoints
     @GetMapping("/categories")

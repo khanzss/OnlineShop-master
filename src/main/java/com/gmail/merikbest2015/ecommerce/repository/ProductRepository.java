@@ -13,11 +13,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE p.popular = true")
     Page<Product> findByPopularTrue(Pageable pageable);
 
-    @Query("SELECT p FROM Product p WHERE " +
-            "(coalesce(:subCategories, null) IS NULL OR p.subCategory.name IN :subCategories) " +
-            "AND (coalesce(:priceStart, null) IS NULL OR p.price BETWEEN :priceStart AND :priceEnd) " +
+    @Query("SELECT p FROM Product p " +
+            "JOIN p.options o " +
+            "WHERE (coalesce(:subCategories, null) IS NULL OR p.subCategory.name IN :subCategories) " +
+            "AND (coalesce(:priceStart, null) IS NULL OR o.price BETWEEN :priceStart AND :priceEnd) " +
             "AND (:popular IS NULL OR p.popular = :popular) " +
-            "ORDER BY p.price ASC")
+            "GROUP BY p.id " +
+            "ORDER BY MIN(o.price) ASC")
     Page<Product> getProductsByFilterParams(
             List<String> subCategories,
             Integer priceStart,

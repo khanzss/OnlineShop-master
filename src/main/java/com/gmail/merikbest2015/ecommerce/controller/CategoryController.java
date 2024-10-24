@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/admin/categories")
+@RequestMapping("/categories")
 @RequiredArgsConstructor
 public class CategoryController {
 
@@ -22,7 +22,7 @@ public class CategoryController {
 
     @GetMapping
     public String getCategories(Pageable pageable, Model model) {
-        controllerUtils.addPagination(model, adminService.getCategories(pageable));
+        controllerUtils.addPagination(model, adminService.getAllCategories(pageable));
         return "admin_categories";
     }
 

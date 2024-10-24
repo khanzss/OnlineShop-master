@@ -2,7 +2,8 @@ package com.gmail.merikbest2015.ecommerce.domain.product;
 
 import com.gmail.merikbest2015.ecommerce.domain.SubCategory;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,7 +21,7 @@ public class Product {
     private String productTitle;
     private int quantity;
     private int sold;
-    private boolean isPopular;
+    private boolean popular;
 
     @Column(length = 500)
     private String shortDescription;

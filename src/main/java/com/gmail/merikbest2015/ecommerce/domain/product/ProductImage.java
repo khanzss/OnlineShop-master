@@ -1,7 +1,7 @@
 package com.gmail.merikbest2015.ecommerce.domain.product;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import javax.persistence.*;
 
 import javax.persistence.*;
 
