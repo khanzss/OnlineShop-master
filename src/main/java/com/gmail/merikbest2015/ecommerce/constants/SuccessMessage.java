@@ -8,4 +8,13 @@ public class SuccessMessage {
     public static final String ACTIVATION_CODE_SEND = "Activation code has been sent to your email";
     public static final String USER_ACTIVATED = "User successfully activated.";
     public static final String USER_UPDATED = "User successfully updated.";
+
+
+    public static final String CATEGORY_EDITED = "CATEGORY successfully edited!";
+    public static final String CATEGORY_ADDED = "CATEGORY successfully added!";
+    public static final String CATEGORY_DELETED = "CATEGORY successfully deleted!";
+
+    public static final String SUBCATEGORY_EDITED = "SUBCATEGORY successfully edited!";
+    public static final String SUBCATEGORY_ADDED = "SUBCATEGORY successfully added!";
+    public static final String SUBCATEGORY_DELETED = "SUBCATEGORY successfully deleted!";
 }

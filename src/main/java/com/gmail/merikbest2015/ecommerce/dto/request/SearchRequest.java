@@ -11,4 +11,13 @@ public class SearchRequest {
     private Integer price = 0;
     private String searchType;
     private String text;
+
+
+
+    private List<String> subCategories;
+    private Integer priceStart;
+    private Integer priceEnd;
+    private Boolean popular;
+//    private String searchType;
+//    private String text;
 }

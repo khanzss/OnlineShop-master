@@ -2,12 +2,18 @@ package com.gmail.merikbest2015.ecommerce.controller;
 
 import com.gmail.merikbest2015.ecommerce.constants.Pages;
 import com.gmail.merikbest2015.ecommerce.constants.PathConstants;
+import com.gmail.merikbest2015.ecommerce.domain.Category;
+import com.gmail.merikbest2015.ecommerce.domain.SubCategory;
+import com.gmail.merikbest2015.ecommerce.dto.request.CategoryRequest;
 import com.gmail.merikbest2015.ecommerce.dto.request.PerfumeRequest;
 import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
+import com.gmail.merikbest2015.ecommerce.dto.request.SubCategoryRequest;
+import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 import com.gmail.merikbest2015.ecommerce.dto.response.UserInfoResponse;
 import com.gmail.merikbest2015.ecommerce.service.AdminService;
 import com.gmail.merikbest2015.ecommerce.utils.ControllerUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -106,4 +112,65 @@ public class AdminController {
         controllerUtils.addPagination(model, userResponse.getOrders());
         return Pages.ADMIN_USER_DETAIL;
     }
+
+
+
+
+
+
+
+    private final AdminService adminService;
+
+    // Category Endpoints
+    @GetMapping("/categories")
+    public Page<Category> getAllCategories(Pageable pageable) {
+        return adminService.getAllCategories(pageable);
+    }
+
+    @PostMapping("/categories")
+    public MessageResponse addCategory(@RequestBody CategoryRequest categoryRequest) {
+        return adminService.addCategory(categoryRequest);
+    }
+
+    @PutMapping("/categories")
+    public MessageResponse editCategory(@RequestBody CategoryRequest categoryRequest) {
+        return adminService.editCategory(categoryRequest);
+    }
+
+    @DeleteMapping("/categories/{id}")
+    public MessageResponse deleteCategory(@PathVariable Long id) {
+        return adminService.deleteCategory(id);
+    }
+
+    @PutMapping("/categories/toggle-visibility/{id}")
+    public MessageResponse toggleCategoryVisibility(@PathVariable Long id) {
+        return adminService.toggleCategoryVisibility(id);
+    }
+
+    // SubCategory Endpoints
+    @GetMapping("/subcategories")
+    public Page<SubCategory> getAllSubCategories(Pageable pageable) {
+        return adminService.getAllSubCategories(pageable);
+    }
+
+    @PostMapping("/subcategories")
+    public MessageResponse addSubCategory(@RequestBody SubCategoryRequest subCategoryRequest) {
+        return adminService.addSubCategory(subCategoryRequest);
+    }
+
+    @PutMapping("/subcategories")
+    public MessageResponse editSubCategory(@RequestBody SubCategoryRequest subCategoryRequest) {
+        return adminService.editSubCategory(subCategoryRequest);
+    }
+
+    @DeleteMapping("/subcategories/{id}")
+    public MessageResponse deleteSubCategory(@PathVariable Long id) {
+        return adminService.deleteSubCategory(id);
+    }
+
+    @PutMapping("/subcategories/toggle-visibility/{id}")
+    public MessageResponse toggleSubCategoryVisibility(@PathVariable Long id) {
+        return adminService.toggleSubCategoryVisibility(id);
+    }
+
 }

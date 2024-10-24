@@ -8,4 +8,9 @@ import lombok.Data;
 public class MessageResponse {
     private String response;
     private String message;
+
+    public MessageResponse(String response, String message) {
+        this.response = response;
+        this.message = message;
+    }
 }

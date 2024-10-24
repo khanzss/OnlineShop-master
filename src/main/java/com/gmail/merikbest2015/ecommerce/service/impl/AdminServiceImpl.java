@@ -2,20 +2,19 @@ package com.gmail.merikbest2015.ecommerce.service.impl;
 
 import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import com.gmail.merikbest2015.ecommerce.constants.SuccessMessage;
-import com.gmail.merikbest2015.ecommerce.domain.Order;
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
-import com.gmail.merikbest2015.ecommerce.domain.User;
+import com.gmail.merikbest2015.ecommerce.domain.*;
+import com.gmail.merikbest2015.ecommerce.dto.request.CategoryRequest;
 import com.gmail.merikbest2015.ecommerce.dto.request.PerfumeRequest;
 import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
+import com.gmail.merikbest2015.ecommerce.dto.request.SubCategoryRequest;
 import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 import com.gmail.merikbest2015.ecommerce.dto.response.UserInfoResponse;
-import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
-import com.gmail.merikbest2015.ecommerce.repository.PerfumeRepository;
-import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
+import com.gmail.merikbest2015.ecommerce.repository.*;
 import com.gmail.merikbest2015.ecommerce.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -121,5 +120,132 @@ public class AdminServiceImpl implements AdminService {
         }
         perfumeRepository.save(perfume);
         return new MessageResponse("alert-success", message);
+    }
+
+
+
+
+
+
+
+
+
+    private final CategoryRepository categoryRepository;
+    private final SubCategoryRepository subCategoryRepository;
+
+    // Category Services
+    @Override
+    public Page<Category> getAllCategories(Pageable pageable) {
+        return categoryRepository.findAll(pageable);
+    }
+
+    @Override
+    public MessageResponse addCategory(CategoryRequest categoryRequest) {
+        Category category = new Category();
+        category.setName(categoryRequest.getName());
+        category.setDisplayOrder(categoryRequest.getDisplayOrder());
+        category.setVisible(categoryRequest.getVisible());
+
+        categoryRepository.save(category);
+        return new MessageResponse("alert-success", "Category added successfully.");
+    }
+
+    @Override
+    public MessageResponse editCategory(CategoryRequest categoryRequest) {
+        Category category = categoryRepository.findById(categoryRequest.getId())
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        category.setName(categoryRequest.getName());
+        category.setDisplayOrder(categoryRequest.getDisplayOrder());
+        category.setVisible(categoryRequest.getVisible());
+
+        categoryRepository.save(category);
+        return new MessageResponse("alert-success", "Category updated successfully.");
+    }
+
+    @Override
+    public MessageResponse deleteCategory(Long id) {
+        if (!categoryRepository.existsById(id)) {
+            return new MessageResponse("alert-warning", "Category not found.");
+        }
+        categoryRepository.deleteById(id);
+        return new MessageResponse("alert-success", "Category deleted successfully.");
+    }
+
+    @Override
+    public MessageResponse toggleCategoryVisibility(Long id) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        category.setVisible(!category.isVisible());
+        categoryRepository.save(category);
+
+        String status = category.isVisible() ? "visible" : "hidden";
+        return new MessageResponse("alert-success", "Category is now " + status + ".");
+    }
+
+
+
+
+
+
+    // SubCategory Services
+    @Override
+    public Page<SubCategory> getAllSubCategories(Pageable pageable) {
+        return subCategoryRepository.findAll(pageable);
+    }
+
+    @Override
+    public MessageResponse addSubCategory(SubCategoryRequest subCategoryRequest) {
+        Category category = categoryRepository.findById(subCategoryRequest.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        SubCategory subCategory = new SubCategory();
+        subCategory.setName(subCategoryRequest.getName());
+        subCategory.setDisplayOrder(subCategoryRequest.getDisplayOrder());
+        subCategory.setVisible(subCategoryRequest.getVisible());
+        subCategory.setCategory(category);  // Liên kết đúng với Category đã có
+
+        subCategoryRepository.save(subCategory);
+        return new MessageResponse("alert-success", "SubCategory added successfully.");
+    }
+
+    @Override
+    public MessageResponse editSubCategory(SubCategoryRequest subCategoryRequest) {
+        SubCategory subCategory = subCategoryRepository.findById(subCategoryRequest.getId())
+                .orElseThrow(() -> new RuntimeException("SubCategory not found"));
+
+        Category category = categoryRepository.findById(subCategoryRequest.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        subCategory.setName(subCategoryRequest.getName());
+        subCategory.setDisplayOrder(subCategoryRequest.getDisplayOrder());
+        subCategory.setVisible(subCategoryRequest.getVisible());
+        subCategory.setCategory(category);  // Cập nhật liên kết đúng
+
+        subCategoryRepository.save(subCategory);
+        return new MessageResponse("alert-success", "SubCategory updated successfully.");
+    }
+
+
+    @Override
+    public MessageResponse deleteSubCategory(Long id) {
+        if (!subCategoryRepository.existsById(id)) {
+            return new MessageResponse("alert-warning", "SubCategory not found.");
+        }
+        subCategoryRepository.deleteById(id);
+        return new MessageResponse("alert-success", "SubCategory deleted successfully.");
+    }
+
+    @Override
+    public MessageResponse toggleSubCategoryVisibility(Long id) {
+        SubCategory subCategory = subCategoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("SubCategory not found"));
+
+        subCategory.setVisible(!subCategory.isVisible());
+        subCategoryRepository.save(subCategory);
+
+        String status = subCategory.isVisible() ? "visible" : "hidden";
+        return new MessageResponse("alert-success", "SubCategory is now " + status + ".");
     }
 }
