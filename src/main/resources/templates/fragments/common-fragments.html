@@ -27,69 +27,222 @@
 </div>
 
 <!--Navbar-->
-<div th:fragment="navbar" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<!--    <div class="container-fluid bg-black header-top d-none d-md-block pb-5 pt-5">-->
-<!--        <img id="logo-main" src="https://i.ibb.co/fqYvrL8/LOGO4.jpg" class="rounded mx-auto d-block"/>-->
-<!--    </div>-->
-    <div class="container-fluid bg-black">
-        <nav id="navbar-main" class="container navbar navbar-expand-lg bg-black text-white navbar-main">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link pl-5 pr-5" href="/">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-5 pr-5" href="/perfume">PERFUMES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-5 pr-5" href="/user/contacts">CONTACTS</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cart">
-                            <i class="fas fa-shopping-cart fa-lg pl-5"></i>
+<div th:fragment="navbar" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <div class="container-fluid bg-dark py-2">
+        <nav class="navbar navbar-expand-lg navbar-dark d-flex align-items-center justify-content-between px-0">
+            <!-- Left Section: Logo -->
+            <div class="left-section d-flex align-items-center pl-3" >
+                <a class="navbar-brand" href="/">
+                    <img src="//www.themancompany.com/cdn/shop/files/logo_08a2688e-7c47-4081-a0e8-942d40f74a6d_250x.png?v=1663137227 "
+                         srcset="//www.themancompany.com/cdn/shop/files/logo_08a2688e-7c47-4081-a0e8-942d40f74a6d_250x@2x.png?v=1663137227 2x"
+                         alt="The Man Company" class="img-fluid" width="100%" loading="lazy">
+
+                </a>
+            </div>
+
+            <!-- Navbar toggler (for mobile view) -->
+            <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Middle Section: Links -->
+            <div class="collapse navbar-collapse middle-section" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Festive Ready</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">By Concerns</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Track your Order</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="moreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="moreDropdown">
+                            <a class="dropdown-item" href="#">Gift Sets</a>
+                            <a class="dropdown-item" href="#">Best Sellers</a>
+                        </div>
                     </li>
-                    <th:block sec:authorize="isAuthenticated()">
-                        <li class="nav-item">
-                            <a class="nav-link pl-5" href="/user/account">
-                                <i class="fas fa-user mr-2"></i>
-                                MY ACCOUNT
-                            </a>
-                        </li>
-                        <form id="logout" action="/logout" method="post">
-                            <li class="nav-item">
-                                <a class="nav-link" href=# onclick="document.getElementById('logout').submit()">
-                                    <input type="hidden"/>
-                                    <i class="fas fa-sign-out-alt mr-2"></i>
-                                    EXIT
-                                </a>
-                            </li>
-                        </form>
-                    </th:block>
-                    <th:block sec:authorize="!isAuthenticated()">
-                        <li class="nav-item">
-                            <a class="nav-link pl-5" href="/login">
-                                <i class="fas fa-sign-in-alt mr-2"></i>
-                                LOGIN
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-5" href="/registration">
-                                <i class="fas fa-user-plus mr-2"></i>
-                                REGISTRATION
-                            </a>
-                        </li>
-                    </th:block>
                 </ul>
+            </div>
+
+            <!-- Right Section: Search and Icons -->
+            <div class="right-section d-flex align-items-center pr-3">
+                <div class="search-wrapper st-desktop-searchbox st-hidden-sm">
+                    <div class="search-inner-wrapper st-search-bar st-hidden-sm" id="search-desktop">
+                        <input type="text" placeholder="Search" name="q" class="search-input text-sm-14 medium-sm" autocomplete="off">
+<!--                        <div class="search-icon">-->
+
+<!--                            <img alt="search" src="//www.themancompany.com/cdn/shop/files/header-search.png?v=17451942861997243419" data-sizes="auto" data-src="//www.themancompany.com/cdn/shop/files/header-search.png?v=17451942861997243419" data-srcset="//www.themancompany.com/cdn/shop/files/header-search_480x.png?v=17451942861997243419 480w,//www.themancompany.com/cdn/shop/files/header-search_765x.png?v=17451942861997243419 765w,//www.themancompany.com/cdn/shop/files/header-search_900x.png?v=17451942861997243419 900w,//www.themancompany.com/cdn/shop/files/header-search_1000x.png?v=17451942861997243419 1000w,//www.themancompany.com/cdn/shop/files/header-search_1200x.png?v=17451942861997243419 1200w,//www.themancompany.com/cdn/shop/files/header-search_1500x.png?v=17451942861997243419 1500w,//www.themancompany.com/cdn/shop/files/header-search_1900x.png?v=17451942861997243419 1900w," class="image-full blur-up img-fluid lazyautosizes ls-is-cached lazyloaded" width="" height="" loading="lazy" sizes="280px" srcset="//www.themancompany.com/cdn/shop/files/header-search_480x.png?v=17451942861997243419 480w,//www.themancompany.com/cdn/shop/files/header-search_765x.png?v=17451942861997243419 765w,//www.themancompany.com/cdn/shop/files/header-search_900x.png?v=17451942861997243419 900w,//www.themancompany.com/cdn/shop/files/header-search_1000x.png?v=17451942861997243419 1000w,//www.themancompany.com/cdn/shop/files/header-search_1200x.png?v=17451942861997243419 1200w,//www.themancompany.com/cdn/shop/files/header-search_1500x.png?v=17451942861997243419 1500w,//www.themancompany.com/cdn/shop/files/header-search_1900x.png?v=17451942861997243419 1900w,">-->
+<!--                        </div>-->
+                        <span>
+          <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="st-cross" style="display: none;">
+                          <path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"></path>
+                      </svg>
+      </span>
+                    </div>
+                    <div data-v-a837eca6="" class="st-autocomplete-box-container" style="display: none;"><div data-v-a837eca6="" class="st-searchpanel hidden-desktop"><a data-v-a837eca6="" class="st-back"><svg data-v-a837eca6="" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="st-back-arrow"><path data-v-a837eca6="" d="m9.474 5.209s-4.501 4.505-6.254 6.259c-.147.146-.22.338-.22.53s.073.384.22.53c1.752 1.754 6.252 6.257 6.252 6.257.145.145.336.217.527.217.191-.001.383-.074.53-.221.293-.293.294-.766.004-1.057l-4.976-4.976h14.692c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-14.692l4.978-4.979c.289-.289.287-.761-.006-1.054-.147-.147-.339-.221-.53-.221-.191-.001-.38.071-.525.215z" fill-rule="nonzero"></path></svg></a><div data-v-a837eca6="" class="st-search-bar hidden-desktop"><input data-v-a837eca6="" type="text" name="q" id="st-mobile-autocomplete-search-bar" placeholder="Search for products" value="" autocapitalize="off" autocomplete="off" autocorrect="off"><svg data-v-a837eca6="" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 30 30" class="st-searchicon"><path data-v-a837eca6="" d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path></svg><svg data-v-a837eca6="" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="st-cross" style="display: none;"><path data-v-a837eca6="" d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"></path></svg></div></div><div data-v-a837eca6="" class="st-trending-box" style="display: none;"><div data-v-33b25cca="" data-v-a837eca6="" class="loading" style="display: none;"><div data-v-33b25cca=""><section data-v-33b25cca="" class="st-trending-search-skeleton"><div data-v-33b25cca="" class="st-trending-container"><div data-v-33b25cca="" class="st-trending-header-loader"><span data-v-33b25cca="" class="st-heading-text"></span></div><ul data-v-33b25cca="" class="st-trending-list-skeleton"><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li></ul></div></section><section data-v-33b25cca="" class="st-recomend"><div data-v-33b25cca="" class="st-trending-header-loader"><span data-v-33b25cca="" class="st-heading-text"></span></div><div data-v-33b25cca="" class="st-row st-cols-2 st-cols-sm-2  st-cols-md-2 st-cols-lg-3 st-product-wrapper"><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div></div></section></div><!----><!----></div><div data-v-a837eca6=""><section data-v-a837eca6="" class="st-trending-search" style="display: none;"><div data-v-a837eca6="" id="st-before-search"><div data-v-a837eca6="" class="st-trending-header"><span data-v-a837eca6="" class="st-heading-text">Trending Searches</span></div><div data-v-a1821a26="" data-v-a837eca6=""><ul data-v-a1821a26="" class="st-trending-list"></ul></div></div></section><section data-v-a837eca6="" class="st-recomend"><div data-v-a837eca6="" class="st-trending-header"><span data-v-a837eca6="" class="st-heading-text">Recommended for you</span></div><div data-v-a837eca6="" class="st-row st-cols-2 st-cols-sm-2  st-cols-md-2 st-cols-lg-3 st-product-wrapper"></div></section><div data-v-a837eca6="" class="st-autocomplete-footer st-row st-hidden-sm"><div data-v-5f940e05="" data-v-a837eca6="" class="st-branding"></div></div></div></div><div data-v-a837eca6="" class="st-after-box" style="display: none;"><div data-v-33b25cca="" data-v-a837eca6="" class="loading" style="display: none;"><!----><div data-v-33b25cca="" class="loading"><section data-v-33b25cca="" class="st-trending-search-skeleton hidden-desktop"><div data-v-33b25cca="" class="st-trending-container"><div data-v-33b25cca="" class="st-trending-header-loader"><span data-v-33b25cca="" class="st-heading-text"></span></div><ul data-v-33b25cca="" class="st-trending-list-skeleton"><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li></ul><div data-v-33b25cca="" class="st-autocomplete-footer"></div></div></section><div data-v-33b25cca="" class="st-row st-hidden-mobile"><div data-v-33b25cca="" class="st-col-lg-3 st-col-md-3 st-left-col st-hidden-sm"><div data-v-33b25cca="" class="st-left-col-header"><h4 data-v-33b25cca="" class="Museo_text_700"></h4></div><ul data-v-33b25cca="" class="st-trending-list"><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li><li data-v-33b25cca="" class="st-trending-label"><span data-v-33b25cca="" class="st-label-text"></span></li></ul></div><div data-v-33b25cca="" class="st-col-lg-9 st-col-md-9 st-right-col"><div data-v-33b25cca="" class="st-row st-cols-2 st-cols-sm-2 st-cols-md-3  st-product-wrapper"><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div><div data-v-33b25cca="" class="st-product-wrap"><div data-v-33b25cca="" class="st-product"><figure data-v-33b25cca="" class="st-product-media"><a data-v-33b25cca=""></a></figure><div data-v-33b25cca="" class="st-product-details"><div data-v-33b25cca="" class="st-product-name"><a data-v-33b25cca=""></a></div><div data-v-33b25cca="" class="st-product-price"></div></div></div></div></div></div></div><div data-v-33b25cca="" class="st-autocomplete-footer st-hidden-mobile"><div data-v-33b25cca="" class="st-row"><div data-v-33b25cca="" class="st-left-col"></div><div data-v-33b25cca="" class="st-right-col"><div data-v-33b25cca="" class="st-goto-search"><span data-v-33b25cca="" class="st-box-btn"></span></div></div></div></div></div><!----></div><div data-v-a837eca6=""><div data-v-a837eca6=""><div data-v-a837eca6="" style="display: none;"><section data-v-a837eca6="" class="st-trending-search hidden-desktop" style="display: none;"><div data-v-a837eca6="" id="st-before-search"><div data-v-a837eca6="" class="st-trending-header"><span data-v-a837eca6="" class="st-heading-text">Search Suggestions</span></div><div data-v-a1821a26="" data-v-a837eca6=""><ul data-v-a1821a26="" class="st-trending-list"></ul></div></div></section><div data-v-a837eca6="" class="st-trending-header hidden-desktop"><span data-v-a837eca6="" class="st-heading-text">Search Results</span></div><!----><div data-v-a837eca6="" class="st-trending-desktop st-row st-hidden-sm"><div data-v-a837eca6="" class="st-col-lg-3 st-col-md-3 st-left-col" style="display: none;"><div data-v-a837eca6="" class="st-left-col-header"><h4 data-v-a837eca6="" class="Museo_text_700"> Search Suggestions </h4></div><div data-v-a1821a26="" data-v-a837eca6=""><ul data-v-a1821a26="" class="st-trending-list"></ul></div></div><div data-v-a837eca6="" class="st-col-lg-9 st-col-md-9 st-right-col"><div data-v-a837eca6="" class="st-no-result-msg text-center">No products for the Query</div><div data-v-a837eca6="" class="st-row st-cols-2 st-cols-sm-2 st-cols-md-3  st-product-wrapper"></div></div></div><div data-v-a837eca6="" class="st-autocomplete-footer" style="display: none;"><div data-v-a837eca6="" class="st-row"><div data-v-a837eca6="" class="st-left-col"><div data-v-5f940e05="" data-v-a837eca6="" class="st-branding"></div></div><div data-v-a837eca6="" class="st-right-col"><div data-v-a837eca6="" class="st-goto-search" style="display: none;"><span data-v-a837eca6="" class="st-box-btn"> View all (-1) product<span data-v-a837eca6="" style="display: none;">s</span></span></div></div></div></div></div></div><div data-v-a837eca6="" class="atc-img" style="display: none;"><div data-v-a837eca6="" class="st-no-result-container" style="display: none;"><div data-v-a837eca6="" class="st-no-result-header"><h2 data-v-a837eca6="">No Results found for ''</h2><p data-v-a837eca6="">Try searching some other keywords</p><h3 data-v-a837eca6="">Here are some of our bestsellers</h3></div><div data-v-a837eca6=""><div data-v-a837eca6="" class="st-row st-cols-2 st-cols-sm-2  st-cols-md-2 st-cols-lg-3 st-product-wrapper"></div></div></div><!----></div></div></div></div>
+                </div>
+                <div class="header-icon-wrapper"><div class="header-inner-wrapper">
+                    <div class="nav-icon account-icon">
+                        <div class="icon"><div class="header--icon">
+                            <div id="kp-login-button-header-logo" style="cursor: pointer;display: flex;align-items: center;"><svg width="35px" height="35px" viewBox="0 0 27 27" fill="none" style="color: white;" xmlns="http://www.w3.org/2000/svg" id="svgkp">
+                                <path d="M22.9129 12.935L13.7571 23.0474C13.5348 23.2929 13.1284 23.1084 13.1669 22.7794L14.0816 14.9731H10.6991C10.4034 14.9731 10.2484 14.6219 10.4478 14.4035L20.3133 3.59739C20.5589 3.32834 20.9984 3.58134 20.8891 3.92887L18.2354 12.3664H22.6607C22.9557 12.3664 23.1109 12.7163 22.9129 12.935Z" fill="#FEA203"></path>
+                                <path id="svgkp-path" fill-rule="evenodd" clip-rule="evenodd" d="M16.6079 5.35819C16.4805 5.1933 16.3421 5.03582 16.1932 4.8869C15.2702 3.96387 14.0183 3.44531 12.7129 3.44531C11.4075 3.44531 10.1556 3.96387 9.2326 4.8869C8.30957 5.80993 7.79102 7.06183 7.79102 8.36719C7.79102 9.67255 8.30957 10.9244 9.2326 11.8475C9.48368 12.0986 9.75909 12.3197 10.0533 12.5086L11.0235 11.4503C10.7335 11.2914 10.4649 11.0911 10.227 10.8531C9.56766 10.1938 9.19727 9.29959 9.19727 8.36719C9.19727 7.43479 9.56766 6.54057 10.227 5.88127C10.8863 5.22196 11.7805 4.85156 12.7129 4.85156C13.6453 4.85156 14.5395 5.22196 15.1988 5.88127C15.3636 6.04604 15.5103 6.22549 15.6377 6.41654L16.6079 5.35819ZM20.6413 18.6497L19.6746 19.7132C20.1676 20.4122 20.4473 21.2264 20.4473 22.0781V23.8359C20.4473 24.2243 20.7621 24.5391 21.1504 24.5391C21.5387 24.5391 21.8535 24.2243 21.8535 23.8359V22.0781C21.8535 20.7863 21.4016 19.6103 20.6413 18.6497ZM12.3111 17.5078H10.3026C7.27113 17.5078 4.97852 19.6394 4.97852 22.0781V23.8359C4.97852 24.2243 4.66372 24.5391 4.27539 24.5391C3.88707 24.5391 3.57227 24.2243 3.57227 23.8359V22.0781C3.57227 18.6922 6.67684 16.1016 10.3026 16.1016H12.4885L12.3111 17.5078Z" fill="currentColor" stroke="currentColor"></path>
+                            </svg></div>
+
+                            <div id="loggedin-icons" style="display: none;">
+                                <div onclick="handleShopifyLogin(event,'/account')" style="cursor: pointer;display: flex;" id="icon-kwikpass">
+                                    <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg" id="svgkp">
+                                        <path d="M22.9129 12.935L13.7571 23.0474C13.5348 23.2929 13.1284 23.1084 13.1669 22.7794L14.0816 14.9731H10.6991C10.4034 14.9731 10.2484 14.6219 10.4478 14.4035L20.3133 3.59739C20.5589 3.32834 20.9984 3.58134 20.8891 3.92887L18.2354 12.3664H22.6607C22.9557 12.3664 23.1109 12.7163 22.9129 12.935Z" fill="#FEA203"></path>
+                                        <path id="svgkp-path" fill-rule="evenodd" clip-rule="evenodd" d="M16.6079 5.35819C16.4805 5.1933 16.3421 5.03582 16.1932 4.8869C15.2702 3.96387 14.0183 3.44531 12.7129 3.44531C11.4075 3.44531 10.1556 3.96387 9.2326 4.8869C8.30957 5.80993 7.79102 7.06183 7.79102 8.36719C7.79102 9.67255 8.30957 10.9244 9.2326 11.8475C9.48368 12.0986 9.75909 12.3197 10.0533 12.5086L11.0235 11.4503C10.7335 11.2914 10.4649 11.0911 10.227 10.8531C9.56766 10.1938 9.19727 9.29959 9.19727 8.36719C9.19727 7.43479 9.56766 6.54057 10.227 5.88127C10.8863 5.22196 11.7805 4.85156 12.7129 4.85156C13.6453 4.85156 14.5395 5.22196 15.1988 5.88127C15.3636 6.04604 15.5103 6.22549 15.6377 6.41654L16.6079 5.35819ZM20.6413 18.6497L19.6746 19.7132C20.1676 20.4122 20.4473 21.2264 20.4473 22.0781V23.8359C20.4473 24.2243 20.7621 24.5391 21.1504 24.5391C21.5387 24.5391 21.8535 24.2243 21.8535 23.8359V22.0781C21.8535 20.7863 21.4016 19.6103 20.6413 18.6497ZM12.3111 17.5078H10.3026C7.27113 17.5078 4.97852 19.6394 4.97852 22.0781V23.8359C4.97852 24.2243 4.66372 24.5391 4.27539 24.5391C3.88707 24.5391 3.57227 24.2243 3.57227 23.8359V22.0781C3.57227 18.6922 6.67684 16.1016 10.3026 16.1016H12.4885L12.3111 17.5078Z" fill="currentColor" stroke="currentColor"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div></div>
+                    </div>
+
+
+
+                    <div class="nav-icon cart-icon">
+                        <a class="cart-icon-wrapper side-cart-opener-js">
+
+
+                            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M497.63,93.64c-2.11-1.7-5.96-1.66-9.03-1.66-120.66-.08-241.31-.14-361.97,.12-7.19,.01-9.69-2.38-10.65-9.05-1.39-9.48-3.25-18.92-5.66-28.19-2.98-11.45-9.77-19.48-22.26-21.33-.99-.15-1.89-1.02-2.83-1.56H16.11c-.26,.35-.46,.9-.82,1.02C4.23,37.15-1.26,44.41,.25,52.97c1.77,9.93,9.24,15.3,21.35,15.31h54.7c.48,1.06,.84,1.63,.96,2.24,5.57,26.42,11.06,52.86,16.68,79.27,9.32,43.89,18.75,87.76,28.11,131.63,5.91,27.73,11.59,55.49,17.74,83.16,2.57,11.52,12.59,19.21,23.8,19.21,93.03,.03,186.04,.04,279.07-.12,3.1,0,6.66-1.18,9.2-2.96,6.64-4.67,8.88-12.46,6.47-19.71-2.46-7.36-9.1-11.75-17.75-11.75H181.16c-1.81,0-3.78,.43-5.38-.14-1.56-.57-3.61-1.94-3.98-3.36-1.68-6.38-2.84-12.91-4.35-20.16h8.78c89.63,0,179.26,.01,268.89,0,13.69,0,23.99-7.88,27.4-21.19,1.78-6.91,3.22-13.92,4.69-20.91,8.8-41.72,17.51-83.44,26.39-125.13,2.54-11.94,5.58-23.77,8.4-35.65v-14.9c-4.74-4.78-9.16-9.98-14.37-14.18Zm-36.76,95.38c-6.78,31.86-13.68,63.67-20.01,95.61-1.02,5.15-3.33,5.41-7.23,5.38-16.7-.07-33.4-.03-50.1-.03H159.93c-11.42-54.01-22.81-107.81-34.4-162.58H474.15c-4.56,21.14-8.98,41.36-13.29,61.62Z"></path><path d="M433.13,440.62c-.05,23.98-14.24,39.48-36.01,39.39-20.11-.08-35.25-15.66-35.22-36.27,.01-20.4,15.35-36.12,35.4-36.3,18.8-.15,35.89,15.65,35.84,33.17Z"></path><path d="M238.03,444.18c-.08,20.36-15.53,35.85-35.75,35.84-20.02-.01-36.35-16.12-36.08-35.82,.31-23.6,17.71-36.22,36.07-36.65,20.23-.48,35.84,15.89,35.77,36.64Z"></path></svg>
+
+
+
+                            <div class="cart-count-bubble hidden"><span aria-hidden="true" class="cart-count-js">0</span></div>
+
+                        </a>
+                    </div>
+
+
+
+
+                    <div class="nav-icon track-icon">
+                        <a href="https://themancompany.clickpost.in/" target="_blank"></a>
+                        <a href="https://themancompany.clickpost.in/">
+
+
+                            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 296.77"><g id="Layer_1-2"><g><path d="M273.79,243.03c-.81,7.38-4.3,13.58-9.34,18.96-6.89,7.33-15.35,12.33-24.4,16.47-13.38,6.12-27.49,9.88-41.87,12.65-7.18,1.39-14.47,2.23-21.72,3.19-9.93,1.32-19.92,2.03-29.95,2.08-.39,0-.77,.26-1.15,.39h-16.46c-.5-.13-1-.36-1.5-.39-7.77-.47-15.57-.73-23.32-1.43-7.23-.65-14.43-1.61-21.61-2.72-12.58-1.95-24.94-4.9-36.96-9.15-10.19-3.61-19.99-8.02-28.67-14.6-7.07-5.37-12.92-11.7-15.52-20.47-.53-1.77-.88-3.61-1.32-5.41v-6.17c.43-1.8,.79-3.62,1.3-5.39,2.09-7.21,6.53-12.87,12.1-17.67,8.95-7.7,19.45-12.63,30.42-16.68,9.36-3.45,18.97-5.93,28.72-7.99,.5-.1,.89-.14,1.51-.26,4.1-.79,4.55-1.24,6.47,2.03,3.05,5.21,7.87,11.34,11.22,16.37,.31,.46,.57,.94,.97,1.62-3.72,.64-7.22,1.2-10.7,1.87-14.97,2.88-29.63,6.74-43.29,13.72-4.64,2.38-9.02,5.14-12.59,9.02-3.83,4.17-4.01,7.96-.48,12.34,2.78,3.44,6.36,5.87,10.14,8.02,8.97,5.09,18.58,8.68,28.55,11.16,8.76,2.17,17.6,4.02,26.47,5.67,5.18,.96,10.48,1.36,15.74,1.85,5.95,.56,11.92,1.12,17.89,1.35,6.16,.23,12.34,.16,18.51,.04,6.1-.12,12.21-.24,18.28-.74,6.68-.54,13.33-1.44,19.97-2.3,12.65-1.62,25.06-4.37,37.15-8.43,9.42-3.16,18.7-6.75,26.49-13.17,2.02-1.66,3.73-3.84,5.18-6.04,1.69-2.54,1.11-5.19-.53-7.68-2.53-3.83-6.13-6.42-9.95-8.73-10.05-6.06-21.02-9.88-32.34-12.63-7.94-1.93-16.01-3.3-24.03-4.92-.55-.12-1.1-.26-1.82-.43,.27-.48,.5-.92,.77-1.33,4.08-6.13,8.2-12.24,12.23-18.39,.62-.94,1.16-1.21,2.32-.99,16.88,3.19,33.35,7.65,48.72,15.53,8.65,4.44,16.54,9.89,22.41,17.86,4.82,6.54,6.86,13.88,5.98,21.88h.02v.04Z"></path><path d="M215.47,64.25c-4.03-19.33-13.75-35.19-29.27-47.38C172.38,6.01,156.51,.54,139,.02c-4.68-.14-9.42,.41-14.09,.96-8.09,.96-15.74,3.52-23.05,7.09-9.76,4.77-18.19,11.26-25.31,19.48-5.72,6.61-10.28,13.92-13.55,22.03-4.31,10.67-6.58,21.72-5.65,33.27,.34,4.17,.89,8.37,1.87,12.43,2.78,11.49,7.37,22.35,12.39,33.02,8.07,17.18,17.16,33.84,27.13,49.98,9.78,15.85,20.05,31.4,30.15,47.05,2.56,3.96,5.3,7.81,8.09,11.88,.37-.48,.56-.7,.71-.92,9.73-14.74,19.71-29.32,29.1-44.27,7.99-12.73,15.56-25.74,22.87-38.87,9.1-16.32,17.34-33.07,23.21-50.9,4.11-12.49,5.29-25.1,2.6-38.01h0Zm-24.63,31.14c-5.05,15.08-12.11,29.23-19.54,43.21-8.8,16.57-18.54,32.58-28.57,48.42-1.85,2.93-3.75,5.82-5.78,8.96-4.81-7.66-9.52-15.05-14.11-22.52-10.48-17.04-20.41-34.38-29.1-52.42-4.4-9.14-8.29-18.48-11.33-28.19-4.13-13.17-2.48-25.81,3.55-37.9,8.52-17.08,22.41-27.61,41.11-31.01,16.75-3.05,32.09,.98,45.51,11.66,9.95,7.92,16.42,18.18,19.67,30.44,2.62,9.9,1.85,19.63-1.4,29.34h-.01Z"></path><path d="M159.93,79.86c.04,13.18-10.56,22.93-23.02,22.91-12.5-.02-22.11-10.22-22.75-21.44-.78-13.84,10.47-24.59,22.99-24.25,12.15-.12,22.74,9.56,22.78,22.78h0Z"></path><g><path d="M293.68,42.9v-14.07h-57.49v14.07h21.11v55.31h15.26V42.9h21.12Z"></path><path d="M335.85,59.85v-15.76c-4.49-.2-8.06,.79-10.7,2.97-2.64,2.18-4.72,5.09-6.24,8.72v-10.7h-15.07v53.13h15.07v-19.63c0-6.41,1.42-11.13,4.26-14.17,2.91-3.04,6.87-4.56,11.89-4.56h.79Z"></path><path d="M390.96,98.21v-30.83c0-7.2-1.88-12.82-5.65-16.85-3.77-4.03-9.78-6.05-18.04-6.05-4.49,0-8.33,.4-11.5,1.19-3.17,.79-6.21,1.82-9.12,3.07l3.77,11.5c2.44-.93,4.76-1.62,6.94-2.08,2.25-.53,4.82-.79,7.73-.79,3.77,0,6.61,.83,8.52,2.48,1.92,1.65,2.87,4.06,2.87,7.24v.89c-1.92-.66-3.9-1.19-5.95-1.59-1.98-.4-4.33-.59-7.04-.59-3.17,0-6.08,.36-8.72,1.09-2.58,.66-4.82,1.69-6.74,3.07-1.85,1.39-3.3,3.14-4.36,5.25s-1.59,4.63-1.59,7.53v.2c0,2.64,.46,4.99,1.39,7.04,.99,1.98,2.31,3.67,3.96,5.06s3.57,2.44,5.75,3.17c2.25,.66,4.63,.99,7.14,.99,3.7,0,6.84-.59,9.42-1.78,2.58-1.26,4.79-2.91,6.64-4.96v5.75h14.58Zm-14.27-18.73c0,2.78-1.09,5.02-3.27,6.74-2.12,1.72-4.96,2.58-8.52,2.58-2.44,0-4.43-.56-5.95-1.69-1.52-1.12-2.28-2.71-2.28-4.76v-.2c0-2.38,.92-4.2,2.77-5.45,1.85-1.26,4.39-1.88,7.63-1.88,1.85,0,3.57,.2,5.15,.59,1.65,.33,3.14,.79,4.46,1.39v2.68h.01Z"></path><path d="M450.71,89.69l-8.82-8.92c-1.85,1.72-3.73,3.11-5.65,4.16-1.85,.99-4.03,1.49-6.54,1.49-2.05,0-3.9-.36-5.55-1.09-1.65-.79-3.07-1.85-4.26-3.17-1.19-1.32-2.11-2.87-2.77-4.66-.6-1.78-.89-3.7-.89-5.75v-.2c0-1.98,.3-3.83,.89-5.55,.66-1.78,1.55-3.34,2.68-4.66,1.19-1.32,2.54-2.35,4.06-3.07,1.59-.79,3.34-1.19,5.25-1.19,2.71,0,4.96,.53,6.74,1.59,1.85,1.06,3.63,2.48,5.35,4.26l9.22-9.91c-2.51-2.78-5.42-4.96-8.72-6.54-3.3-1.59-7.47-2.38-12.49-2.38-4.1,0-7.86,.73-11.3,2.18-3.37,1.45-6.28,3.44-8.72,5.95s-4.36,5.45-5.75,8.82-2.08,6.94-2.08,10.7v.2c0,3.77,.69,7.33,2.08,10.7,1.39,3.3,3.3,6.21,5.75,8.72,2.45,2.44,5.35,4.39,8.72,5.85,3.44,1.45,7.14,2.18,11.1,2.18,5.29,0,9.58-.89,12.89-2.68,3.3-1.85,6.24-4.2,8.82-7.04h-.01Z"></path><path d="M511.99,98.21l-20.91-32.21,20.22-20.91h-18.04l-17.64,19.33V25.86h-15.07V98.22h15.07v-16.16l5.25-5.55,13.88,21.71h17.24Z"></path><path d="M299.83,187.42V118.04h-15.26v27.46h-28.15v-27.46h-15.26v69.38h15.26v-27.85h28.15v27.85h15.26Z"></path><path d="M364.43,162.34v-.2c0-3.77-.53-7.37-1.59-10.8-.99-3.5-2.58-6.57-4.76-9.22-2.12-2.71-4.79-4.86-8.03-6.44-3.24-1.59-7.07-2.38-11.5-2.38-3.9,0-7.47,.73-10.7,2.18-3.17,1.45-5.91,3.44-8.23,5.95-2.31,2.51-4.13,5.45-5.45,8.82-1.26,3.37-1.88,6.94-1.88,10.71v.2c0,4.1,.69,7.83,2.08,11.2,1.39,3.3,3.3,6.18,5.75,8.62,2.51,2.44,5.45,4.33,8.82,5.65,3.44,1.32,7.14,1.98,11.1,1.98,4.82,0,9.02-.86,12.59-2.58,3.57-1.78,6.61-4.23,9.12-7.33l-8.62-7.63c-2.11,1.92-4.16,3.3-6.14,4.16-1.98,.86-4.23,1.29-6.74,1.29-3.37,0-6.21-.86-8.52-2.58-2.25-1.78-3.73-4.39-4.46-7.83h36.97c.07-.73,.1-1.35,.1-1.88,.07-.53,.1-1.16,.1-1.88h0Zm-14.67-5.66h-22.7c.59-3.44,1.85-6.18,3.77-8.23,1.98-2.05,4.56-3.07,7.73-3.07s5.72,1.06,7.63,3.17c1.92,2.05,3.11,4.76,3.57,8.13Z"></path><path d="M407.67,149.06v-15.76c-4.49-.2-8.06,.79-10.7,2.97-2.64,2.18-4.73,5.09-6.25,8.72v-10.7h-15.07v53.13h15.07v-19.63c0-6.41,1.42-11.14,4.26-14.17,2.91-3.04,6.87-4.56,11.89-4.56h.8Z"></path><path d="M466.65,162.34v-.2c0-3.77-.53-7.37-1.59-10.8-.99-3.5-2.58-6.57-4.76-9.22-2.11-2.71-4.79-4.86-8.03-6.44-3.24-1.59-7.07-2.38-11.5-2.38-3.9,0-7.47,.73-10.71,2.18-3.17,1.45-5.91,3.44-8.23,5.95-2.31,2.51-4.13,5.45-5.45,8.82-1.26,3.37-1.88,6.94-1.88,10.71v.2c0,4.1,.69,7.83,2.08,11.2,1.39,3.3,3.3,6.18,5.75,8.62,2.51,2.44,5.45,4.33,8.82,5.65,3.44,1.32,7.14,1.98,11.1,1.98,4.82,0,9.02-.86,12.59-2.58,3.57-1.78,6.61-4.23,9.12-7.33l-8.62-7.63c-2.12,1.92-4.16,3.3-6.15,4.16-1.98,.86-4.23,1.29-6.74,1.29-3.37,0-6.21-.86-8.52-2.58-2.25-1.78-3.73-4.39-4.46-7.83h36.97c.07-.73,.1-1.35,.1-1.88,.07-.53,.1-1.16,.1-1.88h0Zm-14.67-5.66h-22.7c.6-3.44,1.85-6.18,3.77-8.23,1.98-2.05,4.56-3.07,7.73-3.07s5.72,1.06,7.63,3.17c1.92,2.05,3.11,4.76,3.57,8.13Z"></path></g></g></g></svg>
+
+
+                        </a>
+                    </div>
+
+                </div>
+                </div>
             </div>
         </nav>
     </div>
 </div>
 
+<!--footer-->
+<footer class="bg-dark text-white pt-5 pb-3">
+    <div class="container">
+        <div class="row">
+            <!-- Stay in Touch -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="text-uppercase">Stay In Touch:</h5>
+                <p>Get exclusive deals & access to new launches. We won't spam promise</p>
+                <form class="newsletter-form">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter your email here" required>
+                        <button class="btn btn-secondary" type="submit" style="width: 80px; ">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="text-uppercase">Categories</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white">Beard</a></li>
+                    <li><a href="#" class="text-white">Face</a></li>
+                    <li><a href="#" class="text-white">Fragrance</a></li>
+                    <li><a href="#" class="text-white">Shave</a></li>
+                    <li><a href="#" class="text-white">Hair</a></li>
+                    <li><a href="#" class="text-white">Body</a></li>
+                    <li><a href="#" class="text-white">Tools & Accessories</a></li>
+                </ul>
+            </div>
+
+            <!-- Important Links -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="text-uppercase">Important Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white">Contact Us</a></li>
+                    <li><a href="#" class="text-white">About Us</a></li>
+                    <li><a href="#" class="text-white">TMC in News</a></li>
+                    <li><a href="#" class="text-white">The Man Mag</a></li>
+                    <li><a href="#" class="text-white">Our Ingredients</a></li>
+                    <li><a href="#" class="text-white">Hall of Gentleman</a></li>
+                    <li><a href="#" class="text-white">FAQs</a></li>
+                </ul>
+            </div>
+
+            <!-- Get Social -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="text-uppercase">Get Social With Us</h5>
+                <ul class="social-icons justify-content-around align-items-center p-0">
+                    <li class="list-social-item">
+                        <a href="https://twitter.com/themancompany" class="list-social-link" target="_blank">
+                            <svg width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 25C0 38.8071 11.1929 50 25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25Z" fill="#1DA1F2"></path>
+                                <path d="M37.5 17.1875C36.5625 17.6562 35.625 17.8125 34.5312 17.9688C35.625 17.3438 36.4062 16.4062 36.7188 15.1562C35.7812 15.7812 34.6875 16.0938 33.4375 16.4062C32.5 15.4687 31.0938 14.8438 29.6875 14.8438C26.4062 14.8438 23.9062 17.9688 24.6875 21.0938C20.4688 20.9375 16.7188 18.9063 14.0625 15.7813C12.6563 18.125 13.4375 21.0938 15.625 22.6562C14.8438 22.6562 14.0625 22.3438 13.2812 22.0313C13.2812 24.375 15 26.5625 17.3438 27.1875C16.5625 27.3437 15.7813 27.5 15 27.3438C15.625 29.375 17.5 30.9375 19.8437 30.9375C17.9687 32.3437 15.1562 33.125 12.5 32.8125C14.8438 34.2188 17.5 35.1562 20.3125 35.1562C29.8438 35.1562 35.1562 27.1875 34.8437 19.8437C35.9375 19.2187 36.875 18.2812 37.5 17.1875Z" fill="white"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="list-social-item">
+                        <a href="https://www.facebook.com/Themancompany" class="list-social-link" target="_blank">
+                            <svg width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 25C0 38.8071 11.1929 50 25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25Z" fill="#1877F2"></path>
+                                <path d="M37.5 25C37.5 18.125 31.875 12.5 25 12.5C18.125 12.5 12.5 18.125 12.5 25C12.5 31.25 17.0312 36.4062 22.9688 37.3438V28.5937H19.8437V25H22.9688V22.1875C22.9688 19.0625 24.8438 17.3438 27.6563 17.3438C29.0625 17.3438 30.4688 17.6563 30.4688 17.6563V20.7812H28.9062C27.3438 20.7812 26.875 21.7188 26.875 22.6562V25H30.3125L29.6875 28.5937H26.7188V37.5C32.9688 36.5625 37.5 31.25 37.5 25Z" fill="white"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="list-social-item">
+                        <a href="https://www.instagram.com/themancompany/" class="list-social-link" target="_blank">
+                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 25C0 38.8071 11.1929 50 25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25Z" fill="#F00073"></path>
+                                <path d="M25 14.375C28.4375 14.375 28.9062 14.375 30.3125 14.375C31.5625 14.375 32.1875 14.6875 32.6562 14.8438C33.2812 15.1563 33.75 15.3125 34.2188 15.7813C34.6875 16.25 35 16.7188 35.1562 17.3438C35.3125 17.8125 35.4687 18.4375 35.625 19.6875C35.625 21.0938 35.625 21.4062 35.625 25C35.625 28.5938 35.625 28.9062 35.625 30.3125C35.625 31.5625 35.3125 32.1875 35.1562 32.6562C34.8438 33.2812 34.6875 33.75 34.2188 34.2188C33.75 34.6875 33.2812 35 32.6562 35.1562C32.1875 35.3125 31.5625 35.4687 30.3125 35.625C28.9062 35.625 28.5938 35.625 25 35.625C21.4062 35.625 21.0938 35.625 19.6875 35.625C18.4375 35.625 17.8125 35.3125 17.3438 35.1562C16.7188 34.8438 16.25 34.6875 15.7813 34.2188C15.3125 33.75 15 33.2812 14.8438 32.6562C14.6875 32.1875 14.5312 31.5625 14.375 30.3125C14.375 28.9062 14.375 28.5938 14.375 25C14.375 21.4062 14.375 21.0938 14.375 19.6875C14.375 18.4375 14.6875 17.8125 14.8438 17.3438C15.1563 16.7188 15.3125 16.25 15.7813 15.7813C16.25 15.3125 16.7188 15 17.3438 14.8438C17.8125 14.6875 18.4375 14.5312 19.6875 14.375C21.0938 14.375 21.5625 14.375 25 14.375ZM25 12.0312C21.4062 12.0312 21.0938 12.0312 19.6875 12.0312C18.2813 12.0312 17.3438 12.3438 16.5625 12.6563C15.7813 12.9688 15 13.4375 14.2188 14.2188C13.4375 15 13.125 15.625 12.6563 16.5625C12.3438 17.3438 12.1875 18.2813 12.0312 19.6875C12.0312 21.0938 12.0312 21.5625 12.0312 25C12.0312 28.5938 12.0312 28.9062 12.0312 30.3125C12.0312 31.7188 12.3438 32.6562 12.6563 33.4375C12.9688 34.2188 13.4375 35 14.2188 35.7812C15 36.5625 15.625 36.875 16.5625 37.3438C17.3438 37.6563 18.2813 37.8125 19.6875 37.9687C21.0938 37.9687 21.5625 37.9687 25 37.9687C28.4375 37.9687 28.9062 37.9687 30.3125 37.9687C31.7188 37.9687 32.6562 37.6563 33.4375 37.3438C34.2188 37.0312 35 36.5625 35.7812 35.7812C36.5625 35 36.875 34.375 37.3438 33.4375C37.6563 32.6562 37.8125 31.7188 37.9687 30.3125C37.9687 28.9062 37.9687 28.4375 37.9687 25C37.9687 21.5625 37.9687 21.0938 37.9687 19.6875C37.9687 18.2813 37.6563 17.3438 37.3438 16.5625C37.0312 15.7813 36.5625 15 35.7812 14.2188C35 13.4375 34.375 13.125 33.4375 12.6563C32.6562 12.3438 31.7188 12.1875 30.3125 12.0312C28.9062 12.0313 28.5938 12.0312 25 12.0312Z" fill="white"></path>
+                                <path d="M25 18.2812C21.25 18.2812 18.2812 21.25 18.2812 25C18.2812 28.75 21.25 31.7188 25 31.7188C28.75 31.7188 31.7188 28.75 31.7188 25C31.7188 21.25 28.75 18.2812 25 18.2812ZM25 29.375C22.6562 29.375 20.625 27.5 20.625 25C20.625 22.6562 22.5 20.625 25 20.625C27.3438 20.625 29.375 22.5 29.375 25C29.375 27.3438 27.3438 29.375 25 29.375Z" fill="white"></path>
+                                <path d="M31.875 19.6875C32.7379 19.6875 33.4375 18.9879 33.4375 18.125C33.4375 17.2621 32.7379 16.5625 31.875 16.5625C31.0121 16.5625 30.3125 17.2621 30.3125 18.125C30.3125 18.9879 31.0121 19.6875 31.875 19.6875Z" fill="white"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="list-social-item">
+                        <a href="https://www.youtube.com/channel/UCq1iHN75PEBSxaqHOkWk9pA" class="list-social-link" target="_blank">
+                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 25C0 38.8071 11.1929 50 25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25Z" fill="#FF0000"></path>
+                                <path d="M36.875 18.9063C36.5625 17.8125 35.7813 17.0313 34.6875 16.7188C32.8125 16.25 24.8437 16.25 24.8437 16.25C24.8437 16.25 17.0313 16.25 15 16.7188C13.9063 17.0313 13.125 17.8125 12.8125 18.9063C12.5 20.9375 12.5 25 12.5 25C12.5 25 12.5 29.0625 12.9688 31.0938C13.2813 32.1875 14.0625 32.9688 15.1562 33.2812C17.0312 33.75 25 33.75 25 33.75C25 33.75 32.8125 33.75 34.8437 33.2812C35.9375 32.9688 36.7188 32.1875 37.0313 31.0938C37.5 29.0625 37.5 25 37.5 25C37.5 25 37.5 20.9375 36.875 18.9063ZM22.5 28.75V21.25L29.0625 25L22.5 28.75Z" fill="white"></path>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Most Searched Keywords -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <h5 class="text-uppercase">Most Searched</h5>
+                <p>
+                    <a href="#" class="text-white text-decoration-none me-3">Hair Growth Kit for Men</a>
+                    <a href="#" class="text-white text-decoration-none me-3">Festival Gift Combos</a>
+                    <a href="#" class="text-white text-decoration-none me-3">Best Face Wash for Men</a>
+                    <a href="#" class="text-white text-decoration-none">Vitamin C Serum</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
 <!--carousel-indicators-->
-<div th:fragment="carousel-indicators (id)" class="container pt-3">
+<div th:fragment="carousel-indicators (id)" class="container pt-3" xmlns:th="http://www.thymeleaf.org">
     <ol class="carousel-indicators">
         <li th:data-target="${id}" data-slide-to="0" class="active" style="background-color: black"></li>
         <li th:data-target="${id}" data-slide-to="1" style="background-color: black"></li>
@@ -98,7 +251,8 @@
 </div>
 
 <!--pagination-->
-<th:block th:fragment="pagination">
+
+<th:block th:fragment="pagination" xmlns:th="http://www.thymeleaf.org">
     <ul class="pagination d-flex justify-content-between " th:classappend="${class}"
         th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
         <div class="d-flex">
@@ -148,7 +302,7 @@
 </th:block>
 
 <!--search-->
-<th:block th:fragment="search">
+<th:block th:fragment="search" xmlns:th="http://www.thymeleaf.org">
     <div class="row">
         <div class="col-md-4">
             <select name="searchType" class="form-control">
@@ -169,34 +323,10 @@
     </div>
 </th:block>
 
-<!--footer-->
-<footer th:fragment="footer" class="page-footer p-5 bg-black text-white">
-    <div class="container">
-        <div class="d-flex justify-content-between">
-            <div class="footer-left">
-                <h3>Perfume</h3>
-                <p>(066) 696-66-23</p>
-                <br/>
-                <p>from 08:00 to 20:00 without breaks and weekends</p>
-            </div>
-            <div class="footer-right">
-                <h3>GET SOCIAL WITH US</h3>
-                <a href="https://www.linkedin.com/in/merikbest/">
-                    <i class="fab fa-linkedin fa-2x mr-3" style="color:white"></i>
-                </a>
-                <a href="#"><i class="fab fa-facebook-f fa-2x mr-3" style="color:white"></i></a>
-                <a href="#"><i class="fab fa-twitter fa-2x mr-3" style="color:white"></i></a>
-            </div>
-        </div>
-        <div class="mx-auto" style="width: 200px;">
-            <p>© Copy right merikbest</p>
-        </div>
-    </div>
-    </nav>
-</footer>
+
 
 <!-- info-title -->
-<th:block th:fragment="info-title">
+<th:block th:fragment="info-title" xmlns:th="http://www.thymeleaf.org">
     <h4 th:class="${titleClass}">
         <i th:class="${icon}"></i>
         <th:block th:text="${text}"></th:block>
@@ -204,7 +334,7 @@
 </th:block>
 
 <!-- icon-button -->
-<th:block th:fragment="icon-button">
+<th:block th:fragment="icon-button" xmlns:th="http://www.thymeleaf.org">
     <button type="submit" class="btn btn-dark " th:classappend="${buttonClassName}">
         <i th:class="${icon}"></i>
         <th:block th:text="${text}"></th:block>
@@ -212,12 +342,12 @@
 </th:block>
 
 <!-- alert-message -->
-<th:block th:fragment="alert-message">
+<th:block th:fragment="alert-message" xmlns:th="http://www.thymeleaf.org">
     <div th:if="${messageType}" class="alert " th:classappend="${messageType}" th:text="${message}" role="alert"></div>
 </th:block>
 
 <!-- data-item -->
-<th:block th:fragment="data-item">
+<th:block th:fragment="data-item" xmlns:th="http://www.thymeleaf.org">
     <p class="data_item">
         <th:block th:text="${title + ':'}"></th:block>
         <span th:text="${text}" class="data_text"></span>
@@ -225,7 +355,7 @@
 </th:block>
 
 <!-- empty-result -->
-<th:block th:fragment="empty-result(text)">
+<th:block th:fragment="empty-result(text)" xmlns:th="http://www.thymeleaf.org">
     <div class="col-lg-12 my-5">
         <h3 class="text-center mx-5" th:text="${text}"></h3>
     </div>
