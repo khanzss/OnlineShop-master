@@ -29,13 +29,13 @@
 <!--Navbar-->
 <div th:fragment="navbar" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <div class="container-fluid bg-dark py-2">
-        <nav class="navbar navbar-expand-lg navbar-dark d-flex align-items-center justify-content-between px-0">
+        <nav class="navbar navbar-expand-lg navbar-dark d-flex align-items-center justify-content-between px-0" style="padding-left: 50px !important;padding-right: 50px !important;">
             <!-- Left Section: Logo -->
             <div class="left-section d-flex align-items-center pl-3" >
                 <a class="navbar-brand" href="/">
                     <img src="//www.themancompany.com/cdn/shop/files/logo_08a2688e-7c47-4081-a0e8-942d40f74a6d_250x.png?v=1663137227 "
                          srcset="//www.themancompany.com/cdn/shop/files/logo_08a2688e-7c47-4081-a0e8-942d40f74a6d_250x@2x.png?v=1663137227 2x"
-                         alt="The Man Company" class="img-fluid" width="100%" loading="lazy">
+                         alt="The Man Company" class="img-fluid" width="250px" loading="lazy">
 
                 </a>
             </div>
@@ -55,7 +55,7 @@
                     <li class="nav-item"><a class="nav-link text-white" href="#">By Concerns</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">Track your Order</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="moreDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="moreDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             More
                         </a>
                         <div class="dropdown-menu" aria-labelledby="moreDropdown">
@@ -144,8 +144,8 @@
         <div class="row">
             <!-- Stay in Touch -->
             <div class="col-lg-3 col-md-6 mb-4">
-                <h5 class="text-uppercase">Stay In Touch:</h5>
-                <p>Get exclusive deals & access to new launches. We won't spam promise</p>
+                <h5 class="text-uppercase" style="text-align: center;">Stay In Touch:</h5>
+                <p style="text-align: center;padding: 20px ">Get exclusive deals & access to new launches. We won't spam promise</p>
                 <form class="newsletter-form">
                     <div class="input-group">
                         <input type="email" class="form-control" placeholder="Enter your email here" required>
@@ -156,22 +156,22 @@
 
             <!-- Categories -->
             <div class="col-lg-3 col-md-6 mb-4">
-                <h5 class="text-uppercase">Categories</h5>
-                <ul class="list-unstyled">
+                <h5 class="text-uppercase" style="text-align: center;">Categories</h5>
+                <ul class="list-unstyled two-columns" style="padding: 20px " >
                     <li><a href="#" class="text-white">Beard</a></li>
                     <li><a href="#" class="text-white">Face</a></li>
                     <li><a href="#" class="text-white">Fragrance</a></li>
                     <li><a href="#" class="text-white">Shave</a></li>
                     <li><a href="#" class="text-white">Hair</a></li>
                     <li><a href="#" class="text-white">Body</a></li>
-                    <li><a href="#" class="text-white">Tools & Accessories</a></li>
+                    <li><a href="#" class="text-white">Tools &amp; Accessories</a></li>
                 </ul>
             </div>
 
             <!-- Important Links -->
             <div class="col-lg-3 col-md-6 mb-4">
-                <h5 class="text-uppercase">Important Links</h5>
-                <ul class="list-unstyled">
+                <h5 class="text-uppercase" style="text-align: center;">Important Links</h5>
+                <ul class="list-unstyled two-columns" style="padding: 20px ">
                     <li><a href="#" class="text-white">Contact Us</a></li>
                     <li><a href="#" class="text-white">About Us</a></li>
                     <li><a href="#" class="text-white">TMC in News</a></li>
@@ -184,8 +184,8 @@
 
             <!-- Get Social -->
             <div class="col-lg-3 col-md-6 mb-4">
-                <h5 class="text-uppercase">Get Social With Us</h5>
-                <ul class="social-icons justify-content-around align-items-center p-0">
+                <h5 class="text-uppercase " style="text-align: center;">Get Social With Us</h5>
+                <ul class="social-icons justify-content-around align-items-center p-0" style="margin: 20px; text-align: center;">
                     <li class="list-social-item">
                         <a href="https://twitter.com/themancompany" class="list-social-link" target="_blank">
                             <svg width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">

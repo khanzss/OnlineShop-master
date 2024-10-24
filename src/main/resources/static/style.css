@@ -7,16 +7,24 @@ body {
     font-family: 'Heebo', sans-serif;
 }
 
+.img-fluid {
+    max-width: 250px;
+    height: auto;
+}
+}
 /* Footer Styles */
 footer {
     background-color: #1c1c1c;
+    font-size: 1.3rem;
 }
 
 footer h5 {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     letter-spacing: 1px;
 }
-
+.col-lg-3 col-md-6 mb-4{
+padding 15px
+}
 footer ul li a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
@@ -51,6 +59,15 @@ footer ul li a:hover {
         max-width: 1440px;
     }
 }
+.two-columns {
+    columns: 2; /* Số cột hiển thị */
+    column-gap: 20px; /* Khoảng cách giữa các cột */
+}
+
+.two-columns li {
+    break-inside: avoid; /* Đảm bảo mục không bị cắt giữa chừng */
+}
+
 .social-icons {
     list-style: none; /* Loại bỏ dấu đầu dòng */
 }
