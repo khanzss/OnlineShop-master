@@ -5,6 +5,8 @@ html {
 
 body {
     font-family: 'Heebo', sans-serif;
+    background: #faf8f6;
+    font-size: 1.6rem;
 }
 
 .img-fluid {
@@ -157,6 +159,7 @@ footer ul li a:hover {
     font-weight: 500;
     letter-spacing: 0.5px;
     transition: color 0.3s;
+    font-size: 0.9rem;
 }
 .input-group {
     border-radius: .7rem;
@@ -168,6 +171,62 @@ footer ul li a:hover {
 .navbar-nav .nav-link:hover {
     color: #f0ad4e; /* Màu nhấn */
 }
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navigation-drawer-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  background-color: #f0f0f0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1050;
+}
+
+.navigation-drawer-wrapper.active {
+  transform: translateX(0);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+}
+
+.content-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.content-body {
+  padding: 20px;
+}
+
+.child-link-wrapper .child-link-inner a {
+  display: block;
+  padding: 10px 0;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.child-link-wrapper .child-link-inner a:hover {
+  color: #007bff;
+}
+
+
+
 
 .search-input {
     border-radius: 25px;
@@ -276,6 +335,10 @@ form .btn img {
     min-width: 250px;
     max-width: 250px;
     transition: all 0.3s;
+}
+
+.img-section1{
+border-radius: 10px 10px 0 0;
 }
 
 #homeSubmenu {
@@ -466,5 +529,15 @@ ul ul a{
 .manage_user_order_summary_price {
     color: green;
 }
-
-
+.carousel-item {
+      transition: transform 1s ease-in-out; /* Tăng thời gian chuyển động và làm mềm */
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* Giúp ảnh bao phủ toàn bộ slide */
+   }
+#section-1 .collection {
+    background-color: #fff;
+    box-shadow: 0 .1rem .8rem #0003;
+    overflow: hidden;
+    border-radius: 10px
+}
