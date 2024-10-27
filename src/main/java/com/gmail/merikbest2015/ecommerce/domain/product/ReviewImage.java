@@ -16,5 +16,10 @@ public class ReviewImage {
     @ManyToOne
     @JoinColumn(name = "review_id")
     private Review review;
+
+    public ReviewImage(String imageUrl, Review review) {
+        this.imageUrl = imageUrl;
+        this.review = review;
+    }
 }
 
