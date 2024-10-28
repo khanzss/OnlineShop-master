@@ -645,36 +645,261 @@ ul ul a{
   color: black; /* Thay đổi màu khi hover */
 }
 
-#section-4 .groom-heading {
-   font-size: 2rem;
-   font-weight: bold;
-   text-transform: uppercase;
-   color: #333;
+
+
+.collection {
+    background-color: #fff;
+    box-shadow: 0 .1rem .8rem #0003;
+    overflow: hidden;
+    border-radius: 10px
 }
 
-#section-4 .video-container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 600px; /* Điều chỉnh chiều cao container */
+.banner {
+    position: relative;
+    overflow: hidden;
 }
 
-#section-4 .video-player {
-   height: 100%; /* Đảm bảo video chiếm toàn bộ chiều cao */
-   width: auto; /* Duy trì tỷ lệ khung hình */
-   max-height: 600px; /* Đặt giới hạn cho chiều cao video */
-   border-radius: 10px;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.banner-text {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    color: white;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
 }
 
-#section-4 .carousel-control-prev-icon,
-#section-4 .carousel-control-next-icon {
-   border-radius: 50%;
-   width: 50px;
-   height: 50px;
+.banner img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
 
-/* Hiệu ứng chuyển đổi slide mượt */
-#section-4 .carousel-item {
-   transition: transform 0.5s ease, opacity 0.5s ease;
+@media (max-width: 768px) {
+    .banner img {
+        height: 200px;
+    }
+}
+
+
+
+#section-4 .container {
+  max-width: 124rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+#section-4 .text-center {
+  text-align: center;
+}
+
+#section-4 .section-heading {
+  font-size: 3rem;
+  color: var(--primary);
+  padding: 2rem 0;
+}
+
+#section-4 #tranding {
+
+}
+
+@media (max-width:1440px) {
+  #section-4 #tranding {
+    padding: 7rem 0;
+  }
+}
+
+#section-4 #tranding .tranding-slider {
+  height: 42rem;
+  position: relative;
+}
+
+@media (max-width:500px) {
+  #section-4 #tranding .tranding-slider {
+    height: 45rem;
+  }
+}
+
+#section-4 .tranding-slide {
+    width: auto !important;
+    height: 675px; !important;
+  position: relative;
+}
+
+@media (max-width:500px) {
+  #section-4 .tranding-slide {
+    width: auto !important;
+    height: 675px; !important;
+  }
+  #section-4 .tranding-slide .tranding-slide-img img {
+    width: auto !important;
+    height: 675px; !important;
+  }
+}
+
+#section-4 .tranding-slide .tranding-slide-img video {
+    width: auto; /* Đảm bảo giữ nguyên tỷ lệ khung hình */
+    height: 675px; /* Thiết lập chiều cao video */
+    object-fit: cover; /* Đảm bảo video phủ khít khung chứa */
+    border-radius: 2rem; /* Giữ bo tròn nếu cần */
+    max-width: 100%; /* Đảm bảo video không vượt quá khung */
+    display: block; /* Đảm bảo video không bị lỗi hiển thị */
+    margin: 0 auto; /* Căn giữa video nếu cần */
+}
+
+#section-4 .tranding-slide .tranding-slide-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#section-4 .tranding-slide-content .food-price {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: var(--white);
+}
+
+#section-4 .tranding-slide-content .tranding-slide-content-bottom {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: var(--white);
+}
+
+#section-4 .food-rating {
+  display: flex;
+  gap: 1rem;
+}
+
+#section-4 .rating ion-icon {
+  color: var(--primary);
+}
+
+#section-4 .swiper-slide-shadow-left,
+#section-4 .swiper-slide-shadow-right {
+  display: none;
+}
+
+#section-4 .tranding-slider-control {
+  position: relative;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#section-4 .tranding-slider-control .swiper-button-next {
+  left: 58% !important;
+  transform: translateX(-58%) !important;
+}
+
+@media (max-width:990px) {
+  #section-4 .tranding-slider-control .swiper-button-next {
+    left: 70% !important;
+    transform: translateX(-70%) !important;
+  }
+}
+
+@media (max-width:450px) {
+  #section-4 .tranding-slider-control .swiper-button-next {
+    left: 80% !important;
+    transform: translateX(-80%) !important;
+  }
+}
+
+@media (max-width:990px) {
+  #section-4 .tranding-slider-control .swiper-button-prev {
+    left: 30% !important;
+    transform: translateX(-30%) !important;
+  }
+}
+
+@media (max-width:450px) {
+  #section-4 .tranding-slider-control .swiper-button-prev {
+    left: 20% !important;
+    transform: translateX(-20%) !important;
+  }
+}
+
+#section-4 .tranding-slider-control .slider-arrow {
+  background: var(--white);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  left: 42%;
+  transform: translateX(-42%);
+  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+}
+
+#section-4 .tranding-slider-control .slider-arrow ion-icon {
+  font-size: 2rem;
+  color: #222224;
+}
+
+#section-4 .tranding-slider-control .slider-arrow::after {
+  content: '';
+}
+
+#section-4 .tranding-slider-control .swiper-pagination {
+  position: relative;
+  width: 15rem;
+  bottom: 1rem;
+}
+
+#section-4 .tranding-slider-control .swiper-pagination .swiper-pagination-bullet {
+  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+}
+
+#section-4 .tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
+  background: var(--primary);
+}
+
+
+.swiper {
+    padding: 16px !important;
+}
+.category-1slider {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.swiper-slide:hover {
+    transform: scale(1.05);
+}
+
+.category-card img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #000 !important;
+}
+
+#section-11 .button-section{
+    margin-bottom: 20px;
+}
+
+.rating-image{
+    width: 150px !important;
+    margin: 10px auto;
+    height: auto;
+    }
+
+#section-12 .text-wrapper{
+    padding: 20px;
 }

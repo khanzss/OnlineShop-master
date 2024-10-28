@@ -746,151 +746,686 @@
     </div>
 
     <div id="section-4" class="py-5">
-        <div class="container">
-            <div class="text-center groom-heading mb-4 h2">OUR GROOM-FLUENCER</div>
+        <section id="tranding">
+            <div class="text-center groom-heading mb-4 h3">OUR GROOM-FLUENCER</div>
+            <div class="container">
+                <div class="swiper tranding-slider">
+                    <div class="swiper-wrapper">
+                        <!-- Slide-start -->
+                        <div class="swiper-slide tranding-slide">
+                            <div class="tranding-slide-img">
+                                <video width="100%" height="auto" muted autoplay loop playsinline
+                                       poster="//www.themancompany.com/cdn/shop/files/Glow-pro-video_small.jpg?v=1727955593" class="xs-hide">
+                                    <source src="https://cdn.shopify.com/videos/c/o/v/ca3198d054ce4928bd908bef2aeac5fc.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
 
-            <div id="videoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="8000">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <video class="d-block w-100 video-player" controls>
-                            <source src="https://cdn.shopify.com/videos/c/o/v/386058585d8b4357974eea1751e61422.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="carousel-item">
-                        <video class="d-block w-100 video-player" controls>
-                            <source src="https://cdn.shopify.com/videos/c/o/v/b95cafad3f9a4e2c927aad7e06240f54.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="carousel-item">
-                        <video class="d-block w-100 video-player" controls>
-                            <source src="https://cdn.shopify.com/videos/c/o/v/fb1ff8a53bb2493d9f81f060c95532fc.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="carousel-item">
-                        <video class="d-block w-100 video-player" controls>
-                            <source src="https://cdn.shopify.com/videos/c/o/v/8024195805864bc796900f9ffa5226f2.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-
-                <!-- Nút điều hướng trái -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-
-                <!-- Nút điều hướng phải -->
-                <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="text-center my-3 mt-5">
-        <h3>BRANDS</h3>
-        <div id="perfumerCarousel" class="carousel slide w-100" data-ride="carousel">
-            <div class="carousel-inner w-100" role="listbox">
-                <div class="carousel-item row active">
-                    <th:block th:replace="fragments/perfumes-fragments :: perfumer-item(perfumer='Tom Ford', src='https://www.themancompany.com/cdn/shop/files/Festivities_BannerDESKTOP_9877823b-31c7-4a0e-a22c-35d0415a547c_1500x.jpg?v=1728042081')"/>
-                </div>
-                <div class="carousel-item row">
-                    <th:block th:replace="fragments/perfumes-fragments :: perfumer-item(perfumer='Gucci', src='https://www.themancompany.com/cdn/shop/files/Festivities_BannerDESKTOP_9877823b-31c7-4a0e-a22c-35d0415a547c_1500x.jpg?v=1728042081')"/>
-                </div>
-                <div class="carousel-item row">
-                    <th:block th:replace="fragments/perfumes-fragments :: perfumer-item(perfumer='Bvlgari', src='https://www.themancompany.com/cdn/shop/files/Festivities_BannerDESKTOP_9877823b-31c7-4a0e-a22c-35d0415a547c_1500x.jpg?v=1728042081')"/>
-                </div>
-            </div>
-            <th:block th:replace="fragments/common-fragments :: carousel-indicators('#perfumerCarousel')"/>
-        </div>
-    </div>
-    <div class="mt-5">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card mb-5">
-                    <a th:href="${'/perfume?genders=female'}">
-                        <img class="img-fluid" src="https://i.ibb.co/jMmJs60/Them-Woman-ENG.jpg">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card mb-5">
-                    <a th:href="${'/perfume?genders=male'}">
-                        <img class="img-fluid" src="https://i.ibb.co/mJGKz8c/Them-Man-ENG.jpg">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="text-center my-3">
-        <h4>PERSONALLY RECOMMENDED</h4>
-    </div>
-    <div class="mt-5">
-        <form method="get" action="/perfume/popular">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="perfumeCarousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="container">
-                                    <div class="row" th:fragment="list">
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[0]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[1]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[2]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[3]})"/>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="carousel-item">
-                                <div class="container">
-                                    <div class="row" th:fragment="list">
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[4]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[5]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[6]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[7]})"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="container">
-                                    <div class="row" th:fragment="list">
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[8]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[9]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[10]})"/>
-                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[11]})"/>
-                                    </div>
+                            <div class="tranding-slide-content">
+                                <h1 class="food-price">$20</h1>
+                                <div class="tranding-slide-content-bottom">
+                                    <h2 class="food-name">
+                                        Special Pizza
+                                    </h2>
+                                    <h3 class="food-rating">
+                                        <span>4.5</span>
+                                        <div class="rating">
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
-                        <th:block th:replace="fragments/common-fragments :: carousel-indicators('#perfumeCarousel')"/>
+                        <div class="swiper-slide tranding-slide">
+                            <div class="tranding-slide-img">
+                                <video width="100%" height="auto" muted autoplay loop playsinline
+                                       poster="//www.themancompany.com/cdn/shop/files/Glow-pro-video_small.jpg?v=1727955593" class="xs-hide">
+                                    <source src="https://cdn.shopify.com/videos/c/o/v/ca3198d054ce4928bd908bef2aeac5fc.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+
+                            </div>
+                            <div class="tranding-slide-content">
+                                <h1 class="food-price">$20</h1>
+                                <div class="tranding-slide-content-bottom">
+                                    <h2 class="food-name">
+                                        Special Pizza
+                                    </h2>
+                                    <h3 class="food-rating">
+                                        <span>4.5</span>
+                                        <div class="rating">
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide tranding-slide">
+                            <div class="tranding-slide-img">
+                                <video width="100%" height="auto" muted autoplay loop playsinline
+                                       poster="//www.themancompany.com/cdn/shop/files/Glow-pro-video_small.jpg?v=1727955593" class="xs-hide">
+                                    <source src="https://cdn.shopify.com/videos/c/o/v/ca3198d054ce4928bd908bef2aeac5fc.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+
+                            </div>
+                            <div class="tranding-slide-content">
+                                <h1 class="food-price">$20</h1>
+                                <div class="tranding-slide-content-bottom">
+                                    <h2 class="food-name">
+                                        Special Pizza
+                                    </h2>
+                                    <h3 class="food-rating">
+                                        <span>4.5</span>
+                                        <div class="rating">
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide tranding-slide">
+                            <div class="tranding-slide-img">
+                                <video width="100%" height="auto" muted autoplay loop playsinline
+                                       poster="//www.themancompany.com/cdn/shop/files/Glow-pro-video_small.jpg?v=1727955593" class="xs-hide">
+                                    <source src="https://cdn.shopify.com/videos/c/o/v/ca3198d054ce4928bd908bef2aeac5fc.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+
+                            </div>
+                            <div class="tranding-slide-content">
+                                <h1 class="food-price">$20</h1>
+                                <div class="tranding-slide-content-bottom">
+                                    <h2 class="food-name">
+                                        Special Pizza
+                                    </h2>
+                                    <h3 class="food-rating">
+                                        <span>4.5</span>
+                                        <div class="rating">
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide tranding-slide">
+                            <div class="tranding-slide-img">
+                                <video width="100%" height="auto" muted autoplay loop playsinline
+                                       poster="//www.themancompany.com/cdn/shop/files/Glow-pro-video_small.jpg?v=1727955593" class="xs-hide">
+                                    <source src="https://cdn.shopify.com/videos/c/o/v/ca3198d054ce4928bd908bef2aeac5fc.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+
+                            </div>
+                            <div class="tranding-slide-content">
+                                <h1 class="food-price">$20</h1>
+                                <div class="tranding-slide-content-bottom">
+                                    <h2 class="food-name">
+                                        Special Pizza
+                                    </h2>
+                                    <h3 class="food-rating">
+                                        <span>4.5</span>
+                                        <div class="rating">
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide tranding-slide">
+                            <div class="tranding-slide-img">
+                                <video width="100%" height="auto" muted autoplay loop playsinline
+                                       poster="//www.themancompany.com/cdn/shop/files/Glow-pro-video_small.jpg?v=1727955593" class="xs-hide">
+                                    <source src="https://cdn.shopify.com/videos/c/o/v/ca3198d054ce4928bd908bef2aeac5fc.mov" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="tranding-slide-content">
+                                <h1 class="food-price">$20</h1>
+                                <div class="tranding-slide-content-bottom">
+                                    <h2 class="food-name">
+                                        Special Pizza
+                                    </h2>
+                                    <h3 class="food-rating">
+                                        <span>4.5</span>
+                                        <div class="rating">
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                            <ion-icon name="star"></ion-icon>
+                                        </div>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+<!--                    <div class="tranding-slider-control">-->
+<!--                        <div class="swiper-button-prev slider-arrow">-->
+<!--                            <ion-icon name="arrow-back-outline"></ion-icon>-->
+<!--                        </div>-->
+<!--                        <div class="swiper-button-next slider-arrow">-->
+<!--                            <ion-icon name="arrow-forward-outline"></ion-icon>-->
+<!--                        </div>-->
+<!--                        <div class="swiper-pagination"></div>-->
+<!--                    </div>-->
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="section-5 product-catalog" class="text-center my-3 mt-5">
+        <div class="text-center h5 fst-italic fw-light">OUR</div>
+        <div class="text-center mb-4 h3">CATEGORIES</div>
+
+        <!-- Swiper Container -->
+        <div class="swiper category-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div id="section-6 product-catalog" class="text-center my-3 mt-5">
+        <div class="text-center h5 fst-italic fw-light">OUR</div>
+        <div class="text-center mb-4 h3">CATEGORIES</div>
+
+        <!-- Swiper Container -->
+        <div class="swiper category-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div id="section-7 product-catalog" class="text-center my-3 mt-5">
+        <div class="text-center h5 fst-italic fw-light">OUR</div>
+        <div class="text-center mb-4 h3">CATEGORIES</div>
+
+        <!-- Swiper Container -->
+        <div class="swiper category-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div id="section-8 product-catalog" class="text-center my-3 mt-5">
+        <div class="text-center h5 fst-italic fw-light">OUR</div>
+        <div class="text-center mb-4 h3">CATEGORIES</div>
+
+        <!-- Swiper Container -->
+        <div class="swiper category-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div id="section-9 product-catalog" class="text-center my-3 mt-5">
+        <div class="text-center h5 fst-italic fw-light">OUR</div>
+        <div class="text-center mb-4 h3">CATEGORIES</div>
+
+        <!-- Swiper Container -->
+        <div class="swiper category-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Our526x640_Beard_480x.jpg?v=1667541833" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div id="section-10 product-catalog" class="text-center my-3 mt-5">
+        <div class="text-center h5 fst-italic fw-light">IN THE</div>
+        <div class="text-center mb-4 h3">SPOTLIGHT</div>
+
+        <div class="row">
+            <!-- Banner lớn -->
+            <div class="col-lg-12 mb-3">
+                <div class="banner">
+                    <img src="https://www.themancompany.com/cdn/shop/files/GLOW_PRO_TOTDESKTOP_1500x.jpg?v=1727265870"
+                         class="img-fluid rounded" alt="Banner 1">
+                </div>
+            </div>
+
+            <!-- Hai banner nhỏ bên dưới -->
+            <div class="col-lg-6 col-md-6 mb-3">
+                <div class="banner">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Spotlight_GiftingDESKTOP_765x.jpg?v=1703241624"
+                         class="img-fluid rounded" alt="Banner 2">
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 mb-3">
+                <div class="banner">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Body_wash_desktop_A_765x.jpg?v=1709530934"
+                         class="img-fluid rounded" alt="Banner 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="section-11" class="text-center my-5 mt-5">
+        <div class="text-center h5 fst-italic fw-light">FROM THE</div>
+        <div class="text-center mb-4 h3">EDITORS DESK</div>
+
+        <!-- Swiper Container -->
+        <div class="swiper category-slider2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Hair_fall_blogBLOG_DESK_576X320_e95a0850-0cb1-461c-9a64-0061be018dda_480x.jpg?v=1719472215" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Hair_fall_blogBLOG_DESK_576X320_e95a0850-0cb1-461c-9a64-0061be018dda_480x.jpg?v=1719472215" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Hair_fall_blogBLOG_DESK_576X320_e95a0850-0cb1-461c-9a64-0061be018dda_480x.jpg?v=1719472215" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Hair_fall_blogBLOG_DESK_576X320_e95a0850-0cb1-461c-9a64-0061be018dda_480x.jpg?v=1719472215" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Hair_fall_blogBLOG_DESK_576X320_e95a0850-0cb1-461c-9a64-0061be018dda_480x.jpg?v=1719472215" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="button-section">
+            <a href="https://www.youtube.com/@themancompany" target="_blank" class="btn btn-dark text-14">View all Videos</a>
+        </div>
+
+        <div class="swiper category-slider2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Vlog_aVLOG_DESK_charcoal_576X320_64aa3f7a-8868-48de-a4f3-e36041e92598_480x.jpg?v=1704453306" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Vlog_aVLOG_DESK_charcoal_576X320_64aa3f7a-8868-48de-a4f3-e36041e92598_480x.jpg?v=1704453306" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Vlog_aVLOG_DESK_charcoal_576X320_64aa3f7a-8868-48de-a4f3-e36041e92598_480x.jpg?v=1704453306" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Vlog_aVLOG_DESK_charcoal_576X320_64aa3f7a-8868-48de-a4f3-e36041e92598_480x.jpg?v=1704453306" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/Vlog_aVLOG_DESK_charcoal_576X320_64aa3f7a-8868-48de-a4f3-e36041e92598_480x.jpg?v=1704453306" alt="BEARD" />
+                    <div class="fw-bold my-2">BEARD</div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="button-section">
+            <a href="https://www.themancompany.com/blogs/the-man-mag" target="_blank" class="btn btn-dark text-14">View all Blogs</a>
+        </div>
+    </div>
+
+    <div id="section-12" class="text-center my-3 mt-5">
+        <div class="text-center h5 fst-italic fw-light">CUSTOMER</div>
+        <div class="text-center mb-4 h3">REVIEWS</div>
+
+        <!-- Swiper Container -->
+        <div class="swiper category-slider2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/600x600_web_Vitamin_C_Face_Wash_900x.jpg?v=1726831563" alt="BEARD" />
+                    <div class="text-wrapper">
+                        <div class="review-text-inner box-shadow align-center">
+                            <div class="rating-image">
+                                <img alt="" src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-sizes="auto" data-src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w," class="image-full blur-up img-fluid lazyautosizes ls-is-cached lazyloaded" width="508" height="102" loading="lazy" sizes="110px" srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w,">
+                            </div>
+                            <h3 class="review-title">Vitamin C Face Wash | Vitamin C &amp; Niacinamide</h3>
+                            <p class="review-text text-sm-12">I have been using this face wash for the past week, and I can see that my skin is getting better. All thanks to The Man Company, your products are fantastic.</p>
+                            <h5 class="name">VARUN</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/600x600_web_Vitamin_C_Face_Wash_900x.jpg?v=1726831563" alt="BEARD" />
+                    <div class="text-wrapper">
+                        <div class="review-text-inner box-shadow align-center">
+                            <div class="rating-image">
+                                <img alt="" src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-sizes="auto" data-src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w," class="image-full blur-up img-fluid lazyautosizes ls-is-cached lazyloaded" width="508" height="102" loading="lazy" sizes="110px" srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w,">
+                            </div>
+                            <h3 class="review-title">Vitamin C Face Wash | Vitamin C &amp; Niacinamide</h3>
+                            <p class="review-text text-sm-12">I have been using this face wash for the past week, and I can see that my skin is getting better. All thanks to The Man Company, your products are fantastic.</p>
+                            <h5 class="name">VARUN</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/600x600_web_Vitamin_C_Face_Wash_900x.jpg?v=1726831563" alt="BEARD" />
+                    <div class="text-wrapper">
+                        <div class="review-text-inner box-shadow align-center">
+                            <div class="rating-image">
+                                <img alt="" src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-sizes="auto" data-src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w," class="image-full blur-up img-fluid lazyautosizes ls-is-cached lazyloaded" width="508" height="102" loading="lazy" sizes="110px" srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w,">
+                            </div>
+                            <h3 class="review-title">Vitamin C Face Wash | Vitamin C &amp; Niacinamide</h3>
+                            <p class="review-text text-sm-12">I have been using this face wash for the past week, and I can see that my skin is getting better. All thanks to The Man Company, your products are fantastic.</p>
+                            <h5 class="name">VARUN</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/600x600_web_Vitamin_C_Face_Wash_900x.jpg?v=1726831563" alt="BEARD" />
+                    <div class="text-wrapper">
+                        <div class="review-text-inner box-shadow align-center">
+                            <div class="rating-image">
+                                <img alt="" src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-sizes="auto" data-src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w," class="image-full blur-up img-fluid lazyautosizes ls-is-cached lazyloaded" width="508" height="102" loading="lazy" sizes="110px" srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w,">
+                            </div>
+                            <h3 class="review-title">Vitamin C Face Wash | Vitamin C &amp; Niacinamide</h3>
+                            <p class="review-text text-sm-12">I have been using this face wash for the past week, and I can see that my skin is getting better. All thanks to The Man Company, your products are fantastic.</p>
+                            <h5 class="name">VARUN</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide category-card">
+                    <img src="https://www.themancompany.com/cdn/shop/files/600x600_web_Vitamin_C_Face_Wash_900x.jpg?v=1726831563" alt="BEARD" />
+                    <div class="text-wrapper">
+                        <div class="review-text-inner box-shadow align-center">
+                            <div class="rating-image">
+                                <img alt="" src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-sizes="auto" data-src="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47.png?v=1674019360" data-srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w," class="image-full blur-up img-fluid lazyautosizes ls-is-cached lazyloaded" width="508" height="102" loading="lazy" sizes="110px" srcset="//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_480x.png?v=1674019360 480w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_765x.png?v=1674019360 765w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_900x.png?v=1674019360 900w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1000x.png?v=1674019360 1000w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1200x.png?v=1674019360 1200w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1500x.png?v=1674019360 1500w,//www.themancompany.com/cdn/shop/files/stars_c502e21d-9c2c-4f1c-8b5c-23e51253dc47_1900x.png?v=1674019360 1900w,">
+                            </div>
+                            <h3 class="review-title">Vitamin C Face Wash | Vitamin C &amp; Niacinamide</h3>
+                            <p class="review-text text-sm-12">I have been using this face wash for the past week, and I can see that my skin is getting better. All thanks to The Man Company, your products are fantastic.</p>
+                            <h5 class="name">VARUN</h5>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+    </div>
+
+    <div id="section-13" class="text-center mb-5 mt-5">
+        <div class="text-center h5 fst-italic fw-light">OUR</div>
+        <div class="text-center mb-4 h3">BRAND PROMISE</div>
+
+        <div class="image d-block-sm d-none-xs">
+            <img alt="" src="//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1.png?v=1664279291" data-sizes="auto" data-src="//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1.png?v=1664279291" data-srcset="//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_480x.png?v=1664279291 480w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_765x.png?v=1664279291 765w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_900x.png?v=1664279291 900w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_1000x.png?v=1664279291 1000w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_1200x.png?v=1664279291 1200w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_1500x.png?v=1664279291 1500w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_1900x.png?v=1664279291 1900w," class="image-full blur-up img-fluid lazyautosizes lazyloaded" width="2880" height="354" loading="lazy" sizes="1166px" srcset="//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_480x.png?v=1664279291 480w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_765x.png?v=1664279291 765w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_900x.png?v=1664279291 900w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_1000x.png?v=1664279291 1000w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_1200x.png?v=1664279291 1200w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_1500x.png?v=1664279291 1500w,//www.themancompany.com/cdn/shop/files/brand_promiseDESKTOP_1585x547_copy_2_1_4955b27c-f840-4d9f-9130-e5c0ca1334a0_1_1900x.png?v=1664279291 1900w,">
+        </div>
+        </div>
+
     </div>
 </div>
 <footer th:insert="~{fragments/common-fragments :: footer}"></footer>
 
 <script>
-    const openDrawerButton = document.getElementById('openDrawer');
-    const closeDrawerButton = document.getElementById('closeDrawer');
-    const drawer = document.getElementById('drawer');
 
-    openDrawerButton.addEventListener('click', () => {
-      drawer.classList.add('active');
-      drawer.classList.remove('d-none');
+    var TrandingSlider = new Swiper('.tranding-slider', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      loop: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2.5,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      on: {
+        slideChange: function () {
+          // Lấy tất cả các video trong slider
+          const videos = document.querySelectorAll('.tranding-slide video');
+
+          // Dừng tất cả video khi chuyển slide
+          videos.forEach((video) => {
+            video.pause();
+            video.currentTime = 0; // Reset thời gian về 0
+          });
+
+          // Phát video nếu slide hiện tại có chứa video
+          const activeSlide = this.slides[this.activeIndex];
+          const activeVideo = activeSlide.querySelector('video');
+
+          if (activeVideo) {
+            activeVideo.play();
+          }
+        },
+      },
     });
 
-    closeDrawerButton.addEventListener('click', () => {
-      drawer.classList.remove('active');
-      setTimeout(() => drawer.classList.add('d-none'), 300); // Delay for transition
+
+
+    var categorySlider = new Swiper('.category-slider', {
+        slidesPerView: 4, // Hiển thị 4 mục mỗi lần
+        spaceBetween: 20, // Khoảng cách giữa các mục
+        loop: false, // Lặp vô hạn
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2, // Hiển thị 2 mục trên màn hình nhỏ
+            },
+            1024: {
+                slidesPerView: 4, // Hiển thị 4 mục trên màn hình lớn
+            },
+        },
+    });
+
+    var categorySlider2 = new Swiper('.category-slider2', {
+        slidesPerView: 3, // Hiển thị 3 mục mỗi lần
+        spaceBetween: 20, // Khoảng cách giữa các mục
+        loop: false, // Lặp vô hạn
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2, // Hiển thị 2 mục trên màn hình nhỏ
+            },
+            1024: {
+                slidesPerView: 3, // Hiển thị 3 mục trên màn hình lớn
+            },
+        },
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </body>
 </html>
