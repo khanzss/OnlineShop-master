@@ -1,0 +1,270 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+
+<div id="container" class="bg-light">
+    <div class="container pt-5 pb-5 bg-white shadow-sm">
+        <div class="row product-container">
+            <!-- Left Section: Slider -->
+            <div class="slider-section">
+                <div class="main-image">
+                    <img id="mainImage"
+                         src="https://www.themancompany.com/cdn/shop/files/2_d1486f09-54d8-43bb-8559-1d59d466cbd2.jpg?v=1725949176"
+                         alt="Roll On Deo Blanc"
+                         class="main-product-image">
+                </div>
+                <div class="thumbnail-slider">
+                    <button class="slider-arrow prev" onclick="slideThumbnails(-1)">&#9664;</button>
+                    <div class="thumbnails" id="thumbnails">
+                        <img src="https://www.themancompany.com/cdn/shop/files/2_d1486f09-54d8-43bb-8559-1d59d466cbd2.jpg?v=1725949176"
+                             alt="Thumbnail 1" onclick="updateMainImage(this)">
+                        <img src="https://www.themancompany.com/cdn/shop/files/5_aad0674c-3aac-40b6-b414-96e95301485f.jpg?v=1725949176"
+                             alt="Thumbnail 2" onclick="updateMainImage(this)">
+                        <img src="https://www.themancompany.com/cdn/shop/files/4_8a7b1871-9493-4b33-8df2-8289fa67ee4d.jpg?v=1725949176"
+                             alt="Thumbnail 3" onclick="updateMainImage(this)">
+                        <img src="https://www.themancompany.com/cdn/shop/files/7_e66a4993-28bc-4f8b-9ec8-ca0584425892.jpg?v=1725949176"
+                             alt="Thumbnail 4" onclick="updateMainImage(this)">
+                    </div>
+                    <button class="slider-arrow next" onclick="slideThumbnails(1)">&#9654;</button>
+                </div>
+            </div>
+
+            <!-- Right Section: Product Information -->
+            <div class="product-info">
+                <h1>Roll On Deo Blanc | Vibrant & Musky</h1>
+                <p class="product-subtitle">No more stress sweat at work.</p>
+
+                <div class="product-size">
+                    <label class="size-label">Size</label>
+                    <div class="size-option">
+                        <input type="radio" name="size" value="299" id="size1" checked>
+                        <label for="size1">Roll On Deo and Free Face Wash ₹299</label>
+                    </div>
+                    <div class="size-option">
+                        <input type="radio" name="size" value="299" id="size2">
+                        <label for="size2">55ml Roll On Deo at ₹299</label>
+                    </div>
+                    <div class="size-option">
+                        <input type="radio" name="size" value="249" id="size3">
+                        <label for="size3">50ml Roll On Deo at ₹249</label>
+                    </div>
+                </div>
+
+                <div class="product-price">
+                    <div class="price-details">
+                        <p class="price">MRP ₹249</p>
+                        <span class="tax-info">inclusive of all taxes</span>
+                    </div>
+                    <div class="quantity">
+                        <button class="qty-btn" onclick="updateQuantity(-1)">−</button>
+                        <input type="text" value="1" id="quantity" readonly>
+                        <button class="qty-btn" onclick="updateQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <button class="add-to-cart">ADD TO CART</button>
+
+                <div class="rewards">
+                    <p><span class="credit-icon">💰</span> You will earn <span class="highlight">18.68</span> credits on this purchase. <span class="info-icon">ℹ️</span></p>
+                </div>
+
+                <ul class="features">
+                    <li>✅ 24-hour freshness</li>
+                    <li>✅ Combats body odour</li>
+                    <li>✅ Premium fragrance</li>
+                    <li>✅ Perfect for work</li>
+                    <li>✅ Compact & easy-to-use</li>
+                    <li>✅ Prevents bacteria</li>
+                </ul>
+
+                <div class="delivery-check">
+                    <label>Check estimated delivery time</label>
+                    <input type="text" placeholder="Enter pincode">
+                    <button class="check-btn">Check</button>
+                </div>
+
+                <div class="shipping-info">
+                    <p>🚚 Free shipping on orders above ₹399</p>
+                    <p>🎁 Gift cards cannot be clubbed with any other offer!</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Accordion Section: Details and FAQs -->
+        <div class="accordion-section accordion-section-js">
+            <div class="accordion-wrapper">
+
+                <!-- Other Ingredients Accordion -->
+                <div class="accordion-block-wrapper accordion-block-js active">
+                    <div class="accordion-title-wrapper">
+                        <h5 class="accordion-title accordion-title-js">Other Ingredients</h5>
+                        <div class="icon">–</div>
+                    </div>
+                    <div class="accordion-content accordion-content-js">
+                        <p><strong>Other Ingredients:</strong> Purified Water, Caprylic/Capric Triglycerides (CCTG), Activated Aluminum chlorohydrate (50% Solution), Steareth 2, Steareth 21, Perfume, Phenoxyethanol, Ethyl Hexyl Glycerin, Tri-ethanolamine, Polysorbate 20.</p>
+                    </div>
+                </div>
+
+                <!-- FAQs Accordion -->
+                <div class="accordion-block-wrapper accordion-block-js">
+                    <div class="accordion-title-wrapper">
+                        <h5 class="accordion-title accordion-title-js">FAQs</h5>
+                        <div class="icon">+</div>
+                    </div>
+                    <div class="accordion-content accordion-content-js">
+                        <p><strong>Q: Does this leave stains on clothes?</strong><br>A: Because of the water-based formulation, it does not leave any stains on your clothes.</p>
+                        <p><strong>Q: Can it reduce sweat?</strong><br>A: Our Roll On Deo controls excessive sweating and removes odour.</p>
+                        <p><strong>Q: Will it darken the armpits?</strong><br>A: Our Roll On Deo provides complete coverage without darkening the armpits.</p>
+                        <p><strong>Q: How long will the freshness last?</strong><br>A: It offers 24-hours freshness.</p>
+                        <p><strong>Q: Does it control odour?</strong><br>A: Yes, its citrusy fragrance keeps odour at bay.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Reviews Section -->
+        <!-- Customer Reviews Section -->
+        <div class="customer-reviews-section">
+            <h2>Customer Reviews</h2>
+            <div class="reviews-summary">
+                <div class="rating-overview">
+                    <div class="average-rating">
+                        <span class="stars">★★★★☆</span>
+                        <p>4.7 Based on 9 reviews</p>
+                    </div>
+                    <div class="rating-breakdown">
+                        <div class="rating-row">
+                            <span>★★★★★</span>
+                            <div class="rating-bar"><div style="width: 67%;"></div></div>
+                            <span>67% (6)</span>
+                        </div>
+                        <div class="rating-row">
+                            <span>★★★★☆</span>
+                            <div class="rating-bar"><div style="width: 33%;"></div></div>
+                            <span>33% (3)</span>
+                        </div>
+                        <div class="rating-row">
+                            <span>★★★☆☆</span>
+                            <div class="rating-bar"><div style="width: 0%;"></div></div>
+                            <span>0% (0)</span>
+                        </div>
+                        <div class="rating-row">
+                            <span>★★☆☆☆</span>
+                            <div class="rating-bar"><div style="width: 0%;"></div></div>
+                            <span>0% (0)</span>
+                        </div>
+                        <div class="rating-row">
+                            <span>★☆☆☆☆</span>
+                            <div class="rating-bar"><div style="width: 0%;"></div></div>
+                            <span>0% (0)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-controls">
+                <button class="write-review">Write a review</button>
+                <button class="ask-question">Ask a question</button>
+            </div>
+
+            <div class="review-list">
+                <div class="review-card">
+                    <h3>pushkal vaidya</h3>
+                    <p>10/08/2024</p>
+                    <div class="stars">★★★★☆</div>
+                    <p>Roll On Deo Blanc | Vibrant & Musky</p>
+                </div>
+                <div class="review-card">
+                    <h3>Salman Salman</h3>
+                    <p>06/06/2024</p>
+                    <div class="stars">★★★★★</div>
+                    <p>Roll On Deo Blanc | Vibrant & Musky</p>
+                </div>
+                <div class="review-card">
+                    <h3>Mohammad Ibrahim Patel</h3>
+                    <p>10/31/2023</p>
+                    <div class="stars">★★★★★</div>
+                    <p>Roll On Deo Blanc | Vibrant & Musky</p>
+                </div>
+                <div class="review-card">
+                    <h3>rocking Suvarnapuri</h3>
+                    <p>10/15/2023</p>
+                    <div class="stars">★★★★★</div>
+                    <p>Roll On Deo Blanc | Vibrant & Musky</p>
+                </div>
+                <div class="review-card">
+                    <h3>Om Prakash Bagry</h3>
+                    <p>07/11/2023</p>
+                    <div class="stars">★★★★☆</div>
+                    <p>good</p>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="page active">1</button>
+                <button class="page">2</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+
+<script>
+    function updateMainImage(thumbnail) {
+        const mainImage = document.getElementById('mainImage');
+        mainImage.src = thumbnail.src;
+    }
+
+    // Variables to handle the current slide position
+    let currentSlide = 0;
+
+    // Function to handle thumbnail slider movement
+    function slideThumbnails(direction) {
+        const thumbnails = document.getElementById('thumbnails');
+        const thumbnailWidth = thumbnails.querySelector('img').clientWidth + 10; // Width + margin
+        const visibleThumbnails = Math.floor(thumbnails.parentElement.clientWidth / thumbnailWidth);
+        const maxSlide = thumbnails.children.length - visibleThumbnails;
+
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = 0;
+        if (currentSlide > maxSlide) currentSlide = maxSlide;
+
+        const newTransform = -currentSlide * thumbnailWidth;
+        thumbnails.style.transform = `translateX(${newTransform}px)`;
+    }
+
+
+    function updateQuantity(change) {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value) + change;
+        if (quantity < 1) quantity = 1;
+        quantityInput.value = quantity;
+    }
+
+    document.querySelectorAll('.accordion-title-wrapper').forEach(title => {
+        title.addEventListener('click', () => {
+            const block = title.parentElement;
+            const content = block.querySelector('.accordion-content-js');
+            block.classList.toggle('active');
+            content.style.display = block.classList.contains('active') ? 'block' : 'none';
+        });
+    });
+    const sizeOptions = document.querySelectorAll('.size-option input[type="radio"]');
+
+    sizeOptions.forEach(option => {
+        option.addEventListener('change', () => {
+            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('active'));
+            option.parentElement.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>
