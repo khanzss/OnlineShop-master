@@ -39,6 +39,14 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductOption> options = new ArrayList<>();
 
+    public List<ProductImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ProductImage> images) {
+        this.images = images;
+    }
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductImage> images = new ArrayList<>();
 

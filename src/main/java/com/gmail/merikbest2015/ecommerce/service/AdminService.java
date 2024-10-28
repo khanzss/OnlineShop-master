@@ -1,10 +1,8 @@
 package com.gmail.merikbest2015.ecommerce.service;
 
 import com.gmail.merikbest2015.ecommerce.domain.*;
-import com.gmail.merikbest2015.ecommerce.dto.request.CategoryRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.PerfumeRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.SubCategoryRequest;
+import com.gmail.merikbest2015.ecommerce.domain.product.Product;
+import com.gmail.merikbest2015.ecommerce.dto.request.*;
 import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 import com.gmail.merikbest2015.ecommerce.dto.response.UserInfoResponse;
 import org.springframework.data.domain.Page;
@@ -50,4 +48,18 @@ public interface AdminService {
     MessageResponse editSubCategory(SubCategoryRequest subCategoryRequest);
     MessageResponse deleteSubCategory(Long id);
     MessageResponse toggleSubCategoryVisibility(Long id);
+
+
+    //product
+    Page<Product> getAllProducts(Pageable pageable);
+
+    Product getProductById(Long productId);
+
+    MessageResponse addProduct(ProductRequest productRequest, MultipartFile file);
+
+    MessageResponse editProduct(ProductRequest productRequest, MultipartFile file);
+
+    MessageResponse deleteProduct(Long productId);
+
+    MessageResponse toggleProductPopularity(Long productId);
 }

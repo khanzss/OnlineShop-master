@@ -3,10 +3,10 @@ package com.gmail.merikbest2015.ecommerce.service.impl;
 import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import com.gmail.merikbest2015.ecommerce.constants.SuccessMessage;
 import com.gmail.merikbest2015.ecommerce.domain.*;
-import com.gmail.merikbest2015.ecommerce.dto.request.CategoryRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.PerfumeRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.SubCategoryRequest;
+import com.gmail.merikbest2015.ecommerce.domain.product.Product;
+import com.gmail.merikbest2015.ecommerce.domain.product.ProductImage;
+import com.gmail.merikbest2015.ecommerce.domain.product.ReviewImage;
+import com.gmail.merikbest2015.ecommerce.dto.request.*;
 import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 import com.gmail.merikbest2015.ecommerce.dto.response.UserInfoResponse;
 import com.gmail.merikbest2015.ecommerce.repository.*;
@@ -248,4 +248,82 @@ public class AdminServiceImpl implements AdminService {
         String status = subCategory.isVisible() ? "visible" : "hidden";
         return new MessageResponse("alert-success", "SubCategory is now " + status + ".");
     }
+
+
+    //Product
+    private final ProductRepository productRepository;
+//    private final ModelMapper modelMapper;
+
+    @Override
+    public Page<Product> getAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable);
+    }
+
+    @Override
+    public Product getProductById(Long productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+    }
+
+    @Override
+    @SneakyThrows
+    @Transactional
+    public MessageResponse addProduct(ProductRequest productRequest, MultipartFile file) {
+        Product product = modelMapper.map(productRequest, Product.class);
+        setSubCategory(product, productRequest.getSubCategoryId());
+        handleFileUpload(product, file);
+        productRepository.save(product);
+        return new MessageResponse("alert-success", "Product added successfully.");
+    }
+
+    @Override
+    @SneakyThrows
+    @Transactional
+    public MessageResponse editProduct(ProductRequest productRequest, MultipartFile file) {
+        Product existingProduct = getProductById(productRequest.getId());
+        modelMapper.map(productRequest, existingProduct);
+        setSubCategory(existingProduct, productRequest.getSubCategoryId());
+        handleFileUpload(existingProduct, file);
+        productRepository.save(existingProduct);
+        return new MessageResponse("alert-success", "Product edited successfully.");
+    }
+
+    @Override
+    @Transactional
+    public MessageResponse deleteProduct(Long productId) {
+        Product product = getProductById(productId);
+        productRepository.delete(product);
+        return new MessageResponse("alert-success", "Product deleted successfully.");
+    }
+
+    @Override
+    @Transactional
+    public MessageResponse toggleProductPopularity(Long productId) {
+        Product product = getProductById(productId);
+        product.setPopular(!product.isPopular());
+        productRepository.save(product);
+        String status = product.isPopular() ? "marked as popular" : "unmarked as popular";
+        return new MessageResponse("alert-success", "Product " + status + " successfully.");
+    }
+
+    private void setSubCategory(Product product, Long subCategoryId) {
+        SubCategory subCategory = subCategoryRepository.findById(subCategoryId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "SubCategory not found"));
+        product.setSubCategory(subCategory);
+    }
+
+    private void handleFileUpload(Product product, MultipartFile file) throws IOException {
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+            product.getImages().add(new ProductImage(resultFilename, product)); // Lưu đường dẫn ảnh vào danh sách image
+        }
+    }
+
 }

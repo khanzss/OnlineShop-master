@@ -537,6 +537,399 @@ ul ul a{
     border-radius: 10px
 }
 
+<<<<<<< HEAD
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+.product-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.slider-section {
+    flex: 1;
+}
+
+.main-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.thumbnail-slider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.thumbnails img {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.thumbnails img:hover {
+    border-color: #ff0000;
+}
+
+.slider-arrow {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+.product-info {
+    flex: 1;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.product-info h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.product-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.product-size {
+    margin-top: 20px;
+}
+
+.size-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 16px;
+}
+
+.size-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+}
+
+.size-option input[type="radio"] {
+    display: none;
+}
+
+.size-option input[type="radio"]:checked + .size-label-option {
+    font-weight: bold;
+    color: #b71c1c;
+}
+
+.size-option label {
+    font-size: 16px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.size-option.active {
+    border: 2px solid #b71c1c;
+}
+
+.size-option:hover {
+    border-color: #b71c1c;
+}
+
+.product-price {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.tax-info {
+    font-size: 14px;
+    color: #777;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qty-btn:hover {
+    background-color: #f0f0f0;
+}
+
+#quantity {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-to-cart {
+    background-color: #b71c1c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.rewards {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.highlight {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.features {
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.features li {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.delivery-check {
+    margin-top: 20px;
+}
+
+.delivery-check input {
+    width: calc(100% - 80px);
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.check-btn {
+    padding: 8px 16px;
+    border: none;
+    background-color: #1976d2;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.shipping-info {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+
+
+
+
+.accordion-section {
+    margin-top: 30px;
+}
+
+.accordion-wrapper {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.accordion-block-wrapper {
+    border-bottom: 1px solid #ddd;
+}
+
+.accordion-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.accordion-content-js {
+    padding: 15px;
+    display: none;
+}
+
+
+
+
+
+
+/* review */
+
+.customer-reviews-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.customer-reviews-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.reviews-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.rating-overview {
+    display: flex;
+    gap: 40px;
+}
+
+.average-rating {
+    text-align: center;
+}
+
+.stars {
+    font-size: 24px;
+    color: #FFD700;
+}
+
+.rating-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-bar {
+    width: 100px;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.rating-bar div {
+    height: 100%;
+    background-color: #FFD700;
+    border-radius: 4px;
+}
+
+.review-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.write-review, .ask-question {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.review-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.review-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+}
+
+.review-card h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.review-card p {
+    margin: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.page {
+    border: 1px solid #000;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.page.active {
+    background-color: #000;
+    color: #fff;
+}
 .showcase {
     border-radius: 20px;
 }
