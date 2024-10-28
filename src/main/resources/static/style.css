@@ -228,19 +228,14 @@ body {
 
 
 
-.search-input {
-    border-radius: 25px;
-    padding: 5px 15px;
-}
-
 .badge-pill {
     font-size: 0.8rem;
     padding: 5px 10px;
 }
 
 .search-input {
+    padding: 5px 10px;
     border-radius: 25px;
-    padding: 10px 15px;
     width: 250px;
     border: 1px solid #ccc;
     outline: none;
@@ -542,6 +537,7 @@ ul ul a{
     border-radius: 10px
 }
 
+<<<<<<< HEAD
 
 
 
@@ -933,4 +929,145 @@ body {
 .page.active {
     background-color: #000;
     color: #fff;
+}
+.showcase {
+    border-radius: 20px;
+}
+
+.product-tag {
+    width: 80px;
+    margin: 10px 0px 10px 0px;
+    display: inline-block;
+    border-radius: .5rem;
+    background: #3c3c3c;
+    color: #fff;
+}
+
+.product-card{
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#section-3 .product-img{
+    border-radius: 10px;
+}
+
+#section-3 .card{
+    --bs-card-spacer-y: 0;
+    --bs-card-spacer-x: 0;
+
+}
+#section-3  .btn-add-cart {
+     background-color: #dc3545; /* Màu đỏ Bootstrap Danger */
+     color: white;
+     font-weight: bold;
+     border-radius: 25px; /* Bo tròn nút */
+     padding: 12px 30px;
+     border: none;
+     font-size: 18px;
+     margin-top: 1.5rem;
+}
+
+#section-3 .btn-add-cart:hover {
+     background-color: #c82333; /* Màu đậm hơn khi hover */
+}
+
+
+#section-3 .product-info-wrapper {
+ display: flex;
+ align-items: center;
+ gap: 15px;
+}
+
+#section-3 .product-info-block {
+ display: flex;
+ align-items: center;
+ gap: 8px;
+}
+
+#section-3 .image-wrapper img {
+ width: 30px;
+ height: 30px;
+}
+
+#section-3 .divider {
+ border-left: 1px solid #ccc;
+ height: 30px;
+ margin: 0 10px;
+}
+
+#section-3 .info-text {
+    font-size: 10px;
+    font-weight: 700;
+
+}
+
+#section-3 .product-info-text{
+    line-height:0.8;
+}
+
+    .nav-tabs {
+      border-bottom: none; /* Loại bỏ đường viền mặc định */
+    }
+
+#section-3 .nav-link {
+  color: #666;
+  font-size: 18px;
+  border: none; /* Xóa khung viền của tab */
+  padding-bottom: 8px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+#section-3 .nav-link.active {
+  color: black;
+  font-weight: bold;
+}
+
+#section-3 .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: black; /* Đường gạch chân màu đen */
+}
+
+#section-3 .nav-link:hover {
+  color: black; /* Thay đổi màu khi hover */
+}
+
+#section-4 .groom-heading {
+   font-size: 2rem;
+   font-weight: bold;
+   text-transform: uppercase;
+   color: #333;
+}
+
+#section-4 .video-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 600px; /* Điều chỉnh chiều cao container */
+}
+
+#section-4 .video-player {
+   height: 100%; /* Đảm bảo video chiếm toàn bộ chiều cao */
+   width: auto; /* Duy trì tỷ lệ khung hình */
+   max-height: 600px; /* Đặt giới hạn cho chiều cao video */
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#section-4 .carousel-control-prev-icon,
+#section-4 .carousel-control-next-icon {
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+}
+
+/* Hiệu ứng chuyển đổi slide mượt */
+#section-4 .carousel-item {
+   transition: transform 0.5s ease, opacity 0.5s ease;
 }
