@@ -6,12 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class StoryController
 {
 
-    // Định tuyến cho trang chủ
-    @GetMapping("/")
-    public String homePage() {
-        return "home";  // Trả về trang home.html
-    }
-
     // Định tuyến cho đường dẫn /our-story
     @GetMapping("/our-story")
     public String ourStoryPage() {
