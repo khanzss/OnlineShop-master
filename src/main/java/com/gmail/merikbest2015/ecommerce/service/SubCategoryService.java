@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface SubCategoryService {
-    Page<SubCategory> getSubCategories( Pageable pageable);
+    List<SubCategory> getSubCategories();
 
-    Page<SubCategory> searchSubCategories(String keyword, Pageable pageable);
+    List<SubCategory> searchSubCategories(String keyword);
 
     SubCategory getSubCategoryById(Long subCategoryId);
 }

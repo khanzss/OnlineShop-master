@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
@@ -18,12 +19,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "WHERE (coalesce(:subCategories, null) IS NULL OR p.subCategory.name IN :subCategories) " +
             "AND (coalesce(:priceStart, null) IS NULL OR o.price BETWEEN :priceStart AND :priceEnd) " +
             "AND (:popular IS NULL OR p.popular = :popular) " +
-            "GROUP BY p.id " +
-            "ORDER BY MIN(o.price) ASC")
+            "ORDER BY o.price ASC")
     Page<Product> getProductsByFilterParams(
             List<String> subCategories,
-            Integer priceStart,
-            Integer priceEnd,
+            BigDecimal priceStart,
+            BigDecimal priceEnd,
             Boolean popular,
             Pageable pageable);
 

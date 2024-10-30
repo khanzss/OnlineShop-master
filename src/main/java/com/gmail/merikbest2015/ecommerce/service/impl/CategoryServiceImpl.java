@@ -23,13 +23,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Page<Category> getCategories(Pageable pageable) {
-        return categoryRepository.findAllByVisibleTrueOrderByDisplayOrder(pageable);
+    public List<Category> getCategories() {
+        return categoryRepository.findAllByVisibleTrueOrderByDisplayOrder();
     }
 
     @Override
-    public Page<Category> searchCategories(String keyword, Pageable pageable) {
-        return categoryRepository.findByNameContainingIgnoreCaseAndVisibleTrueOrderByDisplayOrder(keyword, pageable);
+    public List<Category> searchCategories(String keyword) {
+        return categoryRepository.findByNameContainingIgnoreCaseAndVisibleTrueOrderByDisplayOrder(keyword);
     }
 
     @Override

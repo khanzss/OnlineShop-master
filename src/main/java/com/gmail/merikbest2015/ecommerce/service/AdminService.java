@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public interface AdminService {
 
     Page<Perfume> getPerfumes(Pageable pageable);
@@ -35,7 +37,7 @@ public interface AdminService {
 
 
     // Category
-    Page<Category> getAllCategories(Pageable pageable);
+    List<Category> getAllCategories();
     MessageResponse addCategory(CategoryRequest categoryRequest);
     MessageResponse editCategory(CategoryRequest categoryRequest);
     MessageResponse deleteCategory(Long id);
@@ -43,7 +45,7 @@ public interface AdminService {
 
 
     // SubCategory
-    Page<SubCategory> getAllSubCategories(Pageable pageable);
+    List<SubCategory> getAllSubCategories();
     MessageResponse addSubCategory(SubCategoryRequest subCategoryRequest);
     MessageResponse editSubCategory(SubCategoryRequest subCategoryRequest);
     MessageResponse deleteSubCategory(Long id);

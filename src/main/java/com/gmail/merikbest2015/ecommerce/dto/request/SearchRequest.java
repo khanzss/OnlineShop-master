@@ -1,7 +1,8 @@
 package com.gmail.merikbest2015.ecommerce.dto.request;
 
-import lombok.Data;
+import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -15,9 +16,11 @@ public class SearchRequest {
 
 
     private List<String> subCategories;
-    private Integer priceStart;
-    private Integer priceEnd;
+    private BigDecimal priceStart;
+    private BigDecimal priceEnd;
     private Boolean popular;
 //    private String searchType;
 //    private String text;
+
+
 }

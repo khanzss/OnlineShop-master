@@ -26,6 +26,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -134,9 +135,8 @@ public class AdminServiceImpl implements AdminService {
     private final SubCategoryRepository subCategoryRepository;
 
     // Category Services
-    @Override
-    public Page<Category> getAllCategories(Pageable pageable) {
-        return categoryRepository.findAll(pageable);
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();  // Lấy tất cả Category
     }
 
     @Override
@@ -191,8 +191,8 @@ public class AdminServiceImpl implements AdminService {
 
     // SubCategory Services
     @Override
-    public Page<SubCategory> getAllSubCategories(Pageable pageable) {
-        return subCategoryRepository.findAll(pageable);
+    public List<SubCategory> getAllSubCategories() {
+        return subCategoryRepository.findAllByVisibleTrueOrderByDisplayOrder();  // Lấy tất cả SubCategory
     }
 
     @Override
