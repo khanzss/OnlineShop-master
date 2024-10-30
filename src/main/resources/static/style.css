@@ -1663,3 +1663,164 @@ body {
         font-size: 0.9rem;
     }
 }
+
+
+/* login */
+#login {
+    max-width: 800px;
+    margin: 50px auto;
+    padding-bottom: 10px !important;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+}
+
+#login h4 {
+    color: #212529;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.form-control-lg{
+    font-size: 1rem !important;
+}
+#login p {
+    margin-bottom: 30px;
+    font-size: 1rem;
+    color: #212529;
+}
+
+#login input {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    height: 45px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+
+#login input::placeholder {
+    color: #555555;
+}
+
+#login button {
+    background-color: #212529;
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#login button:hover {
+    background-color: #555555;
+}
+
+#login .forgot-password {
+    display: block;
+    margin-top: 15px;
+    color: #212529;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+#login .forgot-password:hover {
+    text-decoration: underline;
+}
+
+#login .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#login .form-group i {
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    color: #bbb;
+}
+
+#login .alert {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#login .g-recaptcha {
+    margin: 20px auto;
+}
+
+#login .forgot-password {
+    color: #5a5a5a; /* Màu ghi xám cho "Forgot password?" */
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#login .forgot-password:hover {
+    color: #dc3545; /* Chuyển sang màu đỏ nhẹ khi hover */
+    text-decoration: none
+}
+
+.register-section .register-link {
+    color: #5a5a5a; /* Màu xanh đặc trưng cho liên kết */
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-section .register-link:hover {
+    color: #dc3545; /* Đổi sang đỏ khi hover */
+}
+
+
+#reg {
+    border-radius: 12px;
+    max-width: 600px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#reg .form-control {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+#reg button {
+    background-color: #212529;
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#reg button:hover {
+    background-color: #555555;
+}
+
+#reg .form-check-label {
+    font-size: 0.9rem;
+    color: #212529;
+}
+
+#reg .text-primary {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#reg .text-primary:hover {
+    color: #dc3545; /* Đổi màu đỏ khi hover */
+}
