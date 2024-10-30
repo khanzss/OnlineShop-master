@@ -32,18 +32,139 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lấy các phần tử liên quan đến Mega Menu
+            const moreMenu = document.getElementById('moreMenu');
+            const megaMenu = document.getElementById('megaMenu');
+            const navbar = document.querySelector('.navbar'); // Lấy navbar để tính toán vị trí
+
+            // Lấy các phần tử liên quan đến Categories Overlay
+            const categoriesToggle = document.getElementById('categoriesToggle');
+            const categoriesOverlay = document.getElementById('categoriesOverlay');
+            const closeOverlay = document.getElementById('closeOverlay');
+
+            // Hàm tính vị trí top cho mega menu
+            const updateMegaMenuPosition = () => {
+                const navbarHeight = navbar.getBoundingClientRect().height; // Lấy chiều cao navbar
+                megaMenu.style.top = `${navbarHeight}px`; // Đặt top bằng chiều cao navbar
+            };
+
+            // Mở hoặc đóng mega menu khi nhấp vào nút "More"
+            moreMenu.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (megaMenu.style.display === 'block') {
+                    megaMenu.style.display = 'none';
+                } else {
+                    updateMegaMenuPosition(); // Cập nhật vị trí trước khi hiển thị
+                    megaMenu.style.display = 'block';
+                }
+            });
+
+            // Đóng mega menu khi nhấp ra ngoài
+            document.addEventListener('click', (e) => {
+                if (!moreMenu.contains(e.target) && !megaMenu.contains(e.target)) {
+                    megaMenu.style.display = 'none';
+                }
+            });
+
+            // Cập nhật vị trí mega menu khi thay đổi kích thước hoặc cuộn trang
+            window.addEventListener('resize', updateMegaMenuPosition);
+            window.addEventListener('scroll', updateMegaMenuPosition);
+
+            // Mở tab Categories với animation
+            const openCategoriesOverlay = () => {
+                categoriesOverlay.style.display = 'block';
+                setTimeout(() => {
+                    categoriesOverlay.classList.add('active'); // Thêm class để kích hoạt animation
+                }, 10);
+            };
+
+            // Đóng tab Categories với animation
+            const closeCategoriesOverlay = () => {
+                categoriesOverlay.classList.remove('active'); // Xóa class để bắt đầu đóng animation
+                setTimeout(() => {
+                    categoriesOverlay.style.display = 'none';
+                }, 300); // Đợi 300ms để hoàn tất animation đóng
+            };
+
+            // Sự kiện click vào nút Categories để mở tab
+            categoriesToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                openCategoriesOverlay();
+            });
+
+            // Sự kiện click vào nút đóng để đóng tab
+            closeOverlay.addEventListener('click', closeCategoriesOverlay);
+
+            // Đóng tab khi nhấn ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && categoriesOverlay.style.display === 'block') {
+                    closeCategoriesOverlay();
+                }
+            });
+
+            // Đóng tab khi click ra ngoài nội dung tab (chỉ khi tab đang mở)
+            document.addEventListener('click', (e) => {
+                if (
+                    categoriesOverlay.style.display === 'block' &&
+                    !categoriesOverlay.contains(e.target) &&
+                    e.target !== categoriesToggle
+                ) {
+                    closeCategoriesOverlay();
+                }
+            });
+
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoriesToggle = document.getElementById('categoriesToggle');
+            const categoriesOverlay = document.getElementById('categoriesOverlay');
+            const closeOverlay = document.getElementById('closeOverlay');
+            const contentBody = document.querySelector('.content-body');
+
+            // Mở overlay
+            categoriesToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                categoriesOverlay.classList.add('active');
+            });
+
+            // Đóng overlay bằng nút close
+            closeOverlay.addEventListener('click', () => {
+                categoriesOverlay.classList.remove('active');
+            });
+
+            // Đóng overlay khi click ra ngoài content-body
+            categoriesOverlay.addEventListener('click', (e) => {
+                if (!contentBody.contains(e.target)) {
+                    categoriesOverlay.classList.remove('active');
+                }
+            });
+
+            // Đóng overlay bằng phím ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && categoriesOverlay.classList.contains('active')) {
+                    categoriesOverlay.classList.remove('active');
+                }
+            });
+        });
+
+
+    </script>
+
 </div>
 
 <!--Navbar-->
 <div th:fragment="navbar" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-    <div class="container-fluid bg-dark py-2">
-        <nav class="navbar navbar-expand-lg navbar-dark d-flex align-items-center justify-content-between px-0" style="padding-left: 50px !important;padding-right: 50px !important;">
+    <div class="container-fluid bg-dark py-2 main-nav">
+        <nav class="navbar navbar-expand-lg bg-dark align-items-center justify-content-between px-0" style="padding-left: 50px !important;padding-right: 50px !important;">
             <!-- Left Section: Logo -->
             <div class="left-section d-flex align-items-center pl-3" >
                 <a class="navbar-brand" href="/">
                     <img src="//www.themancompany.com/cdn/shop/files/logo_08a2688e-7c47-4081-a0e8-942d40f74a6d_250x.png?v=1663137227 "
                          srcset="//www.themancompany.com/cdn/shop/files/logo_08a2688e-7c47-4081-a0e8-942d40f74a6d_250x@2x.png?v=1663137227 2x"
-                         alt="The Man Company" class="img-fluid" width="250px" loading="lazy">
+                         alt="The Man Company" class="img-fluid" style="max-width: 200px !important;" loading="lazy">
 
                 </a>
             </div>
@@ -59,16 +180,39 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">Festive Ready</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Categories</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" id="categoriesToggle">Categories</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">By Concerns</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#">Track your Order</a></li>
+
+                    <!-- More Menu -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="moreDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            More
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="moreDropdown">
-                            <a class="dropdown-item" href="#">Gift Sets</a>
-                            <a class="dropdown-item" href="#">Best Sellers</a>
+                        <a class="nav-link text-white" href="#" id="moreMenu" role="button">More</a>
+                        <div class="mega-menu-with-image" id="megaMenu">
+                            <div class="row ">
+                                <!-- About Us Section -->
+                                <div class="col-3 ">
+                                    <h5 class="font-weight-bold mb-3 text-start">About us</h5>
+                                    <ul class=" text-start list-unstyled ">
+                                        <li><a href="/blogs/the-man-mag" class="text-dark text-decoration-none">The Man Mag</a></li>
+                                        <li><a href="/pages/ingredients" class="text-dark text-decoration-none">Our Ingredients</a></li>
+                                        <li><a href="/pages/the-gentleman-show-abs" class="text-dark text-decoration-none">The Gentleman Show</a></li>
+                                        <li><a href="/pages/the-man-club" class="text-dark text-decoration-none">The Man Club</a></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Get In Touch Section -->
+                                <div class="col-3">
+                                    <h5 class="font-weight-bold mb-3 text-start">Get In Touch</h5>
+                                    <ul class=" text-start list-unstyled">
+                                        <li><a href="/pages/contact-us" class="text-dark text-decoration-none">Contact us</a></li>
+                                        <li><a href="/collections/b2b-bulk-buying" class="text-dark text-decoration-none">B2B Bulk Buy</a></li>
+                                        <li><a href="/pages/faqs" class="text-dark text-decoration-none">FAQs</a></li>
+                                        <li><a href="https://themancompany.clickpost.in/" class="text-dark text-decoration-none">Track My Order</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -130,7 +274,7 @@
                         <a href="https://themancompany.clickpost.in/">
 
 
-                            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 296.77"><g id="Layer_1-2"><g><path d="M273.79,243.03c-.81,7.38-4.3,13.58-9.34,18.96-6.89,7.33-15.35,12.33-24.4,16.47-13.38,6.12-27.49,9.88-41.87,12.65-7.18,1.39-14.47,2.23-21.72,3.19-9.93,1.32-19.92,2.03-29.95,2.08-.39,0-.77,.26-1.15,.39h-16.46c-.5-.13-1-.36-1.5-.39-7.77-.47-15.57-.73-23.32-1.43-7.23-.65-14.43-1.61-21.61-2.72-12.58-1.95-24.94-4.9-36.96-9.15-10.19-3.61-19.99-8.02-28.67-14.6-7.07-5.37-12.92-11.7-15.52-20.47-.53-1.77-.88-3.61-1.32-5.41v-6.17c.43-1.8,.79-3.62,1.3-5.39,2.09-7.21,6.53-12.87,12.1-17.67,8.95-7.7,19.45-12.63,30.42-16.68,9.36-3.45,18.97-5.93,28.72-7.99,.5-.1,.89-.14,1.51-.26,4.1-.79,4.55-1.24,6.47,2.03,3.05,5.21,7.87,11.34,11.22,16.37,.31,.46,.57,.94,.97,1.62-3.72,.64-7.22,1.2-10.7,1.87-14.97,2.88-29.63,6.74-43.29,13.72-4.64,2.38-9.02,5.14-12.59,9.02-3.83,4.17-4.01,7.96-.48,12.34,2.78,3.44,6.36,5.87,10.14,8.02,8.97,5.09,18.58,8.68,28.55,11.16,8.76,2.17,17.6,4.02,26.47,5.67,5.18,.96,10.48,1.36,15.74,1.85,5.95,.56,11.92,1.12,17.89,1.35,6.16,.23,12.34,.16,18.51,.04,6.1-.12,12.21-.24,18.28-.74,6.68-.54,13.33-1.44,19.97-2.3,12.65-1.62,25.06-4.37,37.15-8.43,9.42-3.16,18.7-6.75,26.49-13.17,2.02-1.66,3.73-3.84,5.18-6.04,1.69-2.54,1.11-5.19-.53-7.68-2.53-3.83-6.13-6.42-9.95-8.73-10.05-6.06-21.02-9.88-32.34-12.63-7.94-1.93-16.01-3.3-24.03-4.92-.55-.12-1.1-.26-1.82-.43,.27-.48,.5-.92,.77-1.33,4.08-6.13,8.2-12.24,12.23-18.39,.62-.94,1.16-1.21,2.32-.99,16.88,3.19,33.35,7.65,48.72,15.53,8.65,4.44,16.54,9.89,22.41,17.86,4.82,6.54,6.86,13.88,5.98,21.88h.02v.04Z"></path><path d="M215.47,64.25c-4.03-19.33-13.75-35.19-29.27-47.38C172.38,6.01,156.51,.54,139,.02c-4.68-.14-9.42,.41-14.09,.96-8.09,.96-15.74,3.52-23.05,7.09-9.76,4.77-18.19,11.26-25.31,19.48-5.72,6.61-10.28,13.92-13.55,22.03-4.31,10.67-6.58,21.72-5.65,33.27,.34,4.17,.89,8.37,1.87,12.43,2.78,11.49,7.37,22.35,12.39,33.02,8.07,17.18,17.16,33.84,27.13,49.98,9.78,15.85,20.05,31.4,30.15,47.05,2.56,3.96,5.3,7.81,8.09,11.88,.37-.48,.56-.7,.71-.92,9.73-14.74,19.71-29.32,29.1-44.27,7.99-12.73,15.56-25.74,22.87-38.87,9.1-16.32,17.34-33.07,23.21-50.9,4.11-12.49,5.29-25.1,2.6-38.01h0Zm-24.63,31.14c-5.05,15.08-12.11,29.23-19.54,43.21-8.8,16.57-18.54,32.58-28.57,48.42-1.85,2.93-3.75,5.82-5.78,8.96-4.81-7.66-9.52-15.05-14.11-22.52-10.48-17.04-20.41-34.38-29.1-52.42-4.4-9.14-8.29-18.48-11.33-28.19-4.13-13.17-2.48-25.81,3.55-37.9,8.52-17.08,22.41-27.61,41.11-31.01,16.75-3.05,32.09,.98,45.51,11.66,9.95,7.92,16.42,18.18,19.67,30.44,2.62,9.9,1.85,19.63-1.4,29.34h-.01Z"></path><path d="M159.93,79.86c.04,13.18-10.56,22.93-23.02,22.91-12.5-.02-22.11-10.22-22.75-21.44-.78-13.84,10.47-24.59,22.99-24.25,12.15-.12,22.74,9.56,22.78,22.78h0Z"></path><g><path d="M293.68,42.9v-14.07h-57.49v14.07h21.11v55.31h15.26V42.9h21.12Z"></path><path d="M335.85,59.85v-15.76c-4.49-.2-8.06,.79-10.7,2.97-2.64,2.18-4.72,5.09-6.24,8.72v-10.7h-15.07v53.13h15.07v-19.63c0-6.41,1.42-11.13,4.26-14.17,2.91-3.04,6.87-4.56,11.89-4.56h.79Z"></path><path d="M390.96,98.21v-30.83c0-7.2-1.88-12.82-5.65-16.85-3.77-4.03-9.78-6.05-18.04-6.05-4.49,0-8.33,.4-11.5,1.19-3.17,.79-6.21,1.82-9.12,3.07l3.77,11.5c2.44-.93,4.76-1.62,6.94-2.08,2.25-.53,4.82-.79,7.73-.79,3.77,0,6.61,.83,8.52,2.48,1.92,1.65,2.87,4.06,2.87,7.24v.89c-1.92-.66-3.9-1.19-5.95-1.59-1.98-.4-4.33-.59-7.04-.59-3.17,0-6.08,.36-8.72,1.09-2.58,.66-4.82,1.69-6.74,3.07-1.85,1.39-3.3,3.14-4.36,5.25s-1.59,4.63-1.59,7.53v.2c0,2.64,.46,4.99,1.39,7.04,.99,1.98,2.31,3.67,3.96,5.06s3.57,2.44,5.75,3.17c2.25,.66,4.63,.99,7.14,.99,3.7,0,6.84-.59,9.42-1.78,2.58-1.26,4.79-2.91,6.64-4.96v5.75h14.58Zm-14.27-18.73c0,2.78-1.09,5.02-3.27,6.74-2.12,1.72-4.96,2.58-8.52,2.58-2.44,0-4.43-.56-5.95-1.69-1.52-1.12-2.28-2.71-2.28-4.76v-.2c0-2.38,.92-4.2,2.77-5.45,1.85-1.26,4.39-1.88,7.63-1.88,1.85,0,3.57,.2,5.15,.59,1.65,.33,3.14,.79,4.46,1.39v2.68h.01Z"></path><path d="M450.71,89.69l-8.82-8.92c-1.85,1.72-3.73,3.11-5.65,4.16-1.85,.99-4.03,1.49-6.54,1.49-2.05,0-3.9-.36-5.55-1.09-1.65-.79-3.07-1.85-4.26-3.17-1.19-1.32-2.11-2.87-2.77-4.66-.6-1.78-.89-3.7-.89-5.75v-.2c0-1.98,.3-3.83,.89-5.55,.66-1.78,1.55-3.34,2.68-4.66,1.19-1.32,2.54-2.35,4.06-3.07,1.59-.79,3.34-1.19,5.25-1.19,2.71,0,4.96,.53,6.74,1.59,1.85,1.06,3.63,2.48,5.35,4.26l9.22-9.91c-2.51-2.78-5.42-4.96-8.72-6.54-3.3-1.59-7.47-2.38-12.49-2.38-4.1,0-7.86,.73-11.3,2.18-3.37,1.45-6.28,3.44-8.72,5.95s-4.36,5.45-5.75,8.82-2.08,6.94-2.08,10.7v.2c0,3.77,.69,7.33,2.08,10.7,1.39,3.3,3.3,6.21,5.75,8.72,2.45,2.44,5.35,4.39,8.72,5.85,3.44,1.45,7.14,2.18,11.1,2.18,5.29,0,9.58-.89,12.89-2.68,3.3-1.85,6.24-4.2,8.82-7.04h-.01Z"></path><path d="M511.99,98.21l-20.91-32.21,20.22-20.91h-18.04l-17.64,19.33V25.86h-15.07V98.22h15.07v-16.16l5.25-5.55,13.88,21.71h17.24Z"></path><path d="M299.83,187.42V118.04h-15.26v27.46h-28.15v-27.46h-15.26v69.38h15.26v-27.85h28.15v27.85h15.26Z"></path><path d="M364.43,162.34v-.2c0-3.77-.53-7.37-1.59-10.8-.99-3.5-2.58-6.57-4.76-9.22-2.12-2.71-4.79-4.86-8.03-6.44-3.24-1.59-7.07-2.38-11.5-2.38-3.9,0-7.47,.73-10.7,2.18-3.17,1.45-5.91,3.44-8.23,5.95-2.31,2.51-4.13,5.45-5.45,8.82-1.26,3.37-1.88,6.94-1.88,10.71v.2c0,4.1,.69,7.83,2.08,11.2,1.39,3.3,3.3,6.18,5.75,8.62,2.51,2.44,5.45,4.33,8.82,5.65,3.44,1.32,7.14,1.98,11.1,1.98,4.82,0,9.02-.86,12.59-2.58,3.57-1.78,6.61-4.23,9.12-7.33l-8.62-7.63c-2.11,1.92-4.16,3.3-6.14,4.16-1.98,.86-4.23,1.29-6.74,1.29-3.37,0-6.21-.86-8.52-2.58-2.25-1.78-3.73-4.39-4.46-7.83h36.97c.07-.73,.1-1.35,.1-1.88,.07-.53,.1-1.16,.1-1.88h0Zm-14.67-5.66h-22.7c.59-3.44,1.85-6.18,3.77-8.23,1.98-2.05,4.56-3.07,7.73-3.07s5.72,1.06,7.63,3.17c1.92,2.05,3.11,4.76,3.57,8.13Z"></path><path d="M407.67,149.06v-15.76c-4.49-.2-8.06,.79-10.7,2.97-2.64,2.18-4.73,5.09-6.25,8.72v-10.7h-15.07v53.13h15.07v-19.63c0-6.41,1.42-11.14,4.26-14.17,2.91-3.04,6.87-4.56,11.89-4.56h.8Z"></path><path d="M466.65,162.34v-.2c0-3.77-.53-7.37-1.59-10.8-.99-3.5-2.58-6.57-4.76-9.22-2.11-2.71-4.79-4.86-8.03-6.44-3.24-1.59-7.07-2.38-11.5-2.38-3.9,0-7.47,.73-10.71,2.18-3.17,1.45-5.91,3.44-8.23,5.95-2.31,2.51-4.13,5.45-5.45,8.82-1.26,3.37-1.88,6.94-1.88,10.71v.2c0,4.1,.69,7.83,2.08,11.2,1.39,3.3,3.3,6.18,5.75,8.62,2.51,2.44,5.45,4.33,8.82,5.65,3.44,1.32,7.14,1.98,11.1,1.98,4.82,0,9.02-.86,12.59-2.58,3.57-1.78,6.61-4.23,9.12-7.33l-8.62-7.63c-2.12,1.92-4.16,3.3-6.15,4.16-1.98,.86-4.23,1.29-6.74,1.29-3.37,0-6.21-.86-8.52-2.58-2.25-1.78-3.73-4.39-4.46-7.83h36.97c.07-.73,.1-1.35,.1-1.88,.07-.53,.1-1.16,.1-1.88h0Zm-14.67-5.66h-22.7c.6-3.44,1.85-6.18,3.77-8.23,1.98-2.05,4.56-3.07,7.73-3.07s5.72,1.06,7.63,3.17c1.92,2.05,3.11,4.76,3.57,8.13Z"></path></g></g></g></svg>
+                            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 296.77" style="margin-left: 8px"><g id="Layer_1-2"><g><path d="M273.79,243.03c-.81,7.38-4.3,13.58-9.34,18.96-6.89,7.33-15.35,12.33-24.4,16.47-13.38,6.12-27.49,9.88-41.87,12.65-7.18,1.39-14.47,2.23-21.72,3.19-9.93,1.32-19.92,2.03-29.95,2.08-.39,0-.77,.26-1.15,.39h-16.46c-.5-.13-1-.36-1.5-.39-7.77-.47-15.57-.73-23.32-1.43-7.23-.65-14.43-1.61-21.61-2.72-12.58-1.95-24.94-4.9-36.96-9.15-10.19-3.61-19.99-8.02-28.67-14.6-7.07-5.37-12.92-11.7-15.52-20.47-.53-1.77-.88-3.61-1.32-5.41v-6.17c.43-1.8,.79-3.62,1.3-5.39,2.09-7.21,6.53-12.87,12.1-17.67,8.95-7.7,19.45-12.63,30.42-16.68,9.36-3.45,18.97-5.93,28.72-7.99,.5-.1,.89-.14,1.51-.26,4.1-.79,4.55-1.24,6.47,2.03,3.05,5.21,7.87,11.34,11.22,16.37,.31,.46,.57,.94,.97,1.62-3.72,.64-7.22,1.2-10.7,1.87-14.97,2.88-29.63,6.74-43.29,13.72-4.64,2.38-9.02,5.14-12.59,9.02-3.83,4.17-4.01,7.96-.48,12.34,2.78,3.44,6.36,5.87,10.14,8.02,8.97,5.09,18.58,8.68,28.55,11.16,8.76,2.17,17.6,4.02,26.47,5.67,5.18,.96,10.48,1.36,15.74,1.85,5.95,.56,11.92,1.12,17.89,1.35,6.16,.23,12.34,.16,18.51,.04,6.1-.12,12.21-.24,18.28-.74,6.68-.54,13.33-1.44,19.97-2.3,12.65-1.62,25.06-4.37,37.15-8.43,9.42-3.16,18.7-6.75,26.49-13.17,2.02-1.66,3.73-3.84,5.18-6.04,1.69-2.54,1.11-5.19-.53-7.68-2.53-3.83-6.13-6.42-9.95-8.73-10.05-6.06-21.02-9.88-32.34-12.63-7.94-1.93-16.01-3.3-24.03-4.92-.55-.12-1.1-.26-1.82-.43,.27-.48,.5-.92,.77-1.33,4.08-6.13,8.2-12.24,12.23-18.39,.62-.94,1.16-1.21,2.32-.99,16.88,3.19,33.35,7.65,48.72,15.53,8.65,4.44,16.54,9.89,22.41,17.86,4.82,6.54,6.86,13.88,5.98,21.88h.02v.04Z"></path><path d="M215.47,64.25c-4.03-19.33-13.75-35.19-29.27-47.38C172.38,6.01,156.51,.54,139,.02c-4.68-.14-9.42,.41-14.09,.96-8.09,.96-15.74,3.52-23.05,7.09-9.76,4.77-18.19,11.26-25.31,19.48-5.72,6.61-10.28,13.92-13.55,22.03-4.31,10.67-6.58,21.72-5.65,33.27,.34,4.17,.89,8.37,1.87,12.43,2.78,11.49,7.37,22.35,12.39,33.02,8.07,17.18,17.16,33.84,27.13,49.98,9.78,15.85,20.05,31.4,30.15,47.05,2.56,3.96,5.3,7.81,8.09,11.88,.37-.48,.56-.7,.71-.92,9.73-14.74,19.71-29.32,29.1-44.27,7.99-12.73,15.56-25.74,22.87-38.87,9.1-16.32,17.34-33.07,23.21-50.9,4.11-12.49,5.29-25.1,2.6-38.01h0Zm-24.63,31.14c-5.05,15.08-12.11,29.23-19.54,43.21-8.8,16.57-18.54,32.58-28.57,48.42-1.85,2.93-3.75,5.82-5.78,8.96-4.81-7.66-9.52-15.05-14.11-22.52-10.48-17.04-20.41-34.38-29.1-52.42-4.4-9.14-8.29-18.48-11.33-28.19-4.13-13.17-2.48-25.81,3.55-37.9,8.52-17.08,22.41-27.61,41.11-31.01,16.75-3.05,32.09,.98,45.51,11.66,9.95,7.92,16.42,18.18,19.67,30.44,2.62,9.9,1.85,19.63-1.4,29.34h-.01Z"></path><path d="M159.93,79.86c.04,13.18-10.56,22.93-23.02,22.91-12.5-.02-22.11-10.22-22.75-21.44-.78-13.84,10.47-24.59,22.99-24.25,12.15-.12,22.74,9.56,22.78,22.78h0Z"></path><g><path d="M293.68,42.9v-14.07h-57.49v14.07h21.11v55.31h15.26V42.9h21.12Z"></path><path d="M335.85,59.85v-15.76c-4.49-.2-8.06,.79-10.7,2.97-2.64,2.18-4.72,5.09-6.24,8.72v-10.7h-15.07v53.13h15.07v-19.63c0-6.41,1.42-11.13,4.26-14.17,2.91-3.04,6.87-4.56,11.89-4.56h.79Z"></path><path d="M390.96,98.21v-30.83c0-7.2-1.88-12.82-5.65-16.85-3.77-4.03-9.78-6.05-18.04-6.05-4.49,0-8.33,.4-11.5,1.19-3.17,.79-6.21,1.82-9.12,3.07l3.77,11.5c2.44-.93,4.76-1.62,6.94-2.08,2.25-.53,4.82-.79,7.73-.79,3.77,0,6.61,.83,8.52,2.48,1.92,1.65,2.87,4.06,2.87,7.24v.89c-1.92-.66-3.9-1.19-5.95-1.59-1.98-.4-4.33-.59-7.04-.59-3.17,0-6.08,.36-8.72,1.09-2.58,.66-4.82,1.69-6.74,3.07-1.85,1.39-3.3,3.14-4.36,5.25s-1.59,4.63-1.59,7.53v.2c0,2.64,.46,4.99,1.39,7.04,.99,1.98,2.31,3.67,3.96,5.06s3.57,2.44,5.75,3.17c2.25,.66,4.63,.99,7.14,.99,3.7,0,6.84-.59,9.42-1.78,2.58-1.26,4.79-2.91,6.64-4.96v5.75h14.58Zm-14.27-18.73c0,2.78-1.09,5.02-3.27,6.74-2.12,1.72-4.96,2.58-8.52,2.58-2.44,0-4.43-.56-5.95-1.69-1.52-1.12-2.28-2.71-2.28-4.76v-.2c0-2.38,.92-4.2,2.77-5.45,1.85-1.26,4.39-1.88,7.63-1.88,1.85,0,3.57,.2,5.15,.59,1.65,.33,3.14,.79,4.46,1.39v2.68h.01Z"></path><path d="M450.71,89.69l-8.82-8.92c-1.85,1.72-3.73,3.11-5.65,4.16-1.85,.99-4.03,1.49-6.54,1.49-2.05,0-3.9-.36-5.55-1.09-1.65-.79-3.07-1.85-4.26-3.17-1.19-1.32-2.11-2.87-2.77-4.66-.6-1.78-.89-3.7-.89-5.75v-.2c0-1.98,.3-3.83,.89-5.55,.66-1.78,1.55-3.34,2.68-4.66,1.19-1.32,2.54-2.35,4.06-3.07,1.59-.79,3.34-1.19,5.25-1.19,2.71,0,4.96,.53,6.74,1.59,1.85,1.06,3.63,2.48,5.35,4.26l9.22-9.91c-2.51-2.78-5.42-4.96-8.72-6.54-3.3-1.59-7.47-2.38-12.49-2.38-4.1,0-7.86,.73-11.3,2.18-3.37,1.45-6.28,3.44-8.72,5.95s-4.36,5.45-5.75,8.82-2.08,6.94-2.08,10.7v.2c0,3.77,.69,7.33,2.08,10.7,1.39,3.3,3.3,6.21,5.75,8.72,2.45,2.44,5.35,4.39,8.72,5.85,3.44,1.45,7.14,2.18,11.1,2.18,5.29,0,9.58-.89,12.89-2.68,3.3-1.85,6.24-4.2,8.82-7.04h-.01Z"></path><path d="M511.99,98.21l-20.91-32.21,20.22-20.91h-18.04l-17.64,19.33V25.86h-15.07V98.22h15.07v-16.16l5.25-5.55,13.88,21.71h17.24Z"></path><path d="M299.83,187.42V118.04h-15.26v27.46h-28.15v-27.46h-15.26v69.38h15.26v-27.85h28.15v27.85h15.26Z"></path><path d="M364.43,162.34v-.2c0-3.77-.53-7.37-1.59-10.8-.99-3.5-2.58-6.57-4.76-9.22-2.12-2.71-4.79-4.86-8.03-6.44-3.24-1.59-7.07-2.38-11.5-2.38-3.9,0-7.47,.73-10.7,2.18-3.17,1.45-5.91,3.44-8.23,5.95-2.31,2.51-4.13,5.45-5.45,8.82-1.26,3.37-1.88,6.94-1.88,10.71v.2c0,4.1,.69,7.83,2.08,11.2,1.39,3.3,3.3,6.18,5.75,8.62,2.51,2.44,5.45,4.33,8.82,5.65,3.44,1.32,7.14,1.98,11.1,1.98,4.82,0,9.02-.86,12.59-2.58,3.57-1.78,6.61-4.23,9.12-7.33l-8.62-7.63c-2.11,1.92-4.16,3.3-6.14,4.16-1.98,.86-4.23,1.29-6.74,1.29-3.37,0-6.21-.86-8.52-2.58-2.25-1.78-3.73-4.39-4.46-7.83h36.97c.07-.73,.1-1.35,.1-1.88,.07-.53,.1-1.16,.1-1.88h0Zm-14.67-5.66h-22.7c.59-3.44,1.85-6.18,3.77-8.23,1.98-2.05,4.56-3.07,7.73-3.07s5.72,1.06,7.63,3.17c1.92,2.05,3.11,4.76,3.57,8.13Z"></path><path d="M407.67,149.06v-15.76c-4.49-.2-8.06,.79-10.7,2.97-2.64,2.18-4.73,5.09-6.25,8.72v-10.7h-15.07v53.13h15.07v-19.63c0-6.41,1.42-11.14,4.26-14.17,2.91-3.04,6.87-4.56,11.89-4.56h.8Z"></path><path d="M466.65,162.34v-.2c0-3.77-.53-7.37-1.59-10.8-.99-3.5-2.58-6.57-4.76-9.22-2.11-2.71-4.79-4.86-8.03-6.44-3.24-1.59-7.07-2.38-11.5-2.38-3.9,0-7.47,.73-10.71,2.18-3.17,1.45-5.91,3.44-8.23,5.95-2.31,2.51-4.13,5.45-5.45,8.82-1.26,3.37-1.88,6.94-1.88,10.71v.2c0,4.1,.69,7.83,2.08,11.2,1.39,3.3,3.3,6.18,5.75,8.62,2.51,2.44,5.45,4.33,8.82,5.65,3.44,1.32,7.14,1.98,11.1,1.98,4.82,0,9.02-.86,12.59-2.58,3.57-1.78,6.61-4.23,9.12-7.33l-8.62-7.63c-2.12,1.92-4.16,3.3-6.15,4.16-1.98,.86-4.23,1.29-6.74,1.29-3.37,0-6.21-.86-8.52-2.58-2.25-1.78-3.73-4.39-4.46-7.83h36.97c.07-.73,.1-1.35,.1-1.88,.07-.53,.1-1.16,.1-1.88h0Zm-14.67-5.66h-22.7c.6-3.44,1.85-6.18,3.77-8.23,1.98-2.05,4.56-3.07,7.73-3.07s5.72,1.06,7.63,3.17c1.92,2.05,3.11,4.76,3.57,8.13Z"></path></g></g></g></svg>
 
 
                         </a>
@@ -141,7 +285,77 @@
             </div>
         </nav>
     </div>
+    <div id="categoriesOverlay" class="overlay-tab">
+
+        <div class="content-body">
+            <div class="content-header">
+                <button id="closeOverlay" class="close-btn">&times;</button>
+            </div>
+            <ul class="category-list">
+                <li><a href="#">Hair Care</a>
+                    <span class="arrow-icon">
+                      <svg role="presentation" focusable="false" width="5" height="8" viewBox="0 0 5 8">
+                        <path d="m.75 7 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      </svg>
+                    </span>
+                </li>
+                <li><a href="#">Face Care</a>
+                    <span class="arrow-icon">
+                      <svg role="presentation" focusable="false" width="5" height="8" viewBox="0 0 5 8">
+                        <path d="m.75 7 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      </svg>
+                    </span>
+                </li>
+                <li><a href="#">Fragrances</a>
+                    <span class="arrow-icon">
+                      <svg role="presentation" focusable="false" width="5" height="8" viewBox="0 0 5 8">
+                        <path d="m.75 7 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      </svg>
+                    </span>
+                </li>
+                <li><a href="#">Body Care</a>
+                    <span class="arrow-icon">
+                      <svg role="presentation" focusable="false" width="5" height="8" viewBox="0 0 5 8">
+                        <path d="m.75 7 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      </svg>
+                    </span>
+                </li>
+                <li><a href="#">Beard Care</a>
+                    <span class="arrow-icon">
+                      <svg role="presentation" focusable="false" width="5" height="8" viewBox="0 0 5 8">
+                        <path d="m.75 7 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      </svg>
+                    </span>
+                </li>
+                <li><a href="#">Shave Care</a>
+                    <span class="arrow-icon">
+                      <svg role="presentation" focusable="false" width="5" height="8" viewBox="0 0 5 8">
+                        <path d="m.75 7 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      </svg>
+                    </span>
+                </li>
+                <li><a href="#">Tools & Accessories</a>
+                    <span class="arrow-icon">
+                      <svg role="presentation" focusable="false" width="5" height="8" viewBox="0 0 5 8">
+                        <path d="m.75 7 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      </svg>
+                    </span>
+                </li>
+                <li><a href="#">Gifts For Men</a>
+                    <span class="arrow-icon">
+                      <svg role="presentation" focusable="false" width="5" height="8" viewBox="0 0 5 8">
+                        <path d="m.75 7 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                      </svg>
+                    </span>
+                </li>
+                <li><a href="#">All Products</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
+
+
+
 
 <!--footer-->
 <footer class="bg-dark text-white pt-5 pb-3">

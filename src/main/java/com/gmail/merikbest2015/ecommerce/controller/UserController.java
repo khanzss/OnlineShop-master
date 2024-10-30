@@ -28,11 +28,6 @@ public class UserController {
     private final UserService userService;
     private final ControllerUtils controllerUtils;
 
-    @GetMapping("/contacts")
-    public String contacts() {
-        return Pages.CONTACTS;
-    }
-
     @GetMapping("/reset")
     public String passwordReset() {
         return Pages.USER_PASSWORD_RESET;

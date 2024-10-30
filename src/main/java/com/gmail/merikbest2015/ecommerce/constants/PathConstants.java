@@ -10,4 +10,5 @@ public class PathConstants {
     public static final String REGISTRATION = "/registration";
     public static final String AUTH = "/auth";
     public static final String ERROR = "/error";
+
 }
