@@ -23,5 +23,12 @@ public class ProductImage {
         this.imageUrl = imageUrl;
         this.product = product;
     }
+    public ProductImage() {
+    }
+
+    // Constructor khác (nếu có)
+    public ProductImage(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
 

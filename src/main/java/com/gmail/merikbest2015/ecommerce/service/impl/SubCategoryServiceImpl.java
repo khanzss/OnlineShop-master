@@ -23,13 +23,13 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     }
 
     @Override
-    public Page<SubCategory> getSubCategories(Pageable pageable) {
-        return subCategoryRepository.findAllByVisibleTrueOrderByDisplayOrder(pageable);
+    public List<SubCategory> getSubCategories() {
+        return subCategoryRepository.findAllByVisibleTrueOrderByDisplayOrder();
     }
 
     @Override
-    public Page<SubCategory> searchSubCategories(String keyword, Pageable pageable) {
-        return subCategoryRepository.findByNameContainingIgnoreCaseAndVisibleTrueOrderByDisplayOrder(keyword, pageable);
+    public List<SubCategory> searchSubCategories(String keyword) {
+        return subCategoryRepository.findByNameContainingIgnoreCaseAndVisibleTrueOrderByDisplayOrder(keyword);
     }
 
     @Override

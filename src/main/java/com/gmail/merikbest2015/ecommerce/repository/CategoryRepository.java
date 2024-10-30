@@ -9,10 +9,9 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     // Lấy tất cả categories hiển thị theo displayOrder
-    Page<Category> findAllByVisibleTrueOrderByDisplayOrder(Pageable pageable);
+    List<Category> findAllByVisibleTrueOrderByDisplayOrder();
 
     // Tìm kiếm category theo từ khóa và hiển thị theo displayOrder
-    Page<Category> findByNameContainingIgnoreCaseAndVisibleTrueOrderByDisplayOrder(
-            String keyword, Pageable pageable);
+    List<Category> findByNameContainingIgnoreCaseAndVisibleTrueOrderByDisplayOrder(String keyword);
 }
 

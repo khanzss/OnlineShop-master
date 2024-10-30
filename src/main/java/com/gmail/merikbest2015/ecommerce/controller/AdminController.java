@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping(PathConstants.ADMIN)
@@ -122,8 +123,10 @@ public class AdminController {
 
     // Category Endpoints
     @GetMapping("/categories")
-    public Page<Category> getAllCategories(Pageable pageable) {
-        return adminService.getAllCategories(pageable);
+    public String getAllCategories(Model model) {
+        List<Category> categories = adminService.getAllCategories();
+        model.addAttribute("categories", categories);
+        return "admin-category-list";  // Giao diện quản lý category
     }
 
     @PostMapping("/categories")
@@ -148,8 +151,10 @@ public class AdminController {
 
     // SubCategory Endpoints
     @GetMapping("/subcategories")
-    public Page<SubCategory> getAllSubCategories(Pageable pageable) {
-        return adminService.getAllSubCategories(pageable);
+    public String getAllSubCategories(Model model) {
+        List<SubCategory> subCategories = adminService.getAllSubCategories();
+        model.addAttribute("subCategories", subCategories);
+        return "admin-subcategory-list";  // Giao diện quản lý subcategory
     }
 
     @PostMapping("/subcategories")

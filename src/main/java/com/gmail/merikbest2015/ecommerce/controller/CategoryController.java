@@ -1,60 +1,42 @@
 package com.gmail.merikbest2015.ecommerce.controller;
 
-import com.gmail.merikbest2015.ecommerce.dto.request.CategoryRequest;
-import com.gmail.merikbest2015.ecommerce.service.AdminService;
-import com.gmail.merikbest2015.ecommerce.utils.ControllerUtils;
+import com.gmail.merikbest2015.ecommerce.domain.Category;
+import com.gmail.merikbest2015.ecommerce.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
+import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/categories")
 @RequiredArgsConstructor
 public class CategoryController {
 
-    private final AdminService adminService;
-    private final ControllerUtils controllerUtils;
+    private final CategoryService categoryService;
 
     @GetMapping
-    public String getCategories(Pageable pageable, Model model) {
-        controllerUtils.addPagination(model, adminService.getAllCategories(pageable));
-        return "admin_categories";
+    public String getCategories(Model model) {
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("page", categories);
+        return "category-list"; // Giao diện danh sách category
     }
 
-    @PostMapping("/add")
-    public String addCategory(@Valid @RequestBody CategoryRequest categoryRequest,
-                              BindingResult bindingResult, RedirectAttributes attributes) {
-        if (bindingResult.hasErrors()) {
-            return "admin_add_category";
-        }
-        return controllerUtils.setAlertFlashMessage(attributes, "/admin/categories",
-                adminService.addCategory(categoryRequest));
+    @GetMapping("/search")
+    public String searchCategories(@RequestParam("keyword") String keyword, Model model) {
+        List<Category> categories = categoryService.searchCategories(keyword);
+        model.addAttribute("page", categories);
+        model.addAttribute("keyword", keyword);
+        return "category-list";
     }
 
-    @PostMapping("/edit")
-    public String editCategory(@Valid @RequestBody CategoryRequest categoryRequest,
-                               BindingResult bindingResult, RedirectAttributes attributes) {
-        if (bindingResult.hasErrors()) {
-            return "admin_edit_category";
-        }
-        return controllerUtils.setAlertFlashMessage(attributes, "/admin/categories",
-                adminService.editCategory(categoryRequest));
-    }
-
-    @PostMapping("/toggle/{id}")
-    public String toggleCategoryVisibility(@PathVariable Long id) {
-        adminService.toggleCategoryVisibility(id);
-        return "redirect:/admin/categories";
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable Long id) {
-        adminService.deleteCategory(id);
-        return "redirect:/admin/categories";
+    @GetMapping("/{id}")
+    public String getCategoryById(@PathVariable Long id, Model model) {
+        Category category = categoryService.getCategoryById(id);
+        model.addAttribute("category", category);
+        return "category-detail"; // Giao diện chi tiết category
     }
 }

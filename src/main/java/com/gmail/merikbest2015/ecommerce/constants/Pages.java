@@ -25,4 +25,8 @@ public class Pages {
     public static final String REGISTRATION = "registration";
     public static final String ERROR_404 = "error-404";
     public static final String ERROR_500 = "error-500";
+
+
+    public static final String PRODUCTS = "products";   // Giao diện danh sách sản phẩm
+    public static final String PRODUCT = "product"; // Giao diện chi tiết sản phẩm
 }
