@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <input type="date" name="birthday" class="form-control" placeholder="Ngày sinh"
+                    <input type="text" name="birthday" class="form-control" placeholder="Nhập ngày sinh"
                            th:classappend="${birthdayError} ? 'is-invalid'"/>
                     <div th:if="${birthdayError}" class="invalid-feedback" th:text="${birthdayError}"></div>
                 </div>

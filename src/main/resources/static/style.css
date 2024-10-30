@@ -1824,3 +1824,120 @@ body {
 #reg .text-primary:hover {
     color: #dc3545; /* Đổi màu đỏ khi hover */
 }
+
+/* contact */
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 15px;
+    margin-left:50px;
+    margin-right:50px;
+}
+
+.header-subtext {
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+.header-subtext .h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.company-info {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.company-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.company-info a:hover {
+    text-decoration: underline;
+}
+
+/* blogs */
+/* Đảm bảo khoảng cách đều nhau giữa các thẻ */
+.blog-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blog-media img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.blog-content {
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.blog-title a {
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.blog-title a:hover {
+    color: #e74c3c;
+}
+
+.blog-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.btn-load-more {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: background-color 0.3s;
+}
+
+.btn-load-more:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Đảm bảo layout responsive đẹp mắt */
+@media (min-width: 768px) {
+    .blog-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+}
