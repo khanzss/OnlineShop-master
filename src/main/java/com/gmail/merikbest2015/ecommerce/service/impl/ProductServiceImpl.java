@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
                 request.getSubCategories(),
                 request.getPriceStart(),
                 request.getPriceEnd(),
-                request.getPopular(),
+//                request.getPopular(),
                 pageable
         );
     }
