@@ -13,7 +13,7 @@ public class ProductRequest {
     private String detailedDescription;
     private String faqs;
     private Long subCategoryId;
-    private boolean popular;
+//    private boolean popular;
     private List<OptionRequest> options;
     private List<String> imageUrls;
 }
