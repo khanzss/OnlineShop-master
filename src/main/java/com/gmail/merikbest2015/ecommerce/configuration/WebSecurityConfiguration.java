@@ -33,7 +33,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                             "/auth/**",
                             "/menu/**",
                             "/perfume/**",
-                            "/product/**"
+                            "/product/**",
+                            "/our-story/**"
                     ).permitAll()
                     .anyRequest().authenticated()
                 .and()

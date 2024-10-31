@@ -177,6 +177,10 @@ footer ul li a:hover {
 .navbar-nav .nav-link:hover {
     color: #f0ad4e; /* Màu nhấn */
 }
+.main-nav {
+    margin: 25px;
+}
+
 
 body {
   font-family: Arial, sans-serif;
@@ -1657,5 +1661,283 @@ body {
 
     .website_link {
         font-size: 0.9rem;
+    }
+}
+
+
+/* login */
+#login {
+    max-width: 800px;
+    margin: 50px auto;
+    padding-bottom: 10px !important;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+}
+
+#login h4 {
+    color: #212529;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.form-control-lg{
+    font-size: 1rem !important;
+}
+#login p {
+    margin-bottom: 30px;
+    font-size: 1rem;
+    color: #212529;
+}
+
+#login input {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    height: 45px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+
+#login input::placeholder {
+    color: #555555;
+}
+
+#login button {
+    background-color: #212529;
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#login button:hover {
+    background-color: #555555;
+}
+
+#login .forgot-password {
+    display: block;
+    margin-top: 15px;
+    color: #212529;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+#login .forgot-password:hover {
+    text-decoration: underline;
+}
+
+#login .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#login .form-group i {
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    color: #bbb;
+}
+
+#login .alert {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#login .g-recaptcha {
+    margin: 20px auto;
+}
+
+#login .forgot-password {
+    color: #5a5a5a; /* Màu ghi xám cho "Forgot password?" */
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#login .forgot-password:hover {
+    color: #dc3545; /* Chuyển sang màu đỏ nhẹ khi hover */
+    text-decoration: none
+}
+
+.register-section .register-link {
+    color: #5a5a5a; /* Màu xanh đặc trưng cho liên kết */
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-section .register-link:hover {
+    color: #dc3545; /* Đổi sang đỏ khi hover */
+}
+
+
+#reg {
+    border-radius: 12px;
+    max-width: 600px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#reg .form-control {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+#reg button {
+    background-color: #212529;
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#reg button:hover {
+    background-color: #555555;
+}
+
+#reg .form-check-label {
+    font-size: 0.9rem;
+    color: #212529;
+}
+
+#reg .text-primary {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#reg .text-primary:hover {
+    color: #dc3545; /* Đổi màu đỏ khi hover */
+}
+
+/* contact */
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 15px;
+    margin-left:50px;
+    margin-right:50px;
+}
+
+.header-subtext {
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+.header-subtext .h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.company-info {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.company-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.company-info a:hover {
+    text-decoration: underline;
+}
+
+/* blogs */
+/* Đảm bảo khoảng cách đều nhau giữa các thẻ */
+.blog-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blog-media img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.blog-content {
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #f0f0f0;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.blog-title a {
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.blog-title a:hover {
+    color: #e74c3c;
+}
+
+.blog-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.btn-load-more {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: background-color 0.3s;
+}
+
+.btn-load-more:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Đảm bảo layout responsive đẹp mắt */
+@media (min-width: 768px) {
+    .blog-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
     }
 }

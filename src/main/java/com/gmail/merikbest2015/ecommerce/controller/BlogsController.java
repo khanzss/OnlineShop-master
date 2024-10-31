@@ -3,12 +3,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class StoryController
+public class BlogsController
 {
 
     // Định tuyến cho đường dẫn /our-story
-    @GetMapping("/our-story")
-    public String ourStoryPage() {
-        return "our-story";  // Trả về trang our-story.html
+    @GetMapping("/blogs")
+    public String blogsPage() {
+        return "blogs";  // Trả về trang our-story.html
     }
 }

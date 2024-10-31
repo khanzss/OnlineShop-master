@@ -5,68 +5,156 @@
 <div th:insert="~{fragments/common-fragments :: scripts}"></div>
 <div th:replace="fragments/common-fragments :: navbar"></div>
 <div id="container" class="bg-light">
-    <div class="py-5">
-        <div class="container py-1 bg-white shadow-sm card-height">
+    <div class="container py-5 d-flex justify-content-center">
+        <div id="reg" class="card shadow-sm p-4" style="max-width: 600px; width: 100%; border-radius: 12px;">
+            <h2 class="text-center text-dark mb-3">Đăng ký</h2>
+            <p class="text-center text-muted">Vui lòng nhập thông tin để đăng ký tài khoản</p>
+
             <form method="post" action="/registration">
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="mr-3">
-                                <i class="fas fa-user-plus mr-3"></i>
-                                SIGN UP
-                            </h4>
-                            <hr/>
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">E-mail: </label>
-                                <i class="fas fa-envelope" style="position: relative; top: 8px"></i>
-                                <div class="col-sm-7">
-                                    <input type="email" name="email" th:value="${user} ? ${user.email} : ''"
-                                           class="form-control" th:classappend="${emailError} ? ' is-invalid'"/>
-                                    <div th:if="${emailError}" class="invalid-feedback" th:text="${emailError}"></div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">First name: </label>
-                                <i class="fas fa-user" style="position: relative; top: 8px"></i>
-                                <div class="col-sm-7">
-                                    <input type="text" name="firstName" th:value="${user} ? ${user.firstName} : ''"
-                                           class="form-control" th:classappend="${firstNameError} ? ' is-invalid'" />
-                                    <div th:if="${firstNameError}" class="invalid-feedback" th:text="${firstNameError}"></div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Password: </label>
-                                <i class="fas fa-lock" style="position: relative; top: 8px"></i>
-                                <div class="col-sm-7">
-                                    <input type="password" name="password" class="form-control"
-                                           th:classappend="${passwordError} ? ' is-invalid'"/>
-                                    <div th:if="${passwordError}" class="invalid-feedback" th:text="${passwordError}"></div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Confirm password: </label>
-                                <i class="fas fa-lock" style="position: relative; top: 8px"></i>
-                                <div class="col-sm-7">
-                                    <input type="password" name="password2" class="form-control"
-                                           th:classappend="${password2Error} ? ' is-invalid'"/>
-                                    <div th:if="${password2Error}" class="invalid-feedback" th:text="${password2Error}"></div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <button type="submit" class="btn btn-dark mx-3">
-                                    <i class="fas fa-user-plus mr-3"></i>
-                                    Sign up
-                                </button>
-                            </div>
-                            <div class="g-recaptcha" data-sitekey="6Lc5cLkZAAAAAN8mFk85HQieB9toPcWFoW0RXCNR"></div>
-                            <div th:if="${captchaError}" class="alert-danger" th:text="${captchaError}" role="alert"></div>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <input type="text" name="fullname" class="form-control" placeholder="Nhập họ và tên"
+                           th:classappend="${fullnameError} ? 'is-invalid'"/>
+                    <div th:if="${fullnameError}" class="invalid-feedback" th:text="${fullnameError}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <input type="tel" name="phone" class="form-control" placeholder="Nhập số điện thoại"
+                           th:classappend="${phoneError} ? 'is-invalid'"/>
+                    <div th:if="${phoneError}" class="invalid-feedback" th:text="${phoneError}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <input type="email" name="email" class="form-control" placeholder="Nhập email (không bắt buộc)"
+                           th:classappend="${emailError} ? 'is-invalid'"/>
+                    <div class="form-text">Hóa đơn VAT sẽ được gửi qua email này nếu có.</div>
+                    <div th:if="${emailError}" class="invalid-feedback" th:text="${emailError}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" name="birthday" class="form-control" placeholder="Nhập ngày sinh"
+                           th:classappend="${birthdayError} ? 'is-invalid'"/>
+                    <div th:if="${birthdayError}" class="invalid-feedback" th:text="${birthdayError}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu"
+                           th:classappend="${passwordError} ? 'is-invalid'"/>
+                    <div class="form-text">(*) Mật khẩu phải tối thiểu 6 ký tự, có ít nhất 1 chữ và 1 số. (VD: 12345a)</div>
+                    <div th:if="${passwordError}" class="invalid-feedback" th:text="${passwordError}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <input type="password" name="password2" class="form-control" placeholder="Nhập lại mật khẩu"
+                           th:classappend="${password2Error} ? 'is-invalid'"/>
+                    <div th:if="${password2Error}" class="invalid-feedback" th:text="${password2Error}"></div>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="subscribe" name="subscribe">
+                    <label class="form-check-label" for="subscribe">Đăng ký nhận bản tin khuyến mãi từ The Man Company</label>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label class="form-check-label" for="agreeTerms">Tôi đồng ý với các điều khoản bảo mật cá nhân</label>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-lg">Đăng ký</button>
+                </div>
+
+                <div class="register-section mt-5 p-2 border-top">
+                    <p class="text-center">Bạn đã có tài khoản? <a href="/login" class="register-link">Đăng nhập</a></p>
                 </div>
             </form>
         </div>
     </div>
 </div>
 <footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form');
+        const passwordInput = form.querySelector('input[name="password"]');
+        const password2Input = form.querySelector('input[name="password2"]');
+        const requiredInputs = form.querySelectorAll('input:not([type="checkbox"], [name="email"])');
+        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+
+        // Kiểm tra và hiển thị lỗi cho từng input khi mất focus
+        requiredInputs.forEach(input => {
+            input.addEventListener('blur', () => validateInput(input));
+        });
+
+        passwordInput.addEventListener('blur', validatePassword);
+        password2Input.addEventListener('blur', validatePasswordMatch);
+
+        form.addEventListener('submit', (e) => {
+            let isValid = true;
+
+            // Kiểm tra tất cả các trường bắt buộc
+            requiredInputs.forEach(input => {
+                if (!validateInput(input)) isValid = false;
+            });
+
+            // Kiểm tra các checkbox
+            checkboxes.forEach(checkbox => {
+                if (!checkbox.checked) {
+                    isValid = false;
+                    checkbox.classList.add('is-invalid');
+                    checkbox.nextElementSibling.textContent = 'This field is required.';
+                } else {
+                    checkbox.classList.remove('is-invalid');
+                    checkbox.nextElementSibling.textContent = '';
+                }
+            });
+
+            // Kiểm tra mật khẩu
+            if (!validatePassword()) isValid = false;
+
+            // Kiểm tra khớp mật khẩu
+            if (!validatePasswordMatch()) isValid = false;
+
+            if (!isValid) e.preventDefault(); // Ngăn gửi form nếu có lỗi
+        });
+
+        function validateInput(input) {
+            if (!input.value.trim()) {
+                input.classList.add('is-invalid');
+                input.nextElementSibling.textContent = 'This field is required.';
+                return false;
+            } else {
+                input.classList.remove('is-invalid');
+                input.nextElementSibling.textContent = '';
+                return true;
+            }
+        }
+
+        function validatePassword() {
+            const value = passwordInput.value;
+            if (value.length < 6 || !/[a-zA-Z]/.test(value) || !/[0-9]/.test(value)) {
+                passwordInput.classList.add('is-invalid');
+                passwordInput.nextElementSibling.textContent =
+                    'Password must be at least 6 characters, with at least 1 letter and 1 number.';
+                return false;
+            } else {
+                passwordInput.classList.remove('is-invalid');
+                passwordInput.nextElementSibling.textContent = '';
+                return true;
+            }
+        }
+
+        function validatePasswordMatch() {
+            if (passwordInput.value !== password2Input.value) {
+                password2Input.classList.add('is-invalid');
+                password2Input.nextElementSibling.textContent = 'Passwords do not match.';
+                return false;
+            } else {
+                password2Input.classList.remove('is-invalid');
+                password2Input.nextElementSibling.textContent = '';
+                return true;
+            }
+        }
+    });
+
+</script>
 </body>
 </html>
