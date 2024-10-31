@@ -11,36 +11,36 @@ import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @EntityGraph(attributePaths = {"perfumes", "user", "user.roles"})
+    @EntityGraph(attributePaths = {"orderItems", "user", "user.roles"})
     Page<Order> findAll(Pageable pageable);
 
-    @EntityGraph(attributePaths = {"perfumes", "user", "user.roles"})
+    @EntityGraph(attributePaths = {"orderItems", "user", "user.roles"})
     Optional<Order> getById(Long orderId);
 
-    @EntityGraph(attributePaths = {"perfumes"})
+    @EntityGraph(attributePaths = {"orderItems"})
     Optional<Order> getByIdAndUserId(Long orderId, Long userId);
 
-    @EntityGraph(attributePaths = {"perfumes", "user", "user.roles"})
+    @EntityGraph(attributePaths = {"orderItems", "user", "user.roles"})
     Page<Order> findOrderByUserId(Long userId, Pageable pageable);
 
-    @EntityGraph(attributePaths = {"perfumes", "user", "user.roles"})
+    @EntityGraph(attributePaths = {"orderItems", "user", "user.roles"})
     @Query("SELECT orders FROM Order orders WHERE " +
             "(CASE " +
-            "   WHEN :searchType = 'firstName' THEN UPPER(orders.firstName) " +
-            "   WHEN :searchType = 'lastName' THEN UPPER(orders.lastName) " +
-            "   ELSE UPPER(orders.email) " +
+            "   WHEN :searchType = 'fullName' THEN UPPER(orders.fullName) " +
+            "   WHEN :searchType = 'phoneNumber' THEN orders.phoneNumber " +
+            "   ELSE UPPER(orders.city) " +
             "END) " +
             "LIKE UPPER(CONCAT('%',:text,'%'))")
     Page<Order> searchOrders(String searchType, String text, Pageable pageable);
 
-    @EntityGraph(attributePaths = {"perfumes", "user", "user.roles"})
+    @EntityGraph(attributePaths = {"orderItems", "user", "user.roles"})
     @Query("SELECT orders FROM Order orders " +
             "LEFT JOIN orders.user user " +
             "WHERE user.id = :userId " +
             "AND (CASE " +
-            "   WHEN :searchType = 'firstName' THEN UPPER(orders.firstName) " +
-            "   WHEN :searchType = 'lastName' THEN UPPER(orders.lastName) " +
-            "   ELSE UPPER(orders.email) " +
+            "   WHEN :searchType = 'fullName' THEN UPPER(orders.fullName) " +
+            "   WHEN :searchType = 'phoneNumber' THEN orders.phoneNumber " +
+            "   ELSE UPPER(orders.city) " +
             "END) " +
             "LIKE UPPER(CONCAT('%',:text,'%'))")
     Page<Order> searchUserOrders(Long userId, String searchType, String text, Pageable pageable);

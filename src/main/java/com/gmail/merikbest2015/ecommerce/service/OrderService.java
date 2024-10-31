@@ -1,5 +1,6 @@
 package com.gmail.merikbest2015.ecommerce.service;
 
+import com.gmail.merikbest2015.ecommerce.domain.CartItem;
 import com.gmail.merikbest2015.ecommerce.domain.Order;
 import com.gmail.merikbest2015.ecommerce.domain.Perfume;
 import com.gmail.merikbest2015.ecommerce.domain.User;
@@ -13,7 +14,7 @@ public interface OrderService {
 
     Order getOrder(Long orderId);
 
-    List<Perfume> getOrdering();
+    List<CartItem> getOrdering();
 
     Page<Order> getUserOrdersList(Pageable pageable);
 

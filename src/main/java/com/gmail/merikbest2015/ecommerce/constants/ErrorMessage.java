@@ -12,6 +12,8 @@ public class ErrorMessage {
     public static final String USER_NOT_FOUND = "User not found.";
     public static final String EMPTY_FIRST_NAME = "First name cannot be empty";
     public static final String EMPTY_LAST_NAME = "Last name cannot be empty";
+    public static final String EMPTY_FULL_NAME = "Full name cannot be empty";
+    public static final String EMPTY_BIRTH_DATE = "Birth date cannot be empty";
     public static final String PASSWORD_CHARACTER_LENGTH = "The password must be between 6 and 16 characters long";
     public static final String PASSWORD2_CHARACTER_LENGTH = "The password confirmation must be between 6 and 16 characters long";
     public static final String INCORRECT_EMAIL = "Incorrect email";
@@ -19,4 +21,6 @@ public class ErrorMessage {
     public static final String FILL_IN_THE_INPUT_FIELD = "Fill in the input field";
     public static final String EMPTY_PHONE_NUMBER = "Phone number cannot be empty";
     public static final String EMPTY_POST_INDEX = "Post index must contain 5 digits";
+    public static final String INVALID_QUANTITY = "Quantity incorrect";
+    public static final String PHONE_NUMBER_NOT_FOUND = "Phone number not found";
 }

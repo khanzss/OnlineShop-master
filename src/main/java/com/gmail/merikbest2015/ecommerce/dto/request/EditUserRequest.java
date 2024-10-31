@@ -4,19 +4,21 @@ import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Data
 public class EditUserRequest {
 
-    @NotBlank(message = ErrorMessage.EMPTY_FIRST_NAME)
-    private String firstName;
+    @NotBlank(message = ErrorMessage.EMPTY_FULL_NAME)
+    private String fullName;
 
-    @NotBlank(message = ErrorMessage.EMPTY_LAST_NAME)
-    private String lastName;
+    @NotNull(message = ErrorMessage.EMPTY_BIRTH_DATE)
+    private LocalDate birthDate;
 
     private String city;
     private String address;
+
+    @NotBlank(message = ErrorMessage.EMPTY_PHONE_NUMBER)
     private String phoneNumber;
-    private String postIndex;
-    private String email;
 }

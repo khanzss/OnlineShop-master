@@ -7,8 +7,8 @@ import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
 import com.gmail.merikbest2015.ecommerce.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -51,7 +51,7 @@ public class RegistrationServiceImpl implements RegistrationService {
             return new MessageResponse("passwordError", "Mật khẩu không khớp.");
         }
 
-        if (userRepository.findByPhone(userRequest.getPhone()) != null) {
+        if (userRepository.findByPhoneNumber(userRequest.getPhone()) != null) {
             return new MessageResponse("phoneError", "Số điện thoại đã được sử dụng.");
         }
 
@@ -90,6 +90,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         return false;
     }
 
+//    @Override
     private MessageResponse sendOtpToZalo(String phone, String clientKey) {
         // Tăng số lần yêu cầu OTP
         incrementOtpAttempts(clientKey);
@@ -140,7 +141,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         if (savedOtp != null && savedOtp.equals(otpCode)) {
             // Xác thực thành công
-            User user = userRepository.findByPhone(phone);
+            User user = userRepository.findByPhoneNumber(phone);
             if (user != null) {
                 user.setActive(true);
                 userRepository.save(user);

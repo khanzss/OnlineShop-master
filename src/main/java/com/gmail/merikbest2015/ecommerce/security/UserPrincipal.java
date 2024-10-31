@@ -14,14 +14,14 @@ import java.util.List;
 public class UserPrincipal implements UserDetails {
     private final Long id;
     private final String password;
-    private final String email;
+    private final String phoneNumber;
     private final boolean active;
     private final Collection<? extends GrantedAuthority> authorities;
 
     public static UserPrincipal create(User user) {
         String userRole = user.getRoles().iterator().next().toString();
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(userRole));
-        return new UserPrincipal(user.getId(), user.getPassword(), user.getEmail(), user.isActive(), authorities);
+        return new UserPrincipal(user.getId(), user.getPassword(), user.getPhoneNumber(), user.isActive(), authorities);
     }
 
     @Override
@@ -51,6 +51,6 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return phoneNumber;
     }
 }

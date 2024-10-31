@@ -16,14 +16,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String phoneNumber) throws UsernameNotFoundException {
+        User user = userRepository.findByPhoneNumber(phoneNumber);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        if (user.getActivationCode() != null ) {
-            throw new LockedException("Email not activated");
+        if (!user.isActive()) { // Kiểm tra nếu tài khoản chưa được kích hoạt
+            throw new LockedException("Account not activated");
         }
         return UserPrincipal.create(user);
     }

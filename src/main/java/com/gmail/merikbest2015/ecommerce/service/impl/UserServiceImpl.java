@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getAuthenticatedUser() {
         UserPrincipal principal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return userRepository.findByEmail(principal.getUsername());
+        return userRepository.findByPhoneNumber(principal.getUsername());
     }
 
     @Override
@@ -44,12 +44,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public MessageResponse editUserInfo(EditUserRequest request) {
         User user = getAuthenticatedUser();
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setCity(request.getCity());
-        user.setAddress(request.getAddress());
+        user.setFullName(request.getFullName());
         user.setPhoneNumber(request.getPhoneNumber());
-        user.setPostIndex(request.getPostIndex());
+        user.setBirthDate(request.getBirthDate());
         return new MessageResponse("alert-success", SuccessMessage.USER_UPDATED);
     }
 

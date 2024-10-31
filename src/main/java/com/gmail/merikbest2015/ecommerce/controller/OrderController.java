@@ -36,7 +36,7 @@ public class OrderController {
 
     @GetMapping
     public String getOrdering(Model model) {
-        model.addAttribute("perfumes", orderService.getOrdering());
+        model.addAttribute("cart-items", orderService.getOrdering());
         return Pages.ORDERING;
     }
 
@@ -49,10 +49,11 @@ public class OrderController {
     @PostMapping
     public String postOrder(@Valid OrderRequest orderRequest, BindingResult bindingResult, Model model) {
         User user = userService.getAuthenticatedUser();
-        if (controllerUtils.validateInputFields(bindingResult, model, "perfumes", user.getPerfumeList())) {
+        if (controllerUtils.validateInputFields(bindingResult, model, "cartItems", user.getCartItems())) {
             return Pages.ORDERING;
         }
-        model.addAttribute("orderId", orderService.postOrder(user, orderRequest));
+        Long orderId = orderService.postOrder(user, orderRequest);
+        model.addAttribute("orderId", orderId);
         return Pages.ORDER_FINALIZE;
     }
 }

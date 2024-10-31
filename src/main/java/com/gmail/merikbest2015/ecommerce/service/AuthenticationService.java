@@ -3,11 +3,12 @@ package com.gmail.merikbest2015.ecommerce.service;
 import com.gmail.merikbest2015.ecommerce.dto.request.PasswordResetRequest;
 import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface AuthenticationService {
 
-    MessageResponse sendPasswordResetCode(String email);
+    MessageResponse sendPasswordResetOtp(String phoneNumber, HttpServletRequest request);
 
-    String getEmailByPasswordResetCode(String code);
 
-    MessageResponse resetPassword(PasswordResetRequest request);
+    MessageResponse verifyPasswordResetOtp(String phone, String otpCode, String newPassword, HttpServletRequest request);
 }

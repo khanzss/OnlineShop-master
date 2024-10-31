@@ -9,7 +9,7 @@ public interface RegistrationService {
 
     MessageResponse registration(UserRequest userRequest,HttpServletRequest request);
 
-    MessageResponse sendOtpToZalo(String phone);
+//    MessageResponse sendOtpToZalo(String phone,String clientKey);
 
     MessageResponse verifyOtp(String phone, String otpCode, HttpServletRequest request);
 }

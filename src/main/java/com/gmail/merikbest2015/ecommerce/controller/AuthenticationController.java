@@ -2,18 +2,16 @@ package com.gmail.merikbest2015.ecommerce.controller;
 
 import com.gmail.merikbest2015.ecommerce.constants.Pages;
 import com.gmail.merikbest2015.ecommerce.constants.PathConstants;
-import com.gmail.merikbest2015.ecommerce.dto.request.PasswordResetRequest;
 import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 import com.gmail.merikbest2015.ecommerce.service.AuthenticationService;
 import com.gmail.merikbest2015.ecommerce.utils.ControllerUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,26 +27,33 @@ public class AuthenticationController {
     }
 
     @PostMapping("/forgot")
-    public String forgotPassword(@RequestParam String email, Model model) {
-        return controllerUtils.setAlertMessage(model, Pages.FORGOT_PASSWORD, authService.sendPasswordResetCode(email));
+    public String forgotPassword(@RequestParam String phoneNumber, HttpServletRequest request, Model model) {
+        MessageResponse response = authService.sendPasswordResetOtp(phoneNumber, request);
+        return controllerUtils.setAlertMessage(model, Pages.FORGOT_PASSWORD, response);
     }
 
-    @GetMapping("/reset/{code}")
-    public String resetPassword(@PathVariable String code, Model model) {
-        model.addAttribute("email", authService.getEmailByPasswordResetCode(code));
+    @GetMapping("/reset")
+    public String resetPasswordForm(@RequestParam String phone, Model model) {
+        model.addAttribute("phone", phone);
         return Pages.RESET_PASSWORD;
     }
 
     @PostMapping("/reset")
-    public String resetPassword(@Valid PasswordResetRequest request, BindingResult bindingResult,
-                                RedirectAttributes redirectAttributes, Model model) {
-        if (controllerUtils.validateInputFields(bindingResult, model, "email", request.getEmail())) {
+    public String resetPassword(@RequestParam String phone,
+                                @RequestParam String otpCode,
+                                @RequestParam String newPassword,
+                                RedirectAttributes redirectAttributes,
+                                HttpServletRequest request,
+                                Model model) {
+        MessageResponse messageResponse = authService.verifyPasswordResetOtp(phone, otpCode, newPassword, request);
+
+        // Kiểm tra nếu message chứa thông báo lỗi
+        if (messageResponse.getMessage().contains("Mã OTP không chính xác")) {
+            model.addAttribute("phone", phone);
+            model.addAttribute("otpError", messageResponse.getMessage());
             return Pages.RESET_PASSWORD;
         }
-        MessageResponse messageResponse = authService.resetPassword(request);
-        if (controllerUtils.validateInputField(model, messageResponse, "email", request.getEmail())) {
-            return Pages.RESET_PASSWORD;
-        }
+
         return controllerUtils.setAlertFlashMessage(redirectAttributes, PathConstants.LOGIN, messageResponse);
     }
 }

@@ -15,20 +15,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findAll(Pageable pageable);
 
     @EntityGraph(attributePaths = "roles")
-    User findByEmail(String email);
+    User findByPhoneNumber(String phoneNumber);
 
-    @EntityGraph(attributePaths = "roles")
-    User findByActivationCode(String code);
+//    @EntityGraph(attributePaths = "roles")
+//    User findByActivationCode(String code);
 
-    @Query("SELECT user.email FROM User user WHERE user.passwordResetCode = :code")
-    Optional<String> getEmailByPasswordResetCode(String code);
+//    @Query("SELECT user.phoneNumber FROM User user WHERE user.passwordResetCode = :code")
+//    Optional<String> getPhoneNumberByPasswordResetCode(String code);
 
     @EntityGraph(attributePaths = "roles")
     @Query("SELECT user FROM User user WHERE " +
             "(CASE " +
-            "   WHEN :searchType = 'firstName' THEN UPPER(user.firstName) " +
-            "   WHEN :searchType = 'lastName' THEN UPPER(user.lastName) " +
-            "   ELSE UPPER(user.email) " +
+            "   WHEN :searchType = 'fullName' THEN UPPER(user.fullName) " +
+            "   WHEN :searchType = 'phoneNumber' THEN user.phoneNumber " +
             "END) " +
             "LIKE UPPER(CONCAT('%',:text,'%'))")
     Page<User> searchUsers(String searchType, String text, Pageable pageable);

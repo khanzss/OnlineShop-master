@@ -1,11 +1,11 @@
 package com.gmail.merikbest2015.ecommerce.service.impl;
 
 import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
-import com.gmail.merikbest2015.ecommerce.domain.Order;
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
-import com.gmail.merikbest2015.ecommerce.domain.User;
+import com.gmail.merikbest2015.ecommerce.domain.*;
+import com.gmail.merikbest2015.ecommerce.domain.product.ProductOption;
 import com.gmail.merikbest2015.ecommerce.dto.request.OrderRequest;
 import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
+import com.gmail.merikbest2015.ecommerce.repository.ProductOptionRepository;
 import com.gmail.merikbest2015.ecommerce.service.OrderService;
 import com.gmail.merikbest2015.ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final UserService userService;
     private final OrderRepository orderRepository;
+    private final ProductOptionRepository productOptionRepository;
     private final ModelMapper modelMapper;
     private final MailService mailService;
 
@@ -38,11 +39,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Perfume> getOrdering() {
+    public List<CartItem> getOrdering() {
         User user = userService.getAuthenticatedUser();
-        return user.getPerfumeList();
+        return user.getCartItems();
     }
-
     @Override
     public Page<Order> getUserOrdersList(Pageable pageable) {
         User user = userService.getAuthenticatedUser();
@@ -54,12 +54,33 @@ public class OrderServiceImpl implements OrderService {
     public Long postOrder(User user, OrderRequest orderRequest) {
         Order order = modelMapper.map(orderRequest, Order.class);
         order.setUser(user);
-        order.getPerfumes().addAll(user.getPerfumeList());
+
+        // Tạo danh sách OrderItem từ OrderItemRequest trong OrderRequest
+        List<OrderItem> orderItems = orderRequest.getOrderItems().stream()
+                .map(itemRequest -> {
+                    ProductOption productOption = productOptionRepository.findById(itemRequest.getProductOptionId())
+                            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product option not found"));
+
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.setOrder(order);
+                    orderItem.setProduct(productOption.getProduct());
+                    orderItem.setProductOption(productOption);
+                    orderItem.setQuantity(itemRequest.getQuantity());
+                    orderItem.setPrice(itemRequest.getPrice()); // Giá được xác định từ OrderRequest
+
+                    return orderItem;
+                })
+                .collect(Collectors.toList());
+
+        order.getOrderItems().addAll(orderItems);
+
+        // Lưu đơn hàng vào database
         orderRepository.save(order);
-        user.getPerfumeList().clear();
-        Map<String, Object> attributes = new HashMap<>();
-        attributes.put("order", order);
-        mailService.sendMessageHtml(order.getEmail(), "Order #" + order.getId(), "order-template", attributes);
+
+        // Xóa tất cả các mục trong giỏ hàng của người dùng sau khi đặt hàng
+        user.getCartItems().clear();
+
+
         return order.getId();
     }
 }

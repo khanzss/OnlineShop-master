@@ -1,7 +1,9 @@
 package com.gmail.merikbest2015.ecommerce.service.impl;
 
+import com.gmail.merikbest2015.ecommerce.domain.CartItem;
 import com.gmail.merikbest2015.ecommerce.domain.Perfume;
 import com.gmail.merikbest2015.ecommerce.domain.User;
+import com.gmail.merikbest2015.ecommerce.repository.CartItemRepository;
 import com.gmail.merikbest2015.ecommerce.repository.PerfumeRepository;
 import com.gmail.merikbest2015.ecommerce.service.CartService;
 import com.gmail.merikbest2015.ecommerce.service.UserService;
@@ -16,27 +18,29 @@ import java.util.List;
 public class CartServiceImpl implements CartService {
 
     private final UserService userService;
-    private final PerfumeRepository perfumeRepository;
+    private final CartItemRepository cartItemRepository;
 
     @Override
-    public List<Perfume> getPerfumesInCart() {
+    public List<CartItem> getCartItemsInCart() {
         User user = userService.getAuthenticatedUser();
-        return user.getPerfumeList();
+        return user.getCartItems();
     }
 
     @Override
     @Transactional
-    public void addPerfumeToCart(Long perfumeId) {
+    public void addCartItemToCart(Long cartItemId) {
         User user = userService.getAuthenticatedUser();
-        Perfume perfume = perfumeRepository.getOne(perfumeId);
-        user.getPerfumeList().add(perfume);
+        CartItem cartItem = cartItemRepository.findById(cartItemId)
+                .orElseThrow(() -> new IllegalArgumentException("Cart item not found"));
+        user.getCartItems().add(cartItem);
     }
 
     @Override
     @Transactional
-    public void removePerfumeFromCart(Long perfumeId) {
+    public void removeCartItemFromCart(Long cartItemId) {
         User user = userService.getAuthenticatedUser();
-        Perfume perfume = perfumeRepository.getOne(perfumeId);
-        user.getPerfumeList().remove(perfume);
+        CartItem cartItem = cartItemRepository.findById(cartItemId)
+                .orElseThrow(() -> new IllegalArgumentException("Cart item not found"));
+        user.getCartItems().remove(cartItem);
     }
 }
