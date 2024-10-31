@@ -1,11 +1,14 @@
 package com.gmail.merikbest2015.ecommerce.domain;
 
+import com.gmail.merikbest2015.ecommerce.domain.product.Product;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -18,22 +21,21 @@ import java.util.Set;
 public class User {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
     @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", initialValue = 4, allocationSize = 1)
     private Long id;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
 
     @Column(name = "city")
     private String city;
@@ -41,19 +43,7 @@ public class User {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
-    @Column(name = "post_index")
-    private String postIndex;
-
-    @Column(name = "activation_code")
-    private String activationCode;
-
-    @Column(name = "password_reset_code")
-    private String passwordResetCode;
-
-    @Column(name = "active")
+    @Column(name = "active", nullable = false)
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -62,5 +52,22 @@ public class User {
     private Set<Role> roles;
 
     @ManyToMany
-    private List<Perfume> perfumeList;
+    @JoinTable(
+            name = "user_product",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> productList;
+
+    @Column(name = "ip_address")
+    private String ipAddress;
+
+    @Column(name = "device")
+    private String device;
+
+    @Column(name = "create_date", nullable = false, updatable = false)
+    private LocalDateTime createDate;
+
+    @Column(name = "last_login")
+    private LocalDateTime lastLogin;
 }

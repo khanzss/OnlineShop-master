@@ -7,45 +7,42 @@ import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 import com.gmail.merikbest2015.ecommerce.service.RegistrationService;
 import com.gmail.merikbest2015.ecommerce.utils.ControllerUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(PathConstants.REGISTRATION)
+@RequestMapping("/registration")
 public class RegistrationController {
 
     private final RegistrationService registrationService;
-    private final ControllerUtils controllerUtils;
 
     @GetMapping
     public String registration() {
         return Pages.REGISTRATION;
     }
 
-    @PostMapping
-    public String registration(@RequestParam("g-recaptcha-response") String captchaResponse,
-                               @Valid UserRequest user,
-                               BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes,
-                               Model model) {
-        if (controllerUtils.validateInputFields(bindingResult, model, "user", user)) {
-            return Pages.REGISTRATION;
-        }
-        MessageResponse messageResponse = registrationService.registration(captchaResponse, user);
-        if (controllerUtils.validateInputField(model, messageResponse, "user", user)) {
-            return Pages.REGISTRATION;
-        }
-        return controllerUtils.setAlertFlashMessage(redirectAttributes, PathConstants.LOGIN, messageResponse);
+    @PostMapping("/register")
+    public ResponseEntity<MessageResponse> register(
+            @Valid @RequestBody UserRequest userRequest, HttpServletRequest request) {
+        MessageResponse response = registrationService.registration(userRequest, request);
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/activate/{code}")
-    public String activateEmailCode(@PathVariable String code, Model model) {
-        return controllerUtils.setAlertMessage(model, Pages.LOGIN, registrationService.activateEmailCode(code));
+    // Endpoint xác thực OTP
+    @PostMapping("/verify-otp")
+    public ResponseEntity<MessageResponse> verifyOtp(
+            @RequestParam String phone,
+            @RequestParam String otpCode,
+            HttpServletRequest request) {
+        MessageResponse response = registrationService.verifyOtp(phone, otpCode, request);
+        return ResponseEntity.ok(response);
     }
 }

@@ -1,25 +1,29 @@
 package com.gmail.merikbest2015.ecommerce.dto.request;
 
-import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import lombok.Data;
-
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Data
 public class UserRequest {
 
-    @Email(message = ErrorMessage.INCORRECT_EMAIL)
-    @NotBlank(message = ErrorMessage.EMAIL_CANNOT_BE_EMPTY)
-    private String email;
+    @NotBlank(message = "Họ và tên không được để trống.")
+    private String fullName;
 
-    @NotBlank(message = ErrorMessage.EMPTY_FIRST_NAME)
-    private String firstName;
+    @NotBlank(message = "Số điện thoại không được để trống.")
+    @Pattern(regexp = "^\\d{10}$", message = "Số điện thoại phải có 10 chữ số.")
+    private String phone;
 
-    @Size(min = 6, max = 16, message = ErrorMessage.PASSWORD_CHARACTER_LENGTH)
+    @NotNull(message = "Ngày tháng năm sinh không được để trống.")
+    private LocalDate birthDate;
+
+    @NotBlank(message = "Mật khẩu không được để trống.")
+    @Size(min = 6, message = "Mật khẩu phải có ít nhất 6 ký tự.")
     private String password;
 
-    @Size(min = 6, max = 16, message = ErrorMessage.PASSWORD2_CHARACTER_LENGTH)
+    @NotBlank(message = "Vui lòng xác nhận mật khẩu.")
     private String password2;
 }
