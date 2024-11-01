@@ -61,61 +61,6 @@
                 }
             });
 
-            // Đóng mega menu khi nhấp ra ngoài
-            document.addEventListener('click', (e) => {
-                if (!moreMenu.contains(e.target) && !megaMenu.contains(e.target)) {
-                    megaMenu.style.display = 'none';
-                }
-            });
-
-            // Cập nhật vị trí mega menu khi thay đổi kích thước hoặc cuộn trang
-            window.addEventListener('resize', updateMegaMenuPosition);
-            window.addEventListener('scroll', updateMegaMenuPosition);
-
-            // Mở tab Categories với animation
-            const openCategoriesOverlay = () => {
-                categoriesOverlay.style.display = 'block';
-                setTimeout(() => {
-                    categoriesOverlay.classList.add('active'); // Thêm class để kích hoạt animation
-                }, 10);
-            };
-
-            // Đóng tab Categories với animation
-            const closeCategoriesOverlay = () => {
-                categoriesOverlay.classList.remove('active'); // Xóa class để bắt đầu đóng animation
-                setTimeout(() => {
-                    categoriesOverlay.style.display = 'none';
-                }, 300); // Đợi 300ms để hoàn tất animation đóng
-            };
-
-            // Sự kiện click vào nút Categories để mở tab
-            categoriesToggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                openCategoriesOverlay();
-            });
-
-            // Sự kiện click vào nút đóng để đóng tab
-            closeOverlay.addEventListener('click', closeCategoriesOverlay);
-
-            // Đóng tab khi nhấn ESC
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && categoriesOverlay.style.display === 'block') {
-                    closeCategoriesOverlay();
-                }
-            });
-
-            // Đóng tab khi click ra ngoài nội dung tab (chỉ khi tab đang mở)
-            document.addEventListener('click', (e) => {
-                if (
-                    categoriesOverlay.style.display === 'block' &&
-                    !categoriesOverlay.contains(e.target) &&
-                    e.target !== categoriesToggle
-                ) {
-                    closeCategoriesOverlay();
-                }
-            });
-
-        });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
