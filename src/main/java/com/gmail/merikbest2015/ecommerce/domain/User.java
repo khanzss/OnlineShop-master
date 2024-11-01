@@ -25,8 +25,9 @@ public class User {
     @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", initialValue = 4, allocationSize = 1)
     private Long id;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
+
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -34,7 +35,7 @@ public class User {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "birth_date", nullable = false)
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @Column(name = "active", nullable = false)
@@ -54,9 +55,21 @@ public class User {
     @Column(name = "device")
     private String device;
 
-    @Column(name = "create_date", nullable = false, updatable = false)
+
+
+    @Column(name = "create_date")
     private LocalDateTime createDate;
 
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
+
+    @PrePersist
+    protected void onCreate() {
+        if (createDate == null) {
+            createDate = LocalDateTime.now();
+        }
+        if (birthDate == null) {
+            birthDate = LocalDate.of(2000, 1, 1); // Giá trị hợp lệ mặc định cho ngày sinh
+        }
+    }
 }
